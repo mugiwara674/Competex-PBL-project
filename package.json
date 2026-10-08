@@ -1,0 +1,25 @@
+{
+  "name": "competex",
+  "version": "1.0.0",
+  "description": "CompeteX: Centralized College Competition Management Platform - Mohan Babu University PBL Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test_suite.js",
+    "backup": "node backup.js",
+    "restore": "node restore.js"
+  },
+  "keywords": [
+    "competex",
+    "competition-platform",
+    "hackathon-management",
+    "web-technologies",
+    "mohan-babu-university",
+    "22IT104001"
+  ],
+  "author": "GUMMINENI KUSHAL, BELLAM GURUNAD, YALLALA SAI CHARAN, DANAM LOHITH",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

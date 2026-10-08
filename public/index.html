@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompeteX - Centralized College Competition Management Platform</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- TOP SLIM ANNOUNCEMENT TICKER -->
+  <div id="topAnnouncementBanner" class="bg-slate-950/90 border-b border-indigo-500/20 text-xs py-1.5 px-4 transition-all z-50">
+    <div class="container mx-auto flex items-center justify-between text-slate-300">
+      <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
+        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30">
+          <i class="fa-solid fa-bullhorn text-[9px]"></i> NOTICE
+        </span>
+        <span id="topAnnouncementText" class="text-slate-300 text-xs truncate">HackSprint 2026: Round 2 MVP submissions open! Submissions close Oct 20.</span>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <span class="hidden md:inline text-slate-400 text-[11px]"><i class="fa-solid fa-building-columns text-slate-500 mr-1"></i>Apex Institute of Tech</span>
+        <button id="btnQuickDemoSwitch" title="Quick Role Switch" class="text-[11px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1">
+          <i class="fa-solid fa-bolt text-amber-400 text-[10px]"></i> <span class="hidden sm:inline">Role:</span> <strong id="activeRoleBadge">STUDENT</strong>
+        </button>
+        <button onclick="document.getElementById('topAnnouncementBanner').remove()" class="text-slate-400 hover:text-white text-xs px-1" title="Dismiss">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLEAN MODERN NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800/80 shadow-sm">
+    <div class="container mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Left: Brand Logo -->
+      <a href="#competitions" onclick="navigateTo('competitions')" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/25 group-hover:scale-105 transition">
+          <i class="fa-solid fa-trophy text-sm"></i>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-lg font-extrabold tracking-tight text-white">Compete<span class="text-brand-500">X</span></span>
+          <span class="hidden sm:inline-block text-[10px] font-semibold text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded border border-brand-500/20">Hub</span>
+        </div>
+      </a>
+
+      <!-- Center: Clean Desktop Navigation (5 Core Links + More Dropdown) -->
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
+        <button onclick="navigateTo('competitions')" class="nav-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition active text-xs font-medium" data-nav="competitions">
+          <i class="fa-solid fa-compass mr-1.5 text-brand-500"></i> Competitions
+        </button>
+        <button onclick="navigateTo('coding')" class="nav-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition text-xs font-medium" data-nav="coding">
+          <i class="fa-solid fa-code mr-1.5 text-emerald-400"></i> Sandbox
+        </button>
+        <button onclick="navigateTo('quiz')" class="nav-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition text-xs font-medium" data-nav="quiz">
+          <i class="fa-solid fa-bolt mr-1.5 text-amber-400"></i> Live Quiz
+        </button>
+        <button onclick="navigateTo('leaderboard')" class="nav-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition text-xs font-medium" data-nav="leaderboard">
+          <i class="fa-solid fa-ranking-star mr-1.5 text-yellow-400"></i> Leaderboard
+        </button>
+        <button onclick="navigateTo('certificates')" class="nav-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition text-xs font-medium" data-nav="certificates">
+          <i class="fa-solid fa-certificate mr-1.5 text-amber-400"></i> Certificates
+        </button>
+
+        <!-- Elegant "More" Dropdown Menu -->
+        <div class="relative" id="navMoreContainer">
+          <button id="navMoreBtn" onclick="toggleNavMore(event)" type="button" class="nav-link px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-1.5 text-xs font-medium">
+            <i class="fa-solid fa-ellipsis text-slate-400"></i>
+            <span>More</span>
+            <i class="fa-solid fa-chevron-down text-[9px] text-slate-400 transition-transform duration-200" id="navMoreChevron"></i>
+          </button>
+          
+          <div id="navMoreMenu" class="hidden absolute left-0 mt-2 w-72 bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl shadow-2xl p-2 z-50 divide-y divide-slate-800">
+            <div class="p-1 space-y-0.5">
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1">Participation & Events</div>
+              <button onclick="navigateTo('teams'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="teams">
+                <i class="fa-solid fa-users text-teal-400 w-4 text-center"></i>
+                <div><span class="font-medium">Teams & Squads</span></div>
+              </button>
+              <button onclick="navigateTo('submissions'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="submissions">
+                <i class="fa-solid fa-cloud-arrow-up text-blue-400 w-4 text-center"></i>
+                <div><span class="font-medium">Submissions</span></div>
+              </button>
+              <button onclick="navigateTo('timeline'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="timeline">
+                <i class="fa-solid fa-clock-rotate-left text-cyan-400 w-4 text-center"></i>
+                <div><span class="font-medium">Timeline & Schedule</span></div>
+              </button>
+              <button onclick="navigateTo('announcements'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="announcements">
+                <i class="fa-solid fa-bullhorn text-pink-400 w-4 text-center"></i>
+                <div><span class="font-medium">Campus Notices</span></div>
+              </button>
+            </div>
+            
+            <div class="p-1 space-y-0.5 pt-1.5">
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1">Ecosystem</div>
+              <button onclick="navigateTo('helpdesk'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="helpdesk">
+                <i class="fa-solid fa-handshake-angle text-orange-400 w-4 text-center"></i>
+                <div><span class="font-medium">Mentorship Hub</span></div>
+              </button>
+              <button onclick="navigateTo('showcase'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="showcase">
+                <i class="fa-solid fa-shapes text-emerald-400 w-4 text-center"></i>
+                <div><span class="font-medium">Project Gallery</span></div>
+              </button>
+              <button onclick="navigateTo('sponsors'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="sponsors">
+                <i class="fa-solid fa-handshake text-indigo-400 w-4 text-center"></i>
+                <div><span class="font-medium">Sponsors & Perks</span></div>
+              </button>
+            </div>
+            
+            <div class="p-1 space-y-0.5 pt-1.5">
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1">Management</div>
+              <button onclick="navigateTo('judging'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="judging" id="navJudgingLink">
+                <i class="fa-solid fa-gavel text-amber-400 w-4 text-center"></i>
+                <div><span class="font-medium">Judge Scoring Pad</span></div>
+              </button>
+              <button onclick="navigateTo('admin'); closeNavMore();" class="nav-link w-full text-left px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition" data-nav="admin" id="navAdminLink">
+                <i class="fa-solid fa-chart-pie text-purple-400 w-4 text-center"></i>
+                <div><span class="font-medium">Analytics & Accreditation</span></div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Right: User Controls & Role Switcher -->
+      <div class="flex items-center gap-2 shrink-0">
+        
+        <!-- Role Switcher -->
+        <div class="relative" id="roleSwitcherContainer">
+          <button id="roleDropdownBtn" class="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700/80 rounded-lg text-xs font-medium text-slate-200 transition">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span id="roleLabel">Student</span>
+            <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+          </button>
+          
+          <div id="roleDropdownMenu" class="hidden absolute right-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl p-2 z-50">
+            <div class="text-[10px] font-semibold text-slate-400 px-3 py-1 uppercase tracking-wider">Switch Active Role</div>
+            <button onclick="switchRole('STUDENT')" class="w-full text-left px-3 py-2 rounded-lg text-xs hover:bg-slate-800 flex items-center justify-between transition">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-user-graduate text-brand-400"></i> Student</span>
+              <span class="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">Alex Chen</span>
+            </button>
+            <button onclick="switchRole('ORGANIZER')" class="w-full text-left px-3 py-2 rounded-lg text-xs hover:bg-slate-800 flex items-center justify-between transition">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-emerald-400"></i> Organizer</span>
+              <span class="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">Faculty</span>
+            </button>
+            <button onclick="switchRole('JUDGE')" class="w-full text-left px-3 py-2 rounded-lg text-xs hover:bg-slate-800 flex items-center justify-between transition">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-gavel text-amber-400"></i> Judge</span>
+              <span class="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">Industry</span>
+            </button>
+            <button onclick="switchRole('ADMIN')" class="w-full text-left px-3 py-2 rounded-lg text-xs hover:bg-slate-800 flex items-center justify-between transition">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-purple-400"></i> Admin</span>
+              <span class="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">Dean</span>
+            </button>
+            <div class="border-t border-slate-800 my-1"></div>
+            <button onclick="openAuthModal('login')" class="w-full text-left px-3 py-2 rounded-lg text-xs hover:bg-slate-800 text-brand-400 hover:text-brand-300 flex items-center justify-between transition">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-right-to-bracket text-xs"></i> Sign In / Register</span>
+              <span class="text-[9px] bg-brand-500/10 text-brand-400 px-1.5 py-0.5 rounded border border-brand-500/20">Custom</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Host Event Button (Organizers/Admins) -->
+        <button id="btnCreateCompetition" onclick="openCreateCompetitionModal()" class="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm transition">
+          <i class="fa-solid fa-plus text-[10px]"></i> Host Event
+        </button>
+
+        <!-- Auth Actions: Logged Out State -->
+        <div id="authLoggedOutActions" class="hidden items-center gap-2">
+          <button onclick="openAuthModal('login')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold shadow-sm transition hover:border-brand-500/50">
+            <i class="fa-solid fa-right-to-bracket text-[11px] text-brand-400"></i>
+            <span>Sign In</span>
+          </button>
+          <button onclick="openAuthModal('register')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-md shadow-brand-500/20 transition">
+            <i class="fa-solid fa-user-plus text-[11px]"></i>
+            <span>Register</span>
+          </button>
+        </div>
+
+        <!-- Auth Actions: Logged In State (Profile Pill & Logout) -->
+        <div id="authLoggedInActions" class="flex items-center gap-1.5">
+          <button onclick="openProfileModal()" class="flex items-center gap-2 py-1 px-2 rounded-lg hover:bg-slate-800/80 transition border border-transparent hover:border-slate-700">
+            <img id="userAvatarImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Avatar" class="w-7 h-7 rounded-full border border-brand-500/80 object-cover">
+            <span class="hidden md:inline text-xs font-semibold text-slate-200 max-w-[90px] truncate" id="userDisplayName">Alex Chen</span>
+          </button>
+          <button onclick="handleLogout()" title="Sign Out" class="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center text-xs transition border border-slate-700/60">
+            <i class="fa-solid fa-right-from-bracket text-[11px]"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Hamburger Toggle Button (Hidden on lg screens) -->
+        <button id="btnMobileNavToggle" onclick="toggleMobileNav()" class="lg:hidden w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-sm border border-slate-700 transition ml-1" title="Toggle Navigation">
+          <i class="fa-solid fa-bars" id="mobileNavIcon"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down / Dropdown Navigation (Clean replacement for the horizontal strip) -->
+    <div id="mobileNavDrawer" class="hidden lg:hidden border-t border-slate-800 bg-slate-900/98 backdrop-blur-xl px-4 py-3 space-y-2 shadow-2xl">
+      <div class="grid grid-cols-2 gap-1.5 text-xs">
+        <button onclick="navigateTo('competitions'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2 active" data-nav="competitions">
+          <i class="fa-solid fa-compass text-brand-500"></i> Competitions
+        </button>
+        <button onclick="navigateTo('coding'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="coding">
+          <i class="fa-solid fa-code text-emerald-400"></i> Sandbox
+        </button>
+        <button onclick="navigateTo('quiz'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="quiz">
+          <i class="fa-solid fa-bolt text-amber-400"></i> Live Quiz
+        </button>
+        <button onclick="navigateTo('leaderboard'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="leaderboard">
+          <i class="fa-solid fa-ranking-star text-yellow-400"></i> Standings
+        </button>
+        <button onclick="navigateTo('certificates'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="certificates">
+          <i class="fa-solid fa-certificate text-amber-400"></i> Certificates
+        </button>
+        <button onclick="navigateTo('teams'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="teams">
+          <i class="fa-solid fa-users text-teal-400"></i> Teams
+        </button>
+        <button onclick="navigateTo('submissions'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="submissions">
+          <i class="fa-solid fa-file-code text-blue-400"></i> Submissions
+        </button>
+        <button onclick="navigateTo('judging'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="judging">
+          <i class="fa-solid fa-gavel text-amber-400"></i> Judge Pad
+        </button>
+        <button onclick="navigateTo('timeline'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="timeline">
+          <i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> Timeline
+        </button>
+        <button onclick="navigateTo('helpdesk'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="helpdesk">
+          <i class="fa-solid fa-handshake-angle text-orange-400"></i> Mentorship
+        </button>
+        <button onclick="navigateTo('showcase'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="showcase">
+          <i class="fa-solid fa-shapes text-emerald-400"></i> Gallery
+        </button>
+        <button onclick="navigateTo('admin'); toggleMobileNav();" class="nav-link w-full text-left px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 flex items-center gap-2" data-nav="admin">
+          <i class="fa-solid fa-chart-pie text-purple-400"></i> Analytics
+        </button>
+        <div class="col-span-2 pt-2 border-t border-slate-800 grid grid-cols-2 gap-2 mt-1">
+          <button onclick="openAuthModal('login'); toggleMobileNav();" class="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 transition">
+            <i class="fa-solid fa-right-to-bracket text-brand-400"></i> Sign In
+          </button>
+          <button onclick="openAuthModal('register'); toggleMobileNav();" class="py-2 px-3 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-md shadow-brand-500/20 transition">
+            <i class="fa-solid fa-user-plus"></i> Register
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ROLE BANNER & CONTEXT WIDGET (SLEEK & LOW PROFILE) -->
+  <section class="bg-slate-900/40 border-b border-slate-800/60 py-2.5" id="roleBannerSection">
+    <div class="container mx-auto px-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <div id="roleIconBox" class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-sm shrink-0">
+          <i class="fa-solid fa-user-graduate"></i>
+        </div>
+        <div class="flex items-center flex-wrap gap-2">
+          <h1 class="text-xs font-bold text-white tracking-wide" id="welcomeUserGreeting">Welcome back, Alex Chen!</h1>
+          <span id="roleBadgePill" class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 border border-brand-500/30">STUDENT PORTAL</span>
+          <span class="text-[11px] text-slate-500 hidden md:inline">•</span>
+          <p class="text-[11px] text-slate-400 hidden md:inline" id="roleSubtitle">Apex Institute of Technology • Dept of Computer Science & Engineering</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons based on Role -->
+      <div class="flex flex-wrap items-center gap-1.5" id="roleQuickActions">
+        <button onclick="openJoinTeamModal()" class="px-2.5 py-1 rounded-lg bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-[11px] font-medium transition flex items-center gap-1">
+          <i class="fa-solid fa-key text-[10px]"></i> Join Team
+        </button>
+        <button onclick="openCreateTeamModal()" class="px-2.5 py-1 rounded-lg bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 border border-brand-500/30 text-[11px] font-medium transition flex items-center gap-1">
+          <i class="fa-solid fa-user-plus text-[10px]"></i> Create Squad
+        </button>
+        <button onclick="navigateTo('submissions')" class="px-2.5 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[11px] font-medium transition flex items-center gap-1">
+          <i class="fa-solid fa-cloud-arrow-up text-[10px]"></i> Submit
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN APPLICATION CONTENT (DYNAMIC VIEWS) -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+
+    <!-- VIEW 1: COMPETITIONS CATALOG (DEFAULT) -->
+    <div id="view-competitions" class="view-panel space-y-6">
+      
+      <!-- Search & Category Filters -->
+      <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-96">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+            <input type="text" id="competitionSearchInput" placeholder="Search hackathons, coding contests, quizzes..." 
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs md:text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-brand-500 transition">
+          </div>
+
+          <!-- Status Filters -->
+          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <span class="text-xs text-slate-400 hidden xl:inline">Status:</span>
+            <button onclick="filterByStatus('ALL')" class="status-chip active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-700 text-slate-200 hover:bg-slate-600 transition" data-status="ALL">All</button>
+            <button onclick="filterByStatus('ONGOING')" class="status-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-400 hover:text-slate-200 transition" data-status="ONGOING">Ongoing</button>
+            <button onclick="filterByStatus('UPCOMING')" class="status-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-400 hover:text-slate-200 transition" data-status="UPCOMING">Upcoming</button>
+            <button onclick="filterByStatus('JUDGING')" class="status-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-400 hover:text-slate-200 transition" data-status="JUDGING">Judging</button>
+            <button onclick="filterByStatus('COMPLETED')" class="status-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-400 hover:text-slate-200 transition" data-status="COMPLETED">Completed</button>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-slate-700/60">
+          <span class="text-xs font-medium text-slate-400 mr-2"><i class="fa-solid fa-filter mr-1 text-brand-400"></i> Categories:</span>
+          <button onclick="filterByCategory('ALL')" class="cat-pill active px-3 py-1 rounded-full text-xs font-semibold bg-brand-600 text-white transition" data-category="ALL">All Competitions</button>
+          <button onclick="filterByCategory('HACKATHON')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-slate-300 hover:bg-slate-700 transition" data-category="HACKATHON"><i class="fa-solid fa-laptop-code mr-1 text-indigo-400"></i> Hackathons</button>
+          <button onclick="filterByCategory('CODING')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-slate-300 hover:bg-slate-700 transition" data-category="CODING"><i class="fa-solid fa-code mr-1 text-teal-400"></i> Coding Contests</button>
+          <button onclick="filterByCategory('EXPO')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-slate-300 hover:bg-slate-700 transition" data-category="EXPO"><i class="fa-solid fa-microchip mr-1 text-amber-400"></i> Project Expos</button>
+          <button onclick="filterByCategory('QUIZ')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-slate-300 hover:bg-slate-700 transition" data-category="QUIZ"><i class="fa-solid fa-brain mr-1 text-rose-400"></i> Quizzes</button>
+          <button onclick="filterByCategory('PAPER')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-slate-300 hover:bg-slate-700 transition" data-category="PAPER"><i class="fa-solid fa-scroll mr-1 text-purple-400"></i> Paper Presentations</button>
+        </div>
+      </div>
+
+      <!-- Competitions Grid -->
+      <div id="competitionsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+      
+      <!-- Empty State -->
+      <div id="competitionsEmptyState" class="hidden text-center py-16 bg-slate-800/40 rounded-2xl border border-slate-800">
+        <i class="fa-solid fa-folder-open text-4xl text-slate-600 mb-3"></i>
+        <h3 class="text-base font-semibold text-slate-300">No competitions found</h3>
+        <p class="text-xs text-slate-500 mt-1">Try resetting your filters or search keywords.</p>
+        <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-medium transition">Reset Filters</button>
+      </div>
+
+    </div>
+
+    <!-- VIEW 2: TEAMS & SQUADS -->
+    <div id="view-teams" class="view-panel hidden space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-800/80 p-5 rounded-2xl border border-slate-700/60">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-users text-teal-400"></i> Teams & Squad Workspace
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Form squads with college peers, share join codes, and coordinate deliverables.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="openJoinTeamModal()" class="px-3.5 py-2 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs font-semibold transition flex items-center gap-1.5">
+            <i class="fa-solid fa-key"></i> Join with Code
+          </button>
+          <button onclick="openCreateTeamModal()" class="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md shadow-brand-500/20 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-plus"></i> Create New Squad
+          </button>
+        </div>
+      </div>
+
+      <div id="teamsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- VIEW 3: SUBMISSIONS TRACKER -->
+    <div id="view-submissions" class="view-panel hidden space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-800/80 p-5 rounded-2xl border border-slate-700/60">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-file-code text-blue-400"></i> Project Deliverables & Submissions
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Upload multi-round deliverables, GitHub repositories, live demo links, and review rubrics.</p>
+        </div>
+        <button onclick="openSubmitModal()" class="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md shadow-brand-500/20 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-upload"></i> New Project Submission
+        </button>
+      </div>
+
+      <div id="submissionsContainer" class="space-y-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- VIEW 4: JUDGE SCORING PAD -->
+    <div id="view-judging" class="view-panel hidden space-y-6">
+      <div class="bg-gradient-to-r from-amber-900/30 via-slate-800 to-slate-800 p-6 rounded-2xl border border-amber-500/30">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">Evaluation Room</span>
+            <h2 class="text-xl font-bold text-white mt-1 flex items-center gap-2">
+              <i class="fa-solid fa-gavel text-amber-400"></i> Judge Scoring & Rubric Matrix
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl">
+              Evaluate assigned teams against weighted criteria. Your scores immediately compute weighted averages and update the official leaderboard.
+            </p>
+          </div>
+          <div class="bg-slate-900/80 px-4 py-3 rounded-xl border border-slate-700 flex items-center gap-4 text-xs">
+            <div>
+              <span class="text-slate-400 block text-[10px]">Active Evaluator</span>
+              <strong class="text-white" id="judgePadName">Michael Vance (Industry Judge)</strong>
+            </div>
+            <div class="border-l border-slate-700 pl-4">
+              <span class="text-slate-400 block text-[10px]">Assigned Queue</span>
+              <strong class="text-amber-400" id="judgeQueueCount">3 Teams</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evaluation Grid / Workspace -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left: Queue of Submissions to Judge -->
+        <div class="lg:col-span-1 bg-slate-800/80 border border-slate-700/60 rounded-2xl p-4 space-y-3">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 px-1">Submissions in Queue</h3>
+          <div id="judgeQueueList" class="space-y-2">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Right: Active Evaluation Form / Rubric Sliders -->
+        <div class="lg:col-span-2 bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6" id="judgeActivePad">
+          <div class="text-center py-16 text-slate-500">
+            <i class="fa-solid fa-hand-pointer text-4xl mb-3"></i>
+            <p class="text-sm">Select a team submission from the queue to start grading.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: LEADERBOARD & RESULTS -->
+    <div id="view-leaderboard" class="view-panel hidden space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-800/80 p-5 rounded-2xl border border-slate-700/60">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-trophy text-yellow-400"></i> Official Leaderboards & Standings
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Real-time score calculation aggregated across independent judges and rubric matrices.</p>
+        </div>
+        
+        <!-- Competition Selector for Leaderboard -->
+        <div class="flex items-center gap-2">
+          <label class="text-xs text-slate-400">Competition:</label>
+          <select id="leaderboardCompSelect" onchange="loadLeaderboardForComp(this.value)" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-brand-500">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Leaderboard Podium Top 3 -->
+      <div id="podiumContainer" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Leaderboard Full Table -->
+      <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs md:text-sm">
+            <thead class="bg-slate-900/80 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-700">
+              <tr>
+                <th class="py-3 px-4">Rank</th>
+                <th class="py-3 px-4">Team & Squad</th>
+                <th class="py-3 px-4">Project Deliverable</th>
+                <th class="py-3 px-4 text-center">Evaluations</th>
+                <th class="py-3 px-4 text-right">Aggregated Score</th>
+                <th class="py-3 px-4 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardTableBody" class="divide-y divide-slate-700/50">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 6: ANNOUNCEMENTS & NOTICES -->
+    <div id="view-announcements" class="view-panel hidden space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-800/80 p-5 rounded-2xl border border-slate-700/60">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-bullhorn text-pink-400"></i> Official Bulletins & Broadcasts
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Real-time alerts regarding round deadlines, mentorship schedules, and podium publications.</p>
+        </div>
+        <button id="btnCreateNotice" onclick="openCreateNoticeModal()" class="hidden px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md shadow-brand-500/20 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-plus"></i> Post Announcement
+        </button>
+      </div>
+
+      <div id="announcementsList" class="space-y-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- VIEW 7: ADMIN & ANALYTICS -->
+    <div id="view-admin" class="view-panel hidden space-y-6">
+      <div class="bg-gradient-to-r from-purple-900/30 via-slate-800 to-slate-800 p-6 rounded-2xl border border-purple-500/30">
+        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40">Platform Governance</span>
+        <h2 class="text-xl font-bold text-white mt-1 flex items-center gap-2">
+          <i class="fa-solid fa-chart-pie text-purple-400"></i> Institutional Overview & Analytics
+        </h2>
+        <p class="text-xs text-slate-300 mt-1 max-w-xl">
+          College-wide participation metrics, department engagement rates, and competition health statistics.
+        </p>
+      </div>
+
+      <!-- KPI Stat Cards -->
+      <div id="adminKpis" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Category Breakdown Chart & Audit -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-cubes-stacked text-indigo-400"></i> Competition Domain Distribution
+          </h3>
+          <div id="categoryBreakdownBars" class="space-y-3">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-clock-rotate-left text-teal-400"></i> Recent Platform Activity
+          </h3>
+          <div class="space-y-3 text-xs" id="adminAuditLog">
+            <div class="flex items-start gap-3 p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
+              <div>
+                <strong class="text-slate-200">Michael Vance (Judge)</strong> scored team <span class="text-brand-400">NeuralKnights</span> (94/100).
+                <span class="block text-[10px] text-slate-500 mt-0.5">Today at 10:15 AM</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+              <span class="w-2 h-2 rounded-full bg-blue-400 mt-1.5 shrink-0"></span>
+              <div>
+                <strong class="text-slate-200">GreenGrid AI</strong> submitted Round 2 MVP deliverable.
+                <span class="block text-[10px] text-slate-500 mt-0.5">Yesterday at 9:40 PM</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+              <span class="w-2 h-2 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
+              <div>
+                <strong class="text-slate-200">Dr. Sarah Jenkins</strong> published schedule alert for Round 2.
+                <span class="block text-[10px] text-slate-500 mt-0.5">2 days ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSTITUTIONAL ACCREDITATION & ONE-CLICK CSV EXPORT SUITE -->
+      <div class="bg-slate-800/80 border border-slate-700/60 rounded-3xl p-6 shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-700/60 pb-4">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              <i class="fa-solid fa-file-excel mr-1"></i> Official Auditing & NAAC / NBA Data
+            </span>
+            <h3 class="text-base font-bold text-white mt-1 flex items-center gap-2">
+              <i class="fa-solid fa-download text-emerald-400"></i> Institutional Accreditation & One-Click CSV Exports
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Instant downloadable spreadsheets for university record keeping, dean committee audits, and NIRF/NAAC criteria filing.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+          <!-- Export 1: Teams Roster -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+            <div>
+              <div class="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center text-sm mb-2 border border-teal-500/20">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <h4 class="text-xs font-bold text-white">Teams & Squads Roster</h4>
+              <p class="text-[11px] text-slate-400 mt-1">Full registry with join codes, member IDs, emails & departments.</p>
+            </div>
+            <a href="/api/export/teams" download="competex-teams-roster.csv" class="w-full py-2 px-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-md shadow-teal-500/20 text-center">
+              <i class="fa-solid fa-file-csv"></i> Download Teams (.csv)
+            </a>
+          </div>
+
+          <!-- Export 2: Submissions Report -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+            <div>
+              <div class="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-sm mb-2 border border-blue-500/20">
+                <i class="fa-solid fa-folder-open"></i>
+              </div>
+              <h4 class="text-xs font-bold text-white">Project Submissions</h4>
+              <p class="text-[11px] text-slate-400 mt-1">GitHub repositories, demo URLs, abstracts & tech stack tags.</p>
+            </div>
+            <a href="/api/export/submissions" download="competex-submissions-report.csv" class="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/20 text-center">
+              <i class="fa-solid fa-file-csv"></i> Download Projects (.csv)
+            </a>
+          </div>
+
+          <!-- Export 3: Consolidated Judge Scores -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+            <div>
+              <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-sm mb-2 border border-amber-500/20">
+                <i class="fa-solid fa-gavel"></i>
+              </div>
+              <h4 class="text-xs font-bold text-white">Consolidated Jury Scores</h4>
+              <p class="text-[11px] text-slate-400 mt-1">Itemized rubric points, weighted calculations & judge feedback.</p>
+            </div>
+            <a href="/api/export/evaluations" download="competex-evaluations-audit.csv" class="w-full py-2 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20 text-center">
+              <i class="fa-solid fa-file-csv"></i> Download Scores (.csv)
+            </a>
+          </div>
+
+          <!-- Export 4: Verified Certificates & Honors -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+            <div>
+              <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm mb-2 border border-emerald-500/20">
+                <i class="fa-solid fa-certificate"></i>
+              </div>
+              <h4 class="text-xs font-bold text-white">Accredited Credentials</h4>
+              <p class="text-[11px] text-slate-400 mt-1">Issued certificates, cryptographic verification IDs & champion ranks.</p>
+            </div>
+            <a href="/api/export/certificates" download="competex-accredited-certificates.csv" class="w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/20 text-center">
+              <i class="fa-solid fa-file-csv"></i> Download Certs (.csv)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 8: CERTIFICATES & MERIT BADGES -->
+    <div id="view-certificates" class="view-panel hidden space-y-6">
+      
+      <!-- Certificates Hero Header -->
+      <div class="bg-gradient-to-r from-amber-950/40 via-slate-800 to-indigo-950/40 p-6 rounded-3xl border border-amber-500/30 shadow-xl">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
+              <i class="fa-solid fa-award mr-1"></i> Verifiable Credentials
+            </span>
+            <h2 class="text-xl font-extrabold text-white mt-1.5 flex items-center gap-2">
+              <i class="fa-solid fa-certificate text-amber-400"></i> Digital Certificates & Achievement Badges
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl">
+              Tamper-evident, cryptographically verifiable certificates of excellence and participation issued by academic coordinators and jury panels.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="scrollToVerificationBox()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-700 text-amber-300 border border-slate-700 text-xs font-semibold transition flex items-center gap-1.5">
+              <i class="fa-solid fa-shield-halved"></i> Verify a Certificate
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats / Badges Overview -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">🥇</div>
+          <div>
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">1st Place Honors</span>
+            <strong class="text-base text-white" id="countFirstPlace">2 Issued</strong>
+          </div>
+        </div>
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-slate-400/20 text-slate-300 flex items-center justify-center text-lg">🥈</div>
+          <div>
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Runner-Up Honors</span>
+            <strong class="text-base text-white" id="countRunnerUp">1 Issued</strong>
+          </div>
+        </div>
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-lg">📜</div>
+          <div>
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Participation</span>
+            <strong class="text-base text-white" id="countParticipation">1 Issued</strong>
+          </div>
+        </div>
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">🛡️</div>
+          <div>
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Verification Rate</span>
+            <strong class="text-base text-white">100% Genuine</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Workspace: User's Certificates & Public Verifier -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left 2 Cols: My Certificates / User Unlocked Credentials -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-ribbon text-amber-400"></i> Earned Credentials & Badges
+            </h3>
+            <span class="text-xs text-slate-400" id="userCertsCountLabel">Showing your unlocked credentials</span>
+          </div>
+
+          <div id="userCertificatesList" class="space-y-4">
+            <!-- Populated dynamically via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Right Col: Public Verification Search & Organizer Bulk Issuer -->
+        <div class="space-y-6">
+          
+          <!-- Public Verification Search Card -->
+          <div class="bg-slate-800/80 border border-slate-700/60 rounded-3xl p-5 shadow-xl space-y-4" id="certVerificationCard">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-shield-check"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white">Public Credential Verifier</h4>
+                <p class="text-[11px] text-slate-400">Verify authenticity of any student certificate.</p>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-[11px] font-semibold text-slate-300">Certificate Number or Verification Code</label>
+              <div class="relative">
+                <input type="text" id="certVerifyInput" placeholder="e.g. CX-2026-HCKS-001 or VFY-8921-9402" uppercase
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white font-mono tracking-wider focus:outline-none focus:border-amber-500">
+              </div>
+              <button onclick="handleVerifyCertificate()" class="w-full py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold shadow-md shadow-teal-500/20 transition flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-magnifying-glass"></i> Verify Credential
+              </button>
+            </div>
+
+            <!-- Verification Result Box -->
+            <div id="verifyResultContainer" class="hidden p-3.5 rounded-2xl bg-slate-900/90 border border-slate-700 text-xs space-y-2">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Organizer / Admin Bulk Certificate Issuance Widget -->
+          <div id="organizerCertIssuerBox" class="hidden bg-slate-800/80 border border-slate-700/60 rounded-3xl p-5 shadow-xl space-y-4">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-stamp"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white">Issue Official Certificates</h4>
+                <p class="text-[11px] text-slate-400">Organizer & Administrator tool</p>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-300 mb-1">Select Completed Event</label>
+                <select id="issueCertCompSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+                <p>• Computes final podium standings.</p>
+                <p>• Issues Excellence Certificates to 1st, 2nd, and 3rd place teams.</p>
+                <p>• Issues Participation Certificates to all confirmed squads.</p>
+              </div>
+
+              <button onclick="handleGenerateCertificates()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-brand-500/20 transition flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate & Broadcast Certificates
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- VIEW 9: INTERACTIVE CODING SANDBOX (CodeCraft cmp-2) -->
+    <div id="view-coding" class="view-panel hidden space-y-6">
+      
+      <!-- Coding Arena Top Header Bar -->
+      <div class="bg-gradient-to-r from-emerald-950/50 via-slate-800 to-indigo-950/50 p-5 rounded-3xl border border-emerald-500/30 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              <i class="fa-solid fa-code mr-1"></i> Algorithmic Sandbox
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-mono">
+              CodeCraft: Inter-Collegiate Arena
+            </span>
+          </div>
+          <h2 class="text-xl font-extrabold text-white flex items-center gap-2">
+            <span id="codingArenaProblemTitle">CC-101: Two Sum Target Pair</span>
+          </h2>
+          <p class="text-xs text-slate-300 mt-1 max-w-xl">
+            In-browser code execution sandbox with test-case assertions, time limits, memory tracking, and automated leaderboard grading.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5">
+          <!-- Problem Selector Dropdown -->
+          <div class="relative">
+            <select id="codingProblemSelect" onchange="handleSelectCodingProblem(this.value)" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 font-semibold cursor-pointer">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <!-- Language Selector -->
+          <div class="relative">
+            <select id="codingLangSelect" onchange="handleSelectCodingLanguage(this.value)" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 font-semibold cursor-pointer">
+              <option value="javascript">JavaScript (Node.js)</option>
+              <option value="python">Python 3</option>
+              <option value="cpp">C++ (GCC 11)</option>
+              <option value="java">Java (OpenJDK 17)</option>
+            </select>
+          </div>
+
+          <!-- Reset Code Button -->
+          <button onclick="handleResetCodingBoilerplate()" title="Restore default starter template" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 text-xs transition">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
+
+          <!-- Run Code Button -->
+          <button onclick="handleRunCode(false)" id="btnRunCode" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/30 text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+            <i class="fa-solid fa-play text-[10px]"></i> Run Tests
+          </button>
+
+          <!-- Submit Code Button -->
+          <button onclick="handleSubmitCode()" id="btnSubmitCode" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20">
+            <i class="fa-solid fa-paper-plane text-[10px]"></i> Submit Solution
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Split Workspace (Problem Card + Code Editor) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left Column: Problem Details & Constraints (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <div class="bg-slate-800/80 border border-slate-700/60 rounded-3xl p-5 shadow-xl space-y-4">
+            <!-- Header Badges -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span id="codingDifficultyBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">Easy</span>
+                <span id="codingCategoryBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-slate-900 text-slate-300 border border-slate-700">Arrays</span>
+              </div>
+              <span id="codingPointsBadge" class="text-xs font-bold text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-xl border border-amber-500/30">
+                <i class="fa-solid fa-star text-[10px] mr-1"></i> 100 Points
+              </span>
+            </div>
+
+            <!-- Description -->
+            <div class="text-xs text-slate-300 leading-relaxed space-y-2" id="codingProblemDesc">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Examples -->
+            <div class="space-y-3 pt-2 border-t border-slate-700/60">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Sample Examples</h4>
+              <div id="codingProblemExamples" class="space-y-2.5 text-xs">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Constraints -->
+            <div class="space-y-2 pt-2 border-t border-slate-700/60">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Constraints</h4>
+              <ul id="codingProblemConstraints" class="list-disc list-inside text-xs text-slate-400 font-mono space-y-1">
+                <!-- Rendered dynamically -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- Custom Input & Test Arguments Box -->
+          <div class="bg-slate-800/80 border border-slate-700/60 rounded-3xl p-5 shadow-xl space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+                <i class="fa-solid fa-terminal text-teal-400"></i> Custom Test Input
+              </h4>
+              <button onclick="toggleCustomInputBox()" class="text-[11px] text-teal-400 hover:underline" id="toggleCustomInputBtn">
+                + Use Custom Input
+              </button>
+            </div>
+            <div id="customInputWrapper" class="hidden space-y-2 pt-2">
+              <p class="text-[11px] text-slate-400">Provide custom JSON argument parameters to test your code:</p>
+              <textarea id="customInputArea" rows="3" placeholder='{"nums": [1, 2, 3], "target": 5}' class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-emerald-300 font-mono focus:outline-none focus:border-teal-500"></textarea>
+              <button onclick="handleRunCode(true)" class="py-1.5 px-3 rounded-lg bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold transition">
+                Test Custom Input
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Code Editor & Execution Console (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Code Editor Box -->
+          <div class="code-editor-wrapper shadow-2xl">
+            <!-- Editor Top Bar -->
+            <div class="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                <span class="font-mono text-[11px] text-slate-300 ml-2" id="codingEditorFilename">solution.js</span>
+              </div>
+              <div class="flex items-center gap-3 text-[11px]">
+                <span id="codingLineCountBadge">Lines: 14</span>
+                <span class="text-slate-500">|</span>
+                <span>Tab Size: 2</span>
+              </div>
+            </div>
+
+            <!-- Editor Surface with Line Numbers -->
+            <div class="flex relative min-h-[360px] max-h-[480px]">
+              <div id="editorLineNumbers" class="code-editor-lines select-none">
+                1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14
+              </div>
+              <textarea id="codeEditorInput" class="code-editor-textarea flex-grow" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            </div>
+          </div>
+
+          <!-- Execution Results & Output Console -->
+          <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 shadow-xl space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-microchip text-brand-400"></i> Execution Console
+                </h4>
+                <span id="codingStatusBadge" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full"></span>
+              </div>
+
+              <div class="flex items-center gap-3 text-[11px] text-slate-400 font-mono" id="codingExecutionStats">
+                <span>Runtime: <strong class="text-slate-200" id="statRuntime">-</strong></span>
+                <span>Memory: <strong class="text-slate-200" id="statMemory">-</strong></span>
+              </div>
+            </div>
+
+            <!-- Test Cases Tabs (Case 1, Case 2, etc.) -->
+            <div id="codingTestCaseTabs" class="flex items-center gap-1.5 pt-1 overflow-x-auto">
+              <!-- Populated dynamically -->
+            </div>
+
+            <!-- Active Test Case Detail Box -->
+            <div id="codingTestCaseDetail" class="p-3.5 rounded-2xl bg-slate-950 border border-slate-800/80 space-y-2 text-xs font-mono">
+              <p class="text-slate-500 text-[11px]">Click "Run Tests" or "Submit Solution" to compile and execute your code in the sandbox.</p>
+            </div>
+
+            <!-- Stdout Console Logs -->
+            <div id="codingStdoutContainer" class="hidden p-3 rounded-2xl bg-black/60 border border-slate-800/60 text-xs font-mono space-y-1">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Standard Output (stdout):</span>
+              <pre id="codingStdoutText" class="text-slate-300 whitespace-pre-wrap"></pre>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- VIEW 10: INTERACTIVE LIVE QUIZ BUZZER (BrainByte cmp-4) -->
+    <div id="view-quiz" class="view-panel hidden space-y-6">
+      
+      <!-- Quiz Hero Header -->
+      <div class="bg-gradient-to-r from-rose-950/40 via-slate-800 to-amber-950/40 p-6 rounded-3xl border border-rose-500/30 shadow-xl">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40">
+              <i class="fa-solid fa-bolt mr-1"></i> Live Buzzer Arena
+            </span>
+            <h2 class="text-xl font-extrabold text-white mt-1.5 flex items-center gap-2">
+              <i class="fa-solid fa-brain text-rose-400"></i> BrainByte: National Tech & Trivia Quiz
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl">
+              10 rapid-fire questions covering Computer Science pioneers, Linux lore, crypto whitepapers, neural networks, and systems architecture.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-amber-300 bg-amber-500/10 px-3 py-1.5 rounded-xl border border-amber-500/30">
+              <i class="fa-solid fa-trophy mr-1 text-amber-400"></i> Prize: $800 / ₹30,000
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE A: QUIZ LOBBY SCREEN -->
+      <div id="quizLobbyScreen" class="bg-slate-800/80 border border-slate-700/60 rounded-3xl p-8 shadow-xl max-w-3xl mx-auto text-center space-y-6">
+        <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-rose-500 to-amber-500 text-white flex items-center justify-center text-3xl mx-auto shadow-2xl shadow-rose-500/30 animate-bounce">
+          <i class="fa-solid fa-stopwatch"></i>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="text-2xl font-extrabold text-white">Ready for the Rapid-Fire Buzzer?</h3>
+          <p class="text-xs text-slate-400 max-w-lg mx-auto">
+            Test your computer science mastery under pressure. Each correct buzzer press awards points and activates streak multipliers!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Total Questions</span>
+            <strong class="text-base text-white">10 Questions</strong>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Timer per Prompt</span>
+            <strong class="text-base text-amber-400">20 Seconds</strong>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Base Reward</span>
+            <strong class="text-base text-emerald-400">+100 Pts / Match</strong>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Speed Bonus</span>
+            <strong class="text-base text-teal-400">+50 Pts Max</strong>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 text-xs text-slate-400 text-left space-y-1.5">
+          <p><i class="fa-solid fa-fire text-amber-400 mr-1.5"></i> <strong>Streak Multiplier:</strong> Consecutive correct answers award exponential streak bonuses.</p>
+          <p><i class="fa-solid fa-triangle-exclamation text-rose-400 mr-1.5"></i> <strong>Negative Penalty:</strong> Incorrect buzzers deduct -20 points.</p>
+          <p><i class="fa-solid fa-award text-yellow-400 mr-1.5"></i> <strong>Live Sync:</strong> Your final score immediately updates your ranking on the official Leaderboard!</p>
+        </div>
+
+        <button onclick="startLiveQuiz()" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white text-sm font-bold shadow-xl shadow-rose-500/25 transition transform hover:scale-105 flex items-center justify-center gap-2 mx-auto">
+          <i class="fa-solid fa-play"></i> Launch Timed Buzzer Arena
+        </button>
+      </div>
+
+      <!-- STAGE B: ACTIVE LIVE QUIZ ARENA (HUD + BUZZERS) -->
+      <div id="quizArenaScreen" class="hidden max-w-3xl mx-auto space-y-6">
+        
+        <!-- Live HUD (Progress, Timer, Score, Streak) -->
+        <div class="bg-slate-800/90 border border-slate-700/80 rounded-3xl p-5 shadow-2xl flex items-center justify-between gap-4">
+          
+          <!-- Progress Indicator -->
+          <div>
+            <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Progress</span>
+            <div class="text-base font-extrabold text-white" id="quizHUDProgress">Question 1 / 10</div>
+          </div>
+
+          <!-- Circular / Number Timer Gauge -->
+          <div class="flex flex-col items-center">
+            <div id="quizTimerGauge" class="w-16 h-16 rounded-full border-4 border-emerald-500 bg-slate-900 flex items-center justify-center text-xl font-extrabold text-white shadow-lg transition-colors duration-300">
+              <span id="quizTimerCount">20</span>
+            </div>
+            <span class="text-[9px] uppercase font-bold text-slate-400 tracking-wider mt-1">Seconds</span>
+          </div>
+
+          <!-- Score & Streak -->
+          <div class="text-right">
+            <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Gross Score</span>
+            <div class="text-base font-extrabold text-amber-400" id="quizHUDScore">0 pts</div>
+            <div class="text-[11px] font-bold text-rose-400" id="quizHUDStreak">Streak: 0x</div>
+          </div>
+
+        </div>
+
+        <!-- Question Card -->
+        <div class="bg-slate-800/90 border border-slate-700/80 rounded-3xl p-6 md:p-8 shadow-2xl space-y-4">
+          <div class="flex items-center justify-between">
+            <span id="quizQuestionCategory" class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-300 border border-rose-500/30">
+              Computer Science Pioneers
+            </span>
+            <span class="text-xs text-slate-400" id="quizTimerBarLabel">Buzzer active</span>
+          </div>
+
+          <h3 class="text-lg md:text-xl font-bold text-white leading-relaxed" id="quizQuestionPrompt">
+            Who is recognized as the world's first computer programmer for publishing the first machine algorithm?
+          </h3>
+
+          <!-- Timer Bar Indicator -->
+          <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-700/80">
+            <div id="quizTimerProgress" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-1000 w-full"></div>
+          </div>
+        </div>
+
+        <!-- 4-Buzzer Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="quizOptionsGrid">
+          <button onclick="handleOptionSelect(0)" id="buzzer-0" class="buzzer-btn p-5 rounded-3xl bg-slate-800 hover:bg-slate-750 border-2 border-indigo-500/30 hover:border-indigo-400 text-left text-white font-semibold text-sm shadow-xl flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs shrink-0">A</span>
+            <span id="optionText-0">Alan Turing</span>
+          </button>
+          <button onclick="handleOptionSelect(1)" id="buzzer-1" class="buzzer-btn p-5 rounded-3xl bg-slate-800 hover:bg-slate-750 border-2 border-emerald-500/30 hover:border-emerald-400 text-left text-white font-semibold text-sm shadow-xl flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">B</span>
+            <span id="optionText-1">Ada Lovelace</span>
+          </button>
+          <button onclick="handleOptionSelect(2)" id="buzzer-2" class="buzzer-btn p-5 rounded-3xl bg-slate-800 hover:bg-slate-750 border-2 border-amber-500/30 hover:border-amber-400 text-left text-white font-semibold text-sm shadow-xl flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">C</span>
+            <span id="optionText-2">Grace Hopper</span>
+          </button>
+          <button onclick="handleOptionSelect(3)" id="buzzer-3" class="buzzer-btn p-5 rounded-3xl bg-slate-800 hover:bg-slate-750 border-2 border-purple-500/30 hover:border-purple-400 text-left text-white font-semibold text-sm shadow-xl flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs shrink-0">D</span>
+            <span id="optionText-3">Katherine Johnson</span>
+          </button>
+        </div>
+
+        <!-- Immediate Feedback Banner (hidden until answered) -->
+        <div id="quizFeedbackBox" class="hidden p-5 rounded-3xl border shadow-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span id="feedbackIcon" class="text-xl">✅</span>
+              <strong id="feedbackTitle" class="text-sm font-bold text-white">Correct Buzzer!</strong>
+            </div>
+            <span id="feedbackScoreDelta" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">+142 pts</span>
+          </div>
+
+          <p id="feedbackExplanation" class="text-xs text-slate-300 leading-relaxed"></p>
+
+          <div class="pt-2 flex justify-end">
+            <button onclick="nextQuizQuestion()" id="btnNextQuizQuestion" class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition flex items-center gap-1.5">
+              Next Question <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- STAGE C: FINAL RESULTS & LEADERBOARD PODIUM -->
+      <div id="quizResultsScreen" class="hidden bg-slate-800/80 border border-slate-700/60 rounded-3xl p-8 shadow-2xl max-w-3xl mx-auto space-y-6 text-center">
+        
+        <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-500 via-amber-400 to-yellow-600 text-slate-950 flex items-center justify-center text-3xl mx-auto shadow-2xl shadow-yellow-500/30">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+
+        <div class="space-y-1">
+          <span class="text-xs uppercase font-bold tracking-widest text-amber-400 block">Competition Results Certified</span>
+          <h3 class="text-2xl font-extrabold text-white">BrainByte Arena Finished!</h3>
+          <p class="text-xs text-slate-300" id="quizResultsSummaryMsg">Your responses were checked and synchronized with the official live leaderboard.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Accuracy</span>
+            <strong class="text-xl text-emerald-400" id="resAccuracy">80%</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Gross Points</span>
+            <strong class="text-xl text-amber-400" id="resGrossPoints">1,240</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Longest Streak</span>
+            <strong class="text-xl text-pink-400" id="resMaxStreak">5x</strong>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block uppercase font-bold">Leaderboard Rank</span>
+            <strong class="text-xl text-brand-400" id="resLeaderboardRank">#1</strong>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <button onclick="navigateTo('leaderboard')" class="px-5 py-2.5 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold text-xs transition flex items-center gap-1.5 shadow-lg shadow-yellow-500/20">
+            <i class="fa-solid fa-ranking-star"></i> View Live Standings
+          </button>
+          <button onclick="navigateTo('certificates')" class="px-5 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-xs transition flex items-center gap-1.5">
+            <i class="fa-solid fa-certificate text-amber-400"></i> View My Credentials
+          </button>
+          <button onclick="resetQuizToLobby()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold text-xs border border-slate-700 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-rotate-left"></i> Retake Quiz
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- VIEW 11: EVENT TIMELINE & MILESTONE COUNTDOWN ROADMAP -->
+    <div id="view-timeline" class="view-panel hidden space-y-6">
+      
+      <!-- Live Nearest Deadline Hero Countdown Card -->
+      <div class="bg-gradient-to-r from-cyan-950/50 via-slate-800 to-indigo-950/50 p-6 md:p-8 rounded-3xl border border-cyan-500/30 shadow-xl relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 animate-pulse">
+                <i class="fa-solid fa-hourglass-half mr-1"></i> Active Milestone Deadline
+              </span>
+              <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-300 border border-slate-700" id="timelineActiveEventTitle">
+                HackSprint 2026: Campus AI & Sustainability
+              </span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black text-white" id="timelineActiveRoundTitle">
+              Round 2: Working MVP & Code Submission
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl" id="timelineActiveRoundDesc">
+              Submit functional GitHub repository, deployed demo link, and a 2-minute walkthrough video.
+            </p>
+          </div>
+
+          <!-- Live Ticking Countdown Clock Display -->
+          <div class="flex items-center gap-2 sm:gap-3 bg-slate-900/90 p-3.5 sm:p-4 rounded-2xl border border-slate-700/80 shadow-2xl shrink-0 font-mono">
+            <div class="text-center px-2">
+              <span class="text-xl sm:text-2xl font-black text-cyan-400 block" id="cdDays">15</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-sans font-semibold">Days</span>
+            </div>
+            <span class="text-slate-600 font-bold text-xl">:</span>
+            <div class="text-center px-2">
+              <span class="text-xl sm:text-2xl font-black text-cyan-400 block" id="cdHours">04</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-sans font-semibold">Hours</span>
+            </div>
+            <span class="text-slate-600 font-bold text-xl">:</span>
+            <div class="text-center px-2">
+              <span class="text-xl sm:text-2xl font-black text-cyan-400 block" id="cdMins">32</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-sans font-semibold">Mins</span>
+            </div>
+            <span class="text-slate-600 font-bold text-xl">:</span>
+            <div class="text-center px-2">
+              <span class="text-xl sm:text-2xl font-black text-amber-400 block" id="cdSecs">18</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-sans font-semibold">Secs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls: Competition Filter & Status Filter -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60">
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <label class="text-xs font-semibold text-slate-400 whitespace-nowrap">Filter Competition:</label>
+          <select id="timelineCompFilter" onchange="filterTimeline(this.value)" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500 font-medium">
+            <option value="ALL">All Competitions & Stages</option>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs text-slate-400">
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Completed</span>
+          <span class="flex items-center gap-1.5 ml-2"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span> Active / In Progress</span>
+          <span class="flex items-center gap-1.5 ml-2"><span class="w-2.5 h-2.5 rounded-full bg-slate-600"></span> Upcoming</span>
+        </div>
+      </div>
+
+      <!-- Stages Roadmap Flow -->
+      <div id="timelineRoadmapContainer" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+
+    <!-- VIEW 12: MENTORSHIP & LIVE HELPDESK TICKET HUB -->
+    <div id="view-helpdesk" class="view-panel hidden space-y-6">
+      
+      <!-- Helpdesk Hero Header -->
+      <div class="bg-gradient-to-r from-orange-950/40 via-slate-800 to-amber-950/40 p-6 rounded-3xl border border-orange-500/30 shadow-xl">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/40">
+              <i class="fa-solid fa-headset mr-1"></i> 24/7 Squad Support Desk
+            </span>
+            <h2 class="text-xl font-extrabold text-white mt-1.5 flex items-center gap-2">
+              <i class="fa-solid fa-handshake-angle text-orange-400"></i> Mentorship Hub & Technical Helpdesk
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl">
+              Connect with faculty coordinators, hardware lab engineers, and industry judges for architecture reviews, sensor component requests, and rules clarification.
+            </p>
+          </div>
+
+          <button onclick="openCreateTicketModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-bold shadow-lg shadow-orange-500/20 transition flex items-center gap-2 shrink-0">
+            <i class="fa-solid fa-plus"></i> Submit Support Ticket
+          </button>
+        </div>
+      </div>
+
+      <!-- Helpdesk Quick KPI Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60">
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Total Inquiries</span>
+          <strong class="text-xl text-white" id="countTotalTickets">3 Tickets</strong>
+        </div>
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60">
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Answered by Mentors</span>
+          <strong class="text-xl text-emerald-400" id="countAnsweredTickets">2 Answered</strong>
+        </div>
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60">
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Issues Resolved</span>
+          <strong class="text-xl text-cyan-400" id="countResolvedTickets">1 Resolved</strong>
+        </div>
+        <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60">
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Faculty Mentors on Duty</span>
+          <strong class="text-xl text-amber-400">5 Mentors Active</strong>
+        </div>
+      </div>
+
+      <!-- Filter Tabs & Category Bar -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60">
+        <!-- Status Filter Pills -->
+        <div class="flex items-center gap-1.5 text-xs font-semibold overflow-x-auto">
+          <button onclick="filterTicketsByStatus('ALL')" class="ticket-status-pill active px-3 py-1.5 rounded-xl bg-slate-700 text-white transition" data-status="ALL">All Inquiries</button>
+          <button onclick="filterTicketsByStatus('OPEN')" class="ticket-status-pill px-3 py-1.5 rounded-xl text-slate-400 hover:text-white transition" data-status="OPEN">Pending Review</button>
+          <button onclick="filterTicketsByStatus('ANSWERED')" class="ticket-status-pill px-3 py-1.5 rounded-xl text-slate-400 hover:text-white transition" data-status="ANSWERED">Answered</button>
+          <button onclick="filterTicketsByStatus('RESOLVED')" class="ticket-status-pill px-3 py-1.5 rounded-xl text-slate-400 hover:text-white transition" data-status="RESOLVED">Resolved</button>
+        </div>
+
+        <!-- Category Dropdown -->
+        <div class="flex items-center gap-2 text-xs">
+          <label class="text-slate-400">Category:</label>
+          <select id="ticketCategorySelect" onchange="filterTicketsByCategory(this.value)" class="bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1 text-xs text-white focus:outline-none focus:border-orange-500">
+            <option value="ALL">All Categories</option>
+            <option value="TECHNICAL">Technical / Code Debugging</option>
+            <option value="HARDWARE">Hardware / Sensor Components</option>
+            <option value="MENTORSHIP">Architecture & Mentorship</option>
+            <option value="RULES">Competition Rules & Eligibility</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tickets Feed List -->
+      <div id="ticketsFeedList" class="space-y-4">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+
+    <!-- VIEW 13: PUBLIC PROJECT SHOWCASE & COMMUNITY VOTING -->
+    <div id="view-showcase" class="view-panel hidden space-y-6">
+      
+      <!-- Showcase Hero Header -->
+      <div class="bg-gradient-to-r from-emerald-950/40 via-slate-800 to-teal-950/40 p-6 md:p-8 rounded-3xl border border-emerald-500/30 shadow-xl">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              <i class="fa-solid fa-shapes mr-1"></i> People's Choice Spotlight
+            </span>
+            <h2 class="text-xl md:text-2xl font-black text-white mt-1.5 flex items-center gap-2">
+              <i class="fa-solid fa-lightbulb text-amber-400"></i> Campus Innovation Showcase & Peer Voting
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Explore working prototypes, GitHub source code, and live deployments built by campus squads. Cast your vote for the <strong>People's Choice Award</strong> and leave constructive peer reviews!
+            </p>
+          </div>
+
+          <!-- Quick Metric Badges -->
+          <div class="flex items-center gap-3 bg-slate-900/80 p-3 rounded-2xl border border-slate-700/80 shrink-0 text-center">
+            <div class="px-3">
+              <span class="text-base sm:text-lg font-bold text-white block" id="showcaseCountProjects">6</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold">Prototypes</span>
+            </div>
+            <div class="w-px h-8 bg-slate-700"></div>
+            <div class="px-3">
+              <span class="text-base sm:text-lg font-bold text-rose-400 block" id="showcaseCountVotes">10</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold">Votes Cast</span>
+            </div>
+            <div class="w-px h-8 bg-slate-700"></div>
+            <div class="px-3">
+              <span class="text-base sm:text-lg font-bold text-amber-400 block" id="showcaseCountBounties">4</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold">Bounties</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters & Sorting Bar -->
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-slate-800/80 p-4 rounded-2xl border border-slate-700/60">
+        <!-- Left: Competition & Category Filters -->
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="flex items-center gap-2 text-xs">
+            <label class="text-slate-400 font-medium">Event:</label>
+            <select id="showcaseCompFilter" onchange="filterShowcase()" class="bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-semibold">
+              <option value="ALL">All Competitions</option>
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <div class="flex items-center gap-2 text-xs">
+            <label class="text-slate-400 font-medium">Domain:</label>
+            <select id="showcaseDomainFilter" onchange="filterShowcase()" class="bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+              <option value="ALL">All Domains</option>
+              <option value="AI">Artificial Intelligence / ML</option>
+              <option value="IOT">IoT & Hardware</option>
+              <option value="WEB">Web & Cloud Native</option>
+              <option value="ROBOTICS">Robotics & Autonomous</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Right: Sort Dropdown -->
+        <div class="flex items-center gap-2 text-xs w-full md:w-auto justify-end">
+          <label class="text-slate-400 font-medium">Sort By:</label>
+          <select id="showcaseSortFilter" onchange="filterShowcase()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-semibold">
+            <option value="VOTES">🔥 Most Upvoted (People's Choice)</option>
+            <option value="RECENT">🕒 Recently Submitted</option>
+            <option value="TITLE">🔤 Project Name (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Projects Grid Feed -->
+      <div id="showcaseProjectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated dynamically -->
+      </div>
+
+    </div>
+
+    <!-- VIEW 14: SPONSOR BOUNTIES & CAMPUS SCHEDULE HUB -->
+    <div id="view-sponsors" class="view-panel hidden space-y-6">
+      
+      <!-- Sponsors & Logistics Hero Header -->
+      <div class="bg-gradient-to-r from-indigo-950/40 via-slate-800 to-purple-950/40 p-6 md:p-8 rounded-3xl border border-indigo-500/30 shadow-xl">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
+              <i class="fa-solid fa-handshake mr-1"></i> Industry Partner Tracks & Venue Hub
+            </span>
+            <h2 class="text-xl md:text-2xl font-black text-white mt-1.5 flex items-center gap-2">
+              <i class="fa-solid fa-gem text-indigo-400"></i> Sponsor Bounties, Partner Perks & Campus Schedule
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Explore cash prize bounties from <strong>Google Cloud, Intel, GitHub, and Red Hat</strong>, claim free developer credits, and track the live chronological venue schedule across innovation labs.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2 bg-slate-900/90 p-3 rounded-2xl border border-slate-700/80 text-xs text-slate-300 shrink-0">
+            <div class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+              <i class="fa-solid fa-wifi"></i>
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block font-bold uppercase">Campus High-Speed Wi-Fi</span>
+              <strong class="text-white font-mono">SSID: CompeteX-Guest</strong> • <code class="text-amber-300">HackCamp2026</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sponsor Bounties Grid -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-award text-amber-400"></i> Active Industry Sponsor Bounties & Prize Tracks
+          </h3>
+          <span class="text-xs text-slate-400">Contend by tagging your project deliverables</span>
+        </div>
+
+        <div id="sponsorsBountiesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Live Campus Schedule & Venue Map -->
+      <div class="space-y-4 pt-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-location-dot text-rose-400"></i> Live Campus Event Schedule & Lab Allocations
+            </h3>
+            <p class="text-xs text-slate-400">Chronological timeline with active room status across Apex Tech Park</p>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-medium">
+            <i class="fa-solid fa-building-columns mr-1 text-teal-400"></i> Main Venue: Innovation Complex
+          </span>
+        </div>
+
+        <!-- Schedule Items Flow List -->
+        <div id="campusScheduleList" class="space-y-3">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- MODALS -->
+
+  <!-- MODAL 1: COMPETITION DETAIL FULL OVERVIEW -->
+  <div id="modalCompetitionDetail" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative">
+      <button onclick="closeModal('modalCompetitionDetail')" class="absolute right-4 top-4 z-10 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div id="compDetailContent">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: CREATE NEW COMPETITION (ORGANIZER/ADMIN) -->
+  <div id="modalCreateCompetition" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalCreateCompetition')" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-lg border border-brand-500/20">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">Host New College Competition</h3>
+          <p class="text-xs text-slate-400">Configure rounds, eligibility, prizes, and evaluation criteria.</p>
+        </div>
+      </div>
+
+      <form id="formCreateCompetition" onsubmit="handleCreateCompetition(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Competition Title *</label>
+          <input type="text" id="newCompTitle" required placeholder="e.g. AI Innovation Sprint 2026" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Category *</label>
+            <select id="newCompCategory" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              <option value="HACKATHON">Hackathon (Technical)</option>
+              <option value="CODING">Coding Contest (Technical)</option>
+              <option value="EXPO">Project Expo / Hardware (Technical)</option>
+              <option value="QUIZ">Quiz Challenge (Hybrid)</option>
+              <option value="PAPER">Paper Presentation (Technical)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Total Prize Pool</label>
+            <input type="text" id="newCompPrize" placeholder="e.g. $2,500 / ₹1,00,000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Format</label>
+            <select id="newCompFormat" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              <option value="TEAM">Team Based</option>
+              <option value="INDIVIDUAL">Individual / Solo</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Min Team Size</label>
+            <input type="number" id="newCompMinTeam" value="2" min="1" max="10" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Max Team Size</label>
+            <input type="number" id="newCompMaxTeam" value="4" min="1" max="10" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Tagline / Short Summary</label>
+          <input type="text" id="newCompTagline" placeholder="Brief 1-line description" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Detailed Description & Problem Statement</label>
+          <textarea id="newCompDesc" rows="3" placeholder="Provide problem domain, eligibility criteria, and expectations..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Banner Image URL</label>
+          <input type="url" id="newCompBanner" placeholder="https://images.unsplash.com/..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div class="pt-4 border-t border-slate-700 flex justify-end gap-3">
+          <button type="button" onclick="closeModal('modalCreateCompetition')" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md shadow-brand-500/20 transition">Create & Publish Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: CREATE SQUAD / TEAM -->
+  <div id="modalCreateTeam" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-md shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalCreateTeam')" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-lg border border-brand-500/20">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white">Create New Team</h3>
+          <p class="text-xs text-slate-400">Generate a unique invite code to share with teammates.</p>
+        </div>
+      </div>
+
+      <form id="formCreateTeam" onsubmit="handleCreateTeam(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Select Competition *</label>
+          <select id="createTeamCompSelect" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Team Name *</label>
+          <input type="text" id="createTeamName" required placeholder="e.g. CyberTitans" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-xs text-slate-400">
+          <div class="flex items-center gap-2 text-brand-400 font-semibold mb-1">
+            <i class="fa-solid fa-circle-info"></i> How it works
+          </div>
+          Creating a squad assigns you as Team Leader and generates a 6-character Join Code (e.g. <strong class="text-white">CPX-8821</strong>). Teammates can enter this code to join instantly.
+        </div>
+
+        <div class="pt-3 border-t border-slate-700 flex justify-end gap-3">
+          <button type="button" onclick="closeModal('modalCreateTeam')" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md shadow-brand-500/20 transition">Create Squad</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 4: JOIN SQUAD WITH CODE -->
+  <div id="modalJoinTeam" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-md shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalJoinTeam')" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center text-lg border border-teal-500/20">
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white">Join Squad with Code</h3>
+          <p class="text-xs text-slate-400">Enter the 6-character code provided by your team leader.</p>
+        </div>
+      </div>
+
+      <form id="formJoinTeam" onsubmit="handleJoinTeam(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Team Join Code *</label>
+          <input type="text" id="joinTeamCode" required placeholder="e.g. CPX-7821" uppercase class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm font-mono tracking-wider text-center text-white focus:outline-none focus:border-teal-500">
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-xs text-slate-400">
+          <p><i class="fa-solid fa-lightbulb text-amber-400 mr-1"></i> Demo codes to test: <strong class="text-teal-300">CPX-7821</strong> (NeuralKnights) or <strong class="text-teal-300">CPX-4912</strong> (GreenGrid AI).</p>
+        </div>
+
+        <div class="pt-3 border-t border-slate-700 flex justify-end gap-3">
+          <button type="button" onclick="closeModal('modalJoinTeam')" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold shadow-md shadow-teal-500/20 transition">Join Squad</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 5: SUBMIT PROJECT DELIVERABLE -->
+  <div id="modalSubmit" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalSubmit')" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg border border-blue-500/20">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white">Project Deliverable Submission</h3>
+          <p class="text-xs text-slate-400">Upload links for judging against the official rubric.</p>
+        </div>
+      </div>
+
+      <form id="formSubmitProject" onsubmit="handleSubmitProject(event)" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Competition *</label>
+            <select id="subCompSelect" required onchange="updateSubTeamSelect(this.value)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Team *</label>
+            <select id="subTeamSelect" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Project Title *</label>
+          <input type="text" id="subTitle" required placeholder="e.g. Autonomous Campus Micro-Grid Optimizer" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Executive Summary / Abstract *</label>
+          <textarea id="subAbstract" rows="3" required placeholder="Explain what problem your project solves and how it functions..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">GitHub / Code Repository URL</label>
+            <input type="url" id="subRepoUrl" placeholder="https://github.com/org/repo" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Live Demo / Deployed App URL</label>
+            <input type="url" id="subDemoUrl" placeholder="https://my-app.vercel.app" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Presentation Slides URL</label>
+            <input type="url" id="subSlidesUrl" placeholder="https://docs.google.com/presentation/..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Walkthrough Video Link (YouTube / Loom)</label>
+            <input type="url" id="subVideoUrl" placeholder="https://youtu.be/..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Technologies & Libraries (Comma separated)</label>
+          <input type="text" id="subTechStack" placeholder="React, Node.js, PyTorch, TailwindCSS" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div class="pt-4 border-t border-slate-700 flex justify-end gap-3">
+          <button type="button" onclick="closeModal('modalSubmit')" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md shadow-blue-500/20 transition">Submit Work</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 6: CREATE ANNOUNCEMENT (ORGANIZER/ADMIN) -->
+  <div id="modalCreateNotice" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-md shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalCreateNotice')" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-lg border border-pink-500/20">
+          <i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white">Broadcast Announcement</h3>
+          <p class="text-xs text-slate-400">Post an alert to all registered participants.</p>
+        </div>
+      </div>
+
+      <form id="formCreateNotice" onsubmit="handleCreateNotice(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Competition</label>
+          <select id="noticeCompSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Priority</label>
+          <select id="noticePriority" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+            <option value="NORMAL">Normal Information</option>
+            <option value="HIGH">High Priority Alert</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Announcement Headline *</label>
+          <input type="text" id="noticeTitle" required placeholder="e.g. Deadline extended for Round 2" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Message Content *</label>
+          <textarea id="noticeContent" rows="3" required placeholder="Enter detailed message..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-700 flex justify-end gap-3">
+          <button type="button" onclick="closeModal('modalCreateNotice')" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white text-xs font-semibold shadow-md shadow-pink-500/20 transition">Broadcast</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 7: USER PROFILE & SETTINGS -->
+  <div id="modalProfile" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-md shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalProfile')" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="text-center pb-4 border-b border-slate-700">
+        <img id="profileModalAvatar" src="" alt="Avatar" class="w-20 h-20 rounded-full border-2 border-brand-500 mx-auto mb-3 object-cover shadow-lg">
+        <h3 class="text-lg font-bold text-white" id="profileModalName">Alex Chen</h3>
+        <p class="text-xs text-brand-400 font-semibold" id="profileModalRole">STUDENT</p>
+        <p class="text-xs text-slate-400 mt-1" id="profileModalDept">Computer Science & Engineering</p>
+        <span class="inline-block mt-2 px-3 py-1 bg-slate-900 text-slate-300 text-[11px] rounded-full border border-slate-700" id="profileModalCollege">Apex Institute of Technology</span>
+      </div>
+
+      <div class="py-4 space-y-2 text-xs">
+        <div class="flex justify-between py-1 border-b border-slate-700/50">
+          <span class="text-slate-400">Email Address:</span>
+          <span class="text-slate-200 font-mono" id="profileModalEmail">student@college.edu</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-slate-700/50">
+          <span class="text-slate-400">Primary Skills:</span>
+          <span class="text-slate-200" id="profileModalSkills">React, Python, AI/ML</span>
+        </div>
+        <div class="flex justify-between py-1">
+          <span class="text-slate-400">Account Status:</span>
+          <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> Verified College Member</span>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-700 flex justify-between items-center">
+        <button onclick="resetPlatformDatabase()" class="text-rose-400 hover:text-rose-300 text-xs flex items-center gap-1 transition">
+          <i class="fa-solid fa-arrows-rotate"></i> Reset Database
+        </button>
+        <button onclick="closeModal('modalProfile')" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold transition">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 8: AUTHENTICATION (LOGIN & REGISTER) -->
+  <div id="modalAuth" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden relative">
+      <button onclick="closeModal('modalAuth')" class="absolute right-4 top-4 z-10 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <!-- Auth Header & Segmented Pill Switcher -->
+      <div class="bg-gradient-to-r from-brand-950/60 via-slate-800 to-indigo-950/60 p-6 pb-4 border-b border-slate-700/80">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+            <i class="fa-solid fa-shield-halved text-base"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white tracking-tight">CompeteX Portal Access</h3>
+            <p class="text-xs text-slate-400">Institutional credentials & registration</p>
+          </div>
+        </div>
+
+        <!-- Neat & Clean Segmented Pill Switcher -->
+        <div class="bg-slate-900/90 p-1 rounded-2xl border border-slate-700/80 flex items-center gap-1">
+          <button onclick="switchAuthTab('login')" id="authTabBtn-login" type="button" class="flex-1 py-2 px-4 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-md shadow-brand-500/25 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-right-to-bracket text-xs"></i>
+            <span>Sign In</span>
+          </button>
+          <button onclick="switchAuthTab('register')" id="authTabBtn-register" type="button" class="flex-1 py-2 px-4 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 font-semibold text-xs transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-user-plus text-xs"></i>
+            <span>Create Account</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-6">
+        <!-- FORM 1: LOGIN -->
+        <div id="authSection-login" class="space-y-4">
+          <form id="formLogin" onsubmit="handleLogin(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">College Email Address *</label>
+              <div class="relative">
+                <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                <input type="email" id="loginEmail" required placeholder="name@college.edu" 
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-brand-500">
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-xs font-semibold text-slate-300">Password *</label>
+                <span class="text-[11px] text-slate-400">Default: <code class="text-brand-300">password123</code></span>
+              </div>
+              <div class="relative">
+                <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                <input type="password" id="loginPassword" required placeholder="••••••••" 
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-10 py-2.5 text-xs text-white focus:outline-none focus:border-brand-500">
+                <button type="button" onclick="togglePasswordVisibility('loginPassword', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 text-xs">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="loginRemember" checked class="rounded border-slate-700 text-brand-600 focus:ring-0">
+                <span>Remember me</span>
+              </label>
+              <a href="#" onclick="switchAuthTab('register'); return false;" class="text-brand-400 hover:underline">New user? Sign up</a>
+            </div>
+
+            <button type="submit" id="btnLoginSubmit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-brand-600 via-indigo-600 to-brand-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-bold tracking-wide shadow-lg shadow-brand-500/25 transition flex items-center justify-center gap-2 active:scale-[0.99]">
+              <i class="fa-solid fa-right-to-bracket text-xs"></i> Sign In to CompeteX
+            </button>
+          </form>
+
+          <!-- Quick 1-Click Login Accounts -->
+          <div class="pt-4 border-t border-slate-700/80">
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">
+              <i class="fa-solid fa-bolt text-amber-400 mr-1"></i> Quick Fill Demo Accounts
+            </span>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <button onclick="quickFillLogin('student@college.edu', 'password123')" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-700 border border-slate-700/80 text-left transition flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-brand-400"></span>
+                <div>
+                  <strong class="text-slate-200 block text-[11px]">Alex Chen</strong>
+                  <span class="text-[10px] text-slate-400">Student</span>
+                </div>
+              </button>
+              <button onclick="quickFillLogin('organizer@college.edu', 'password123')" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-700 border border-slate-700/80 text-left transition flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <div>
+                  <strong class="text-slate-200 block text-[11px]">Dr. Jenkins</strong>
+                  <span class="text-[10px] text-slate-400">Organizer</span>
+                </div>
+              </button>
+              <button onclick="quickFillLogin('judge@college.edu', 'password123')" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-700 border border-slate-700/80 text-left transition flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                <div>
+                  <strong class="text-slate-200 block text-[11px]">Michael Vance</strong>
+                  <span class="text-[10px] text-slate-400">Judge</span>
+                </div>
+              </button>
+              <button onclick="quickFillLogin('admin@college.edu', 'password123')" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-700 border border-slate-700/80 text-left transition flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                <div>
+                  <strong class="text-slate-200 block text-[11px]">Prof. Sharma</strong>
+                  <span class="text-[10px] text-slate-400">Admin</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORM 2: REGISTER -->
+        <div id="authSection-register" class="hidden space-y-4">
+          <form id="formRegister" onsubmit="handleRegister(event)" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Full Legal Name *</label>
+              <input type="text" id="regName" required placeholder="e.g. Maya Patel" 
+                class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">College Email Address *</label>
+                <input type="email" id="regEmail" required placeholder="maya@college.edu" 
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Select System Role *</label>
+                <select id="regRole" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                  <option value="STUDENT">🎓 Student / Participant</option>
+                  <option value="ORGANIZER">👩‍🏫 Event Organizer / Faculty</option>
+                  <option value="JUDGE">⚖️ Evaluator / Industry Judge</option>
+                  <option value="ADMIN">🛡️ Campus Administrator</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Password * (min 6 chars)</label>
+                <div class="relative">
+                  <input type="password" id="regPassword" required minlength="6" placeholder="••••••••" 
+                    class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 pr-9 text-xs text-white focus:outline-none focus:border-brand-500">
+                  <button type="button" onclick="togglePasswordVisibility('regPassword', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 text-xs">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Confirm Password *</label>
+                <input type="password" id="regPasswordConfirm" required minlength="6" placeholder="••••••••" 
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">College / Institution</label>
+                <input type="text" id="regCollege" value="Apex Institute of Technology" placeholder="College Name" 
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Department / Branch</label>
+                <input type="text" id="regDept" placeholder="e.g. Computer Science" 
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Primary Skills / Technical Tags</label>
+              <input type="text" id="regSkills" placeholder="Python, React, Machine Learning, UI/UX" 
+                class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+            </div>
+
+            <button type="submit" id="btnRegisterSubmit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-600 hover:from-teal-500 hover:to-emerald-500 text-white text-xs font-bold tracking-wide shadow-lg shadow-teal-500/25 transition flex items-center justify-center gap-2 active:scale-[0.99] mt-3">
+              <i class="fa-solid fa-user-plus text-xs"></i> Create Account & Sign In
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 9: DIGITAL CERTIFICATE VIEWER & DIPLOMA -->
+  <div id="modalCertificateViewer" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-900 border-2 border-amber-500/50 rounded-3xl w-full max-w-3xl shadow-2xl overflow-hidden relative">
+      <button onclick="closeModal('modalCertificateViewer')" class="absolute right-4 top-4 z-20 w-8 h-8 rounded-full bg-slate-900/90 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-700">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <!-- Printable Certificate Canvas / Diploma Paper Container -->
+      <div id="certificatePrintableArea" class="p-8 md:p-12 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-center relative border-8 border-double border-amber-500/40 rounded-2xl m-3 md:m-4 shadow-inner">
+        
+        <!-- Corner Gold Filigree Icons -->
+        <div class="absolute top-4 left-4 text-amber-500/40 text-xl font-serif">❖</div>
+        <div class="absolute top-4 right-4 text-amber-500/40 text-xl font-serif">❖</div>
+        <div class="absolute bottom-4 left-4 text-amber-500/40 text-xl font-serif">❖</div>
+        <div class="absolute bottom-4 right-4 text-amber-500/40 text-xl font-serif">❖</div>
+
+        <!-- Institutional Header & Crest -->
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl shadow-lg">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="text-xs uppercase font-extrabold tracking-widest text-amber-400/90" id="certModalInstitute">Apex Institute of Technology</h4>
+            <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Council for Technical & Non-Technical Competitions</p>
+          </div>
+        </div>
+
+        <!-- Certificate Title -->
+        <div class="my-6">
+          <span class="text-xs uppercase font-bold tracking-[0.25em] text-amber-400/80 block mb-1">Official Award of Recognition</span>
+          <h1 class="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-200 tracking-tight font-serif" id="certModalTitle">
+            Certificate of Excellence
+          </h1>
+          <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2"></div>
+        </div>
+
+        <!-- Body Text -->
+        <p class="text-xs text-slate-400 tracking-wider uppercase font-semibold">This is proudly presented to</p>
+        <h2 class="text-2xl md:text-3xl font-black text-white font-serif tracking-wide my-2" id="certModalRecipientName">
+          Alex Chen
+        </h2>
+        
+        <p class="text-xs md:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed mt-2" id="certModalNarrative">
+          For exemplary achievement and outstanding technical execution, securing <strong class="text-amber-300">1st Place</strong> as a key member of squad <strong class="text-white">NeuralKnights</strong> in <strong class="text-indigo-300">HackSprint 2026: Campus AI & Sustainability</strong>.
+        </p>
+
+        <!-- Acquired Skills Badges -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 my-4" id="certModalSkillsBadges">
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30">Generative AI</span>
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30">Edge IoT</span>
+        </div>
+
+        <!-- Signatures & Golden Foil Seal -->
+        <div class="grid grid-cols-3 items-end pt-8 mt-6 border-t border-slate-800 text-xs">
+          <!-- Left Signatory -->
+          <div class="text-center space-y-1">
+            <span class="block font-serif italic text-base text-amber-200/90" id="certModalSig1">Dr. Sarah Jenkins</span>
+            <div class="w-24 h-px bg-slate-700 mx-auto"></div>
+            <span class="text-[10px] text-slate-400 block font-semibold uppercase">Faculty Convener</span>
+          </div>
+
+          <!-- Middle: Official Golden Seal -->
+          <div class="flex flex-col items-center justify-center">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-600 via-amber-400 to-yellow-500 border-2 border-white/40 flex items-center justify-center shadow-lg shadow-amber-500/20 text-slate-950 text-xl font-bold">
+              <i class="fa-solid fa-stamp"></i>
+            </div>
+            <span class="text-[9px] uppercase tracking-wider font-extrabold text-amber-400 mt-1">Verified Genuine</span>
+          </div>
+
+          <!-- Right Signatory -->
+          <div class="text-center space-y-1">
+            <span class="block font-serif italic text-base text-amber-200/90" id="certModalSig2">Prof. H. Sharma</span>
+            <div class="w-24 h-px bg-slate-700 mx-auto"></div>
+            <span class="text-[10px] text-slate-400 block font-semibold uppercase">Dean of Student Affairs</span>
+          </div>
+        </div>
+
+        <!-- Verification Footnote & Code -->
+        <div class="mt-8 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[10px] text-slate-500 gap-2">
+          <span>Serial: <strong class="text-slate-300 font-mono" id="certModalSerial">CX-2026-HCKS-001</strong></span>
+          <span>Verification Code: <strong class="text-teal-400 font-mono" id="certModalCode">VFY-8921-9402</strong></span>
+          <span>Issued: <strong class="text-slate-300" id="certModalDate">Oct 25, 2026</strong></span>
+        </div>
+
+      </div>
+
+      <!-- Action Toolbar -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs text-slate-400">
+          <i class="fa-solid fa-circle-check text-emerald-400"></i>
+          <span>Official Digital Credential Issued via CompeteX</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="copyCertVerifyLink()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition flex items-center gap-1.5">
+            <i class="fa-regular fa-copy"></i> Copy Verification ID
+          </button>
+          <button onclick="printCertificate()" class="px-4 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-md shadow-amber-500/20 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-print"></i> Print / Download PDF
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL 10: CREATE MENTORSHIP / HELPDESK TICKET -->
+  <div id="modalCreateTicket" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalCreateTicket')" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-lg border border-orange-500/20">
+          <i class="fa-solid fa-headset"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white">Submit Mentorship / Support Ticket</h3>
+          <p class="text-xs text-slate-400">Request unblocking assistance from organizers and faculty mentors</p>
+        </div>
+      </div>
+
+      <form id="formCreateTicket" onsubmit="handleCreateTicket(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Target Competition *</label>
+          <select id="ticketCompetitionId" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Inquiry Category *</label>
+            <select id="ticketCategory" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+              <option value="TECHNICAL">⚙️ Technical & Code</option>
+              <option value="HARDWARE">🔌 Hardware & Lab Kit</option>
+              <option value="MENTORSHIP">💡 Mentorship & Review</option>
+              <option value="RULES">📜 Rules & Guidelines</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Priority Level *</label>
+            <select id="ticketPriority" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+              <option value="NORMAL">🟢 Normal</option>
+              <option value="HIGH">🟠 High Priority</option>
+              <option value="URGENT">🔴 Critical Blocker</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Subject / Summary *</label>
+          <input type="text" id="ticketSubject" required placeholder="e.g. Model inference OOM error on Jetson Nano edge device" 
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Detailed Description & Steps *</label>
+          <textarea id="ticketDescription" required rows="4" placeholder="Detail the blocker, error logs, hardware components needed, or specific architectural guidance requested..." 
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500"></textarea>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-[11px] text-slate-400 flex items-start gap-2">
+          <i class="fa-solid fa-circle-info text-orange-400 mt-0.5"></i>
+          <span>Faculty mentors and competition coordinators are notified automatically. Replies will be posted directly to your ticket feed.</span>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('modalCreateTicket')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition">
+            Cancel
+          </button>
+          <button type="submit" id="btnSubmitTicket" class="px-5 py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-bold shadow-lg shadow-orange-500/20 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-paper-plane"></i> Dispatch Ticket
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 11: SHOWCASE PROJECT DETAIL & PEER COMMENTS -->
+  <div id="modalShowcaseDetail" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-700/80 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative">
+      <button onclick="closeModal('modalShowcaseDetail')" class="absolute right-4 top-4 z-20 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-700">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div id="showcaseModalContent" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none">
+    <!-- Dynamic toasts inserted here -->
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto border-t border-slate-800 bg-slate-950 py-8 text-xs text-slate-500">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg bg-brand-600 flex items-center justify-center text-white text-xs font-bold">CX</div>
+        <span class="text-slate-300 font-bold">CompeteX</span>
+        <span>• Centralized College Competition Management Platform</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <span>Role-Based Access: Student | Organizer | Judge | Admin</span>
+        <span>• Apex Tech Park</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FILES -->
+  <script src="/js/app.js"></script>
+</body>
+</html>

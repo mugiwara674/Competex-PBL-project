@@ -1,0 +1,1549 @@
+{
+  "users": [
+    {
+      "id": "usr-student-1",
+      "email": "student@college.edu",
+      "password": "password123",
+      "name": "Alex Chen",
+      "role": "STUDENT",
+      "college": "Apex Institute of Technology",
+      "department": "Computer Science & Engineering",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "skills": [
+        "React",
+        "Python",
+        "Node.js",
+        "AI/ML"
+      ],
+      "createdAt": "2026-09-10T10:00:00Z"
+    },
+    {
+      "id": "usr-student-2",
+      "email": "priya@college.edu",
+      "password": "password123",
+      "name": "Priya Sharma",
+      "role": "STUDENT",
+      "college": "Apex Institute of Technology",
+      "department": "Data Science & AI",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+      "skills": [
+        "PyTorch",
+        "FastAPI",
+        "Data Analysis"
+      ],
+      "createdAt": "2026-09-11T12:00:00Z"
+    },
+    {
+      "id": "usr-student-3",
+      "email": "rahul@college.edu",
+      "password": "password123",
+      "name": "Rahul Verma",
+      "role": "STUDENT",
+      "college": "Apex Institute of Technology",
+      "department": "Information Technology",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "skills": [
+        "Flutter",
+        "Firebase",
+        "UI/UX"
+      ],
+      "createdAt": "2026-09-12T09:00:00Z"
+    },
+    {
+      "id": "usr-organizer-1",
+      "email": "organizer@college.edu",
+      "password": "password123",
+      "name": "Dr. Sarah Jenkins",
+      "role": "ORGANIZER",
+      "college": "Apex Institute of Technology",
+      "department": "Dean of Research & Innovation",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+      "skills": [
+        "Event Management",
+        "Curriculum",
+        "Mentorship"
+      ],
+      "createdAt": "2026-08-15T08:00:00Z"
+    },
+    {
+      "id": "usr-judge-1",
+      "email": "judge@college.edu",
+      "password": "password123",
+      "name": "Michael Vance",
+      "role": "JUDGE",
+      "college": "Apex Tech Park (External)",
+      "department": "VP of Engineering at CloudScale Inc.",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+      "skills": [
+        "System Design",
+        "Cloud Native",
+        "AI Evaluation"
+      ],
+      "createdAt": "2026-08-20T11:00:00Z"
+    },
+    {
+      "id": "usr-admin-1",
+      "email": "admin@college.edu",
+      "password": "password123",
+      "name": "Prof. H. Sharma",
+      "role": "ADMIN",
+      "college": "Apex Institute of Technology",
+      "department": "Dean of Student Affairs",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+      "skills": [
+        "Administration",
+        "Governance",
+        "Auditing"
+      ],
+      "createdAt": "2026-08-01T09:00:00Z"
+    },
+    {
+      "id": "usr-1791194796911",
+      "email": "aarav@college.edu",
+      "password": "6e0daa0a792dcaef24738984267b05c5153663f16fa31a96325ab2fc1ca713b8",
+      "name": "Aarav Sharma",
+      "role": "STUDENT",
+      "college": "Apex Institute of Technology",
+      "department": "Robotics & Automation",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Aarav%20Sharma",
+      "skills": [
+        "ROS",
+        "Python",
+        "Computer Vision"
+      ],
+      "createdAt": "2026-10-05T10:06:36.911Z"
+    },
+    {
+      "id": "usr-1791194951328",
+      "email": "marthalamuni674@gmail.com",
+      "password": "f45f3a3ccc67722c3f305f7899e39d062aa217e76d626f1ce30fc1c35b23b371",
+      "name": "Marthala Muni Reddy",
+      "role": "STUDENT",
+      "college": "MBU",
+      "department": "CSE",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Marthala%20Muni%20Reddy",
+      "skills": [
+        "Java"
+      ],
+      "createdAt": "2026-10-05T10:09:11.328Z"
+    }
+  ],
+  "competitions": [
+    {
+      "id": "cmp-1",
+      "title": "HackSprint 2026: Campus AI & Sustainability",
+      "slug": "hacksprint-2026",
+      "category": "HACKATHON",
+      "type": "Technical",
+      "tagline": "Build generative AI and IoT solutions tackling green campus challenges.",
+      "format": "TEAM",
+      "minTeamSize": 2,
+      "maxTeamSize": 4,
+      "status": "ONGOING",
+      "bannerUrl": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop&q=80",
+      "prizePool": "$3,500 / ₹1,50,000",
+      "entryFee": "Free",
+      "location": "Auditorium Hall B & Hybrid Online",
+      "organizerId": "usr-organizer-1",
+      "organizerName": "Dr. Sarah Jenkins",
+      "regStartDate": "2026-09-15T00:00:00Z",
+      "regEndDate": "2026-10-15T23:59:59Z",
+      "eventStartDate": "2026-10-10T09:00:00Z",
+      "eventEndDate": "2026-10-25T18:00:00Z",
+      "description": "HackSprint 2026 is the annual flagship 36-hour hackathon connecting passionate engineering students with industry mentors. Develop real-world applications combining multimodal AI, energy conservation, smart waste sorting, or smart campus mobility.",
+      "rules": "1. All code must be authored during the hackathon.\n2. Open-source libraries and generative AI tools are permitted with proper attribution.\n3. Teams must consist of 2 to 4 registered college students.\n4. Submissions must include GitHub repository and working demo video.",
+      "rounds": [
+        {
+          "id": "rnd-1",
+          "roundNumber": 1,
+          "title": "Round 1: Problem Statement & Idea Abstract",
+          "submissionType": "ABSTRACT_URL",
+          "deadline": "2026-10-12T23:59:59Z",
+          "status": "COMPLETED",
+          "description": "Submit a 500-word synopsis, system architecture diagram, and expected community impact."
+        },
+        {
+          "id": "rnd-2",
+          "roundNumber": 2,
+          "title": "Round 2: Working MVP & Code Submission",
+          "submissionType": "CODE_AND_DEMO",
+          "deadline": "2026-10-20T20:00:00Z",
+          "status": "ACTIVE",
+          "description": "Submit functional GitHub repository, deployed demo link, and a 2-minute walkthrough video."
+        },
+        {
+          "id": "rnd-3",
+          "roundNumber": 3,
+          "title": "Round 3: Grand Finale Live Pitch",
+          "submissionType": "PRESENTATION",
+          "deadline": "2026-10-25T14:00:00Z",
+          "status": "UPCOMING",
+          "description": "Top 5 shortlisted squads pitch live before the industry judging panel."
+        }
+      ],
+      "rubrics": [
+        {
+          "id": "rub-1",
+          "name": "Innovation & Originality",
+          "maxScore": 25,
+          "weight": 25,
+          "desc": "Uniqueness of solution and creative approach to the problem"
+        },
+        {
+          "id": "rub-2",
+          "name": "Technical Execution & Architecture",
+          "maxScore": 25,
+          "weight": 25,
+          "desc": "Code quality, robustness, stack choices, and performance"
+        },
+        {
+          "id": "rub-3",
+          "name": "Real-world Viability & Impact",
+          "maxScore": 20,
+          "weight": 20,
+          "desc": "Practical applicability and measurable benefit to target audience"
+        },
+        {
+          "id": "rub-4",
+          "name": "UI / UX Design Polish",
+          "maxScore": 15,
+          "weight": 15,
+          "desc": "Accessibility, visual clarity, and seamless user experience"
+        },
+        {
+          "id": "rub-5",
+          "name": "Pitch & Presentation Clarity",
+          "maxScore": 15,
+          "weight": 15,
+          "desc": "Clear demonstration, Q&A handling, and timing"
+        }
+      ]
+    },
+    {
+      "id": "cmp-2",
+      "title": "CodeCraft: Inter-Collegiate Algorithmic Arena",
+      "slug": "codecraft-2026",
+      "category": "CODING",
+      "type": "Technical",
+      "tagline": "3 hours of intense algorithmic problem solving and competitive programming.",
+      "format": "INDIVIDUAL",
+      "minTeamSize": 1,
+      "maxTeamSize": 1,
+      "status": "UPCOMING",
+      "bannerUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&auto=format&fit=crop&q=80",
+      "prizePool": "$1,200 / ₹50,000",
+      "entryFee": "Free",
+      "location": "Online Automated Code Sandbox",
+      "organizerId": "usr-organizer-1",
+      "organizerName": "Dr. Sarah Jenkins",
+      "regStartDate": "2026-10-01T00:00:00Z",
+      "regEndDate": "2026-10-28T18:00:00Z",
+      "eventStartDate": "2026-10-30T15:00:00Z",
+      "eventEndDate": "2026-10-30T18:00:00Z",
+      "description": "Test your mastery of data structures, graph theory, dynamic programming, and numerical algorithms. Automated test suite grading with penalty points for wrong submissions.",
+      "rules": "1. Solo participation only.\n2. Permitted languages: C++, Java, Python, Go.\n3. Plagiarism detection across submitted tokens is strictly enforced.",
+      "rounds": [
+        {
+          "id": "rnd-cc-1",
+          "roundNumber": 1,
+          "title": "Qualifier Sprint (6 Problems)",
+          "submissionType": "CODE_SANDBOX",
+          "deadline": "2026-10-30T18:00:00Z",
+          "status": "UPCOMING",
+          "description": "Solve 6 algorithmic problems ranging from LeetCode Medium to Codeforces Div2 D."
+        }
+      ],
+      "rubrics": [
+        {
+          "id": "rub-cc-1",
+          "name": "Test Cases Passed",
+          "maxScore": 70,
+          "weight": 70,
+          "desc": "Correctness across hidden test cases"
+        },
+        {
+          "id": "rub-cc-2",
+          "name": "Time & Memory Complexity",
+          "maxScore": 30,
+          "weight": 30,
+          "desc": "Execution runtime under 1.5 seconds"
+        }
+      ]
+    },
+    {
+      "id": "cmp-3",
+      "title": "InnoTech Expo 2026: Working Prototype Showcase",
+      "slug": "innotech-expo-2026",
+      "category": "EXPO",
+      "type": "Technical",
+      "tagline": "Exhibition of hardware-software integrated prototypes and IoT devices.",
+      "format": "TEAM",
+      "minTeamSize": 2,
+      "maxTeamSize": 5,
+      "status": "JUDGING",
+      "bannerUrl": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&auto=format&fit=crop&q=80",
+      "prizePool": "$4,000 / ₹2,00,000",
+      "entryFee": "Free",
+      "location": "Main Campus Indoor Sports Complex",
+      "organizerId": "usr-organizer-1",
+      "organizerName": "Dr. Sarah Jenkins",
+      "regStartDate": "2026-08-20T00:00:00Z",
+      "regEndDate": "2026-09-25T18:00:00Z",
+      "eventStartDate": "2026-10-01T09:00:00Z",
+      "eventEndDate": "2026-10-06T17:00:00Z",
+      "description": "Showcase functioning physical prototypes, robotics, automated drones, smart assistive equipment, or biomedical devices to industry delegates and venture capitalists.",
+      "rules": "1. Live working demonstration is mandatory.\n2. Safety standards must be met for electrical and mechanical parts.\n3. Poster and technical whitepaper must accompany the booth.",
+      "rounds": [
+        {
+          "id": "rnd-it-1",
+          "roundNumber": 1,
+          "title": "Floor Demo & Technical Inspection",
+          "submissionType": "HARDWARE_DEMO",
+          "deadline": "2026-10-04T18:00:00Z",
+          "status": "COMPLETED",
+          "description": "Evaluation by technical judges at booth locations."
+        },
+        {
+          "id": "rnd-it-2",
+          "roundNumber": 2,
+          "title": "Jury Panel Deliberation & Scoring",
+          "submissionType": "JURY_REVIEW",
+          "deadline": "2026-10-06T15:00:00Z",
+          "status": "ACTIVE",
+          "description": "Scoring calculation and final podium ranking determination."
+        }
+      ],
+      "rubrics": [
+        {
+          "id": "rub-it-1",
+          "name": "Hardware-Software Integration",
+          "maxScore": 30,
+          "weight": 30,
+          "desc": "Seamless sensor data processing and mechanical stability"
+        },
+        {
+          "id": "rub-it-2",
+          "name": "Market Feasibility & Cost",
+          "maxScore": 25,
+          "weight": 25,
+          "desc": "Affordability and commercial scalability"
+        },
+        {
+          "id": "rub-it-3",
+          "name": "User Safety & Reliability",
+          "maxScore": 25,
+          "weight": 25,
+          "desc": "Fault tolerance and compliance with safety rules"
+        },
+        {
+          "id": "rub-it-4",
+          "name": "Booth Presentation & Demo",
+          "maxScore": 20,
+          "weight": 20,
+          "desc": "Effectiveness of live prototype demonstration"
+        }
+      ]
+    },
+    {
+      "id": "cmp-4",
+      "title": "BrainByte: National Tech & Trivia Quiz",
+      "slug": "brainbyte-2026",
+      "category": "QUIZ",
+      "type": "Non-Technical",
+      "tagline": "Fast-paced quiz on computer science history, tech founders, AI breakthroughs, and sci-fi.",
+      "format": "TEAM",
+      "minTeamSize": 2,
+      "maxTeamSize": 2,
+      "status": "UPCOMING",
+      "bannerUrl": "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1200&auto=format&fit=crop&q=80",
+      "prizePool": "$800 / ₹30,000",
+      "entryFee": "Free",
+      "location": "Seminar Hall 1",
+      "organizerId": "usr-organizer-1",
+      "organizerName": "Dr. Sarah Jenkins",
+      "regStartDate": "2026-10-01T00:00:00Z",
+      "regEndDate": "2026-10-24T18:00:00Z",
+      "eventStartDate": "2026-10-27T14:00:00Z",
+      "eventEndDate": "2026-10-27T17:00:00Z",
+      "description": "Compete against the sharpest minds across colleges in a multi-round buzzer quiz spanning Silicon Valley trivia, algorithm milestones, cybersecurity puzzles, and pop culture tech.",
+      "rules": "1. 2 participants per team.\n2. Rapid fire round with negative marks for incorrect answers.",
+      "rounds": [
+        {
+          "id": "rnd-bb-1",
+          "roundNumber": 1,
+          "title": "Prelims Written Eliminator",
+          "submissionType": "QUIZ_SHEET",
+          "deadline": "2026-10-27T15:00:00Z",
+          "status": "UPCOMING",
+          "description": "30 multiple choice questions in 25 minutes."
+        },
+        {
+          "id": "rnd-bb-2",
+          "roundNumber": 2,
+          "title": "On-Stage Buzzer Finale (Top 6)",
+          "submissionType": "LIVE_BUZZER",
+          "deadline": "2026-10-27T17:00:00Z",
+          "status": "UPCOMING",
+          "description": "4-round buzzer face-off with audio-visual clues."
+        }
+      ],
+      "rubrics": [
+        {
+          "id": "rub-bb-1",
+          "name": "Buzzer Accuracy",
+          "maxScore": 60,
+          "weight": 60,
+          "desc": "Points for direct correct answers"
+        },
+        {
+          "id": "rub-bb-2",
+          "name": "Speed Bonus",
+          "maxScore": 40,
+          "weight": 40,
+          "desc": "Reaction time advantage"
+        }
+      ]
+    },
+    {
+      "id": "cmp-5",
+      "title": "ResearchX: National Paper Presentation Symposium",
+      "slug": "researchx-2026",
+      "category": "PAPER",
+      "type": "Technical",
+      "tagline": "Present original research in Quantum Computing, Distributed Systems, and Green Tech.",
+      "format": "TEAM",
+      "minTeamSize": 1,
+      "maxTeamSize": 3,
+      "status": "COMPLETED",
+      "bannerUrl": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1200&auto=format&fit=crop&q=80",
+      "prizePool": "$1,500 / ₹60,000",
+      "entryFee": "Free",
+      "location": "Virtual Conference Room",
+      "organizerId": "usr-organizer-1",
+      "organizerName": "Dr. Sarah Jenkins",
+      "regStartDate": "2026-08-01T00:00:00Z",
+      "regEndDate": "2026-09-01T23:59:59Z",
+      "eventStartDate": "2026-09-15T09:00:00Z",
+      "eventEndDate": "2026-09-16T18:00:00Z",
+      "description": "ResearchX gathers undergraduate and graduate scholars to share peer-reviewed papers. Top selected papers receive publication assistance in indexed conference proceedings.",
+      "rules": "1. IEEE 2-column format compliant.\n2. Maximum 6 pages.\n3. Plagiarism threshold must be below 12%.",
+      "rounds": [
+        {
+          "id": "rnd-rx-1",
+          "roundNumber": 1,
+          "title": "Double-Blind Manuscript Review",
+          "submissionType": "PDF_PAPER",
+          "deadline": "2026-09-05T23:59:59Z",
+          "status": "COMPLETED",
+          "description": "Scored independently by two academic reviewers."
+        },
+        {
+          "id": "rnd-rx-2",
+          "roundNumber": 2,
+          "title": "Oral Presentation & Q&A Defense",
+          "submissionType": "SLIDES_DEFENSE",
+          "deadline": "2026-09-16T17:00:00Z",
+          "status": "COMPLETED",
+          "description": "10-minute slide defense followed by 5 minutes of defense questioning."
+        }
+      ],
+      "rubrics": [
+        {
+          "id": "rub-rx-1",
+          "name": "Methodological Rigor",
+          "maxScore": 35,
+          "weight": 35,
+          "desc": "Soundness of mathematical model and experimental verification"
+        },
+        {
+          "id": "rub-rx-2",
+          "name": "Novelty of Contribution",
+          "maxScore": 30,
+          "weight": 30,
+          "desc": "Advancement beyond prior literature"
+        },
+        {
+          "id": "rub-rx-3",
+          "name": "Clarity of Writing & IEEE Standard",
+          "maxScore": 20,
+          "weight": 20,
+          "desc": "Structure, citations, and diagram readability"
+        },
+        {
+          "id": "rub-rx-4",
+          "name": "Defense & Q&A Competence",
+          "maxScore": 15,
+          "weight": 15,
+          "desc": "Handling critical inquiries by professors"
+        }
+      ]
+    }
+  ],
+  "teams": [
+    {
+      "id": "tm-1",
+      "competitionId": "cmp-1",
+      "teamName": "NeuralKnights",
+      "joinCode": "CPX-7821",
+      "leaderId": "usr-student-1",
+      "leaderName": "Alex Chen",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-student-1",
+          "name": "Alex Chen",
+          "role": "LEADER",
+          "dept": "CSE"
+        },
+        {
+          "userId": "usr-student-2",
+          "name": "Priya Sharma",
+          "role": "MEMBER",
+          "dept": "AI/Data"
+        },
+        {
+          "userId": "usr-student-3",
+          "name": "Rahul Verma",
+          "role": "MEMBER",
+          "dept": "IT"
+        }
+      ],
+      "createdAt": "2026-09-20T14:30:00Z"
+    },
+    {
+      "id": "tm-2",
+      "competitionId": "cmp-1",
+      "teamName": "GreenGrid AI",
+      "joinCode": "CPX-4912",
+      "leaderId": "usr-student-2",
+      "leaderName": "Elena Rostova",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-student-2",
+          "name": "Elena Rostova",
+          "role": "LEADER",
+          "dept": "ECE"
+        },
+        {
+          "userId": "usr-student-3",
+          "name": "David Miller",
+          "role": "MEMBER",
+          "dept": "EEE"
+        },
+        {
+          "userId": "usr-student-1",
+          "name": "Alex Chen",
+          "role": "MEMBER",
+          "dept": "Computer Science & Engineering"
+        }
+      ],
+      "createdAt": "2026-09-22T10:15:00Z"
+    },
+    {
+      "id": "tm-3",
+      "competitionId": "cmp-1",
+      "teamName": "EcoSensors Squad",
+      "joinCode": "CPX-3304",
+      "leaderId": "usr-student-3",
+      "leaderName": "Karan Mehra",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-student-3",
+          "name": "Karan Mehra",
+          "role": "LEADER",
+          "dept": "Mechanical"
+        }
+      ],
+      "createdAt": "2026-09-25T16:00:00Z"
+    },
+    {
+      "id": "tm-4",
+      "competitionId": "cmp-3",
+      "teamName": "AeroRobotics Lab",
+      "joinCode": "CPX-9011",
+      "leaderId": "usr-student-1",
+      "leaderName": "Alex Chen",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-student-1",
+          "name": "Alex Chen",
+          "role": "LEADER",
+          "dept": "CSE"
+        },
+        {
+          "userId": "usr-student-3",
+          "name": "Rahul Verma",
+          "role": "MEMBER",
+          "dept": "IT"
+        }
+      ],
+      "createdAt": "2026-09-02T11:00:00Z"
+    },
+    {
+      "id": "tm-1791194989690",
+      "competitionId": "cmp-2",
+      "teamName": "NULL POINTERS",
+      "joinCode": "CPX-6958",
+      "leaderId": "usr-1791194951328",
+      "leaderName": "Marthala Muni Reddy",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-1791194951328",
+          "name": "Marthala Muni Reddy",
+          "role": "LEADER",
+          "dept": "CSE"
+        }
+      ],
+      "createdAt": "2026-10-05T10:09:49.690Z"
+    },
+    {
+      "id": "tm-1791195130372",
+      "competitionId": "cmp-1",
+      "teamName": "bjmhk,m",
+      "joinCode": "CPX-5300",
+      "leaderId": "usr-1791194951328",
+      "leaderName": "Marthala Muni Reddy",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-1791194951328",
+          "name": "Marthala Muni Reddy",
+          "role": "LEADER",
+          "dept": "CSE"
+        }
+      ],
+      "createdAt": "2026-10-05T10:12:10.372Z"
+    },
+    {
+      "id": "tm-1791196592370",
+      "competitionId": "cmp-2",
+      "teamName": "Alex's DevSquad",
+      "joinCode": "CPX-8317",
+      "leaderId": "usr-student-1",
+      "leaderName": "Alex Chen",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-student-1",
+          "name": "Alex Chen",
+          "role": "LEADER",
+          "dept": "Computer Science & Engineering"
+        }
+      ],
+      "createdAt": "2026-10-05T10:36:32.370Z"
+    },
+    {
+      "id": "tm-1791196689419",
+      "competitionId": "cmp-4",
+      "teamName": "Alex's Quiz Squad",
+      "joinCode": "CPX-8037",
+      "leaderId": "usr-student-1",
+      "leaderName": "Alex Chen",
+      "status": "CONFIRMED",
+      "members": [
+        {
+          "userId": "usr-student-1",
+          "name": "Alex Chen",
+          "role": "LEADER",
+          "dept": "Computer Science & Engineering"
+        }
+      ],
+      "createdAt": "2026-10-05T10:38:09.419Z"
+    }
+  ],
+  "submissions": [
+    {
+      "id": "sub-1",
+      "competitionId": "cmp-1",
+      "teamId": "tm-1",
+      "roundId": "rnd-2",
+      "projectTitle": "EcoCampus AI: Smart Energy & Waste Dispatcher",
+      "abstract": "An autonomous IoT & vision pipeline that monitors energy waste across campus auditoriums, predicts HVAC surge loads using LSTM models, and classifies bin recyclables with Edge AI.",
+      "repoUrl": "https://github.com/alexchen-tech/ecocampus-ai",
+      "demoUrl": "https://ecocampus-demo.web.app",
+      "slidesUrl": "https://docs.google.com/presentation/d/ecocampus-deck",
+      "videoUrl": "https://youtu.be/sample-ecocampus",
+      "techStack": [
+        "React",
+        "Python",
+        "TensorFlow Lite",
+        "FastAPI",
+        "TailwindCSS"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80",
+      "bountyTags": [
+        "Google Cloud GenAI",
+        "Intel Edge AI"
+      ],
+      "votes": [
+        "usr-student-2",
+        "usr-student-3",
+        "usr-1791194951328",
+        "usr-student-1"
+      ],
+      "comments": [
+        {
+          "id": "cmt-1",
+          "userId": "usr-judge-1",
+          "userName": "Michael Vance",
+          "userAvatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+          "text": "The LSTM load prediction accuracy on historical campus data is remarkably solid. Great work on the real-time websocket feed!",
+          "createdAt": "2026-10-15T10:00:00Z"
+        },
+        {
+          "id": "cmt-2",
+          "userId": "usr-student-2",
+          "userName": "Elena Rostova",
+          "userAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+          "text": "Love the clean React UI! Did you test the bin classification camera under low-light conditions?",
+          "createdAt": "2026-10-15T11:20:00Z"
+        },
+        {
+          "id": "cmt-1791222935042",
+          "userId": "usr-student-3",
+          "userName": "Rahul Verma",
+          "userAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+          "text": "Tested the live demo on mobile browser. The responsive dashboard renders beautifully and the WebSocket alert is instant!",
+          "createdAt": "2026-10-05T17:55:35.042Z"
+        }
+      ],
+      "submittedAt": "2026-10-14T19:22:00Z",
+      "status": "EVALUATED"
+    },
+    {
+      "id": "sub-2",
+      "competitionId": "cmp-1",
+      "teamId": "tm-2",
+      "roundId": "rnd-2",
+      "projectTitle": "SmartGrid Solar Forecaster",
+      "abstract": "Micro-grid solar production forecaster utilizing real-time campus weather station feeds and cloud tracking sensors to optimize battery charging schedules.",
+      "repoUrl": "https://github.com/greengrid-ai/solar-forecaster",
+      "demoUrl": "https://smartgrid-solar.vercel.app",
+      "slidesUrl": "https://docs.google.com/presentation/d/smartgrid-deck",
+      "videoUrl": "https://youtu.be/sample-smartgrid",
+      "techStack": [
+        "Vue.js",
+        "Node.js",
+        "Prophet",
+        "InfluxDB"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800&auto=format&fit=crop&q=80",
+      "bountyTags": [
+        "Google Cloud GenAI",
+        "Red Hat Cloud-Native"
+      ],
+      "votes": [
+        "usr-student-1",
+        "usr-student-3"
+      ],
+      "comments": [
+        {
+          "id": "cmt-3",
+          "userId": "usr-student-1",
+          "userName": "Alex Chen",
+          "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+          "text": "Impressive InfluxDB time-series ingestion speed! Are the solar irradiance forecasts updated hourly or continuously?",
+          "createdAt": "2026-10-15T08:30:00Z"
+        }
+      ],
+      "submittedAt": "2026-10-14T21:40:00Z",
+      "status": "EVALUATED"
+    },
+    {
+      "id": "sub-3",
+      "competitionId": "cmp-1",
+      "teamId": "tm-3",
+      "roundId": "rnd-2",
+      "projectTitle": "EcoSensors Mesh Network",
+      "abstract": "Low-power LoRaWAN mesh nodes measuring indoor air quality, temperature, and occupancy with solar harvesting.",
+      "repoUrl": "https://github.com/ecosensors/lora-campus",
+      "demoUrl": "https://ecosensors-live.io",
+      "slidesUrl": "https://docs.google.com/presentation/d/ecosensors-deck",
+      "videoUrl": "",
+      "techStack": [
+        "C++",
+        "Arduino",
+        "LoRaWAN",
+        "Grafana"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&auto=format&fit=crop&q=80",
+      "bountyTags": [
+        "Intel Edge AI"
+      ],
+      "votes": [
+        "usr-student-1"
+      ],
+      "comments": [],
+      "submittedAt": "2026-10-15T14:10:00Z",
+      "status": "PENDING_EVALUATION"
+    },
+    {
+      "id": "sub-4",
+      "competitionId": "cmp-3",
+      "teamId": "tm-4",
+      "roundId": "rnd-it-2",
+      "projectTitle": "Autonomous Disaster Response Drone Swarm",
+      "abstract": "Indoor navigation quadcopter swarm equipped with lidar and thermal vision to map collapsed structures without GPS.",
+      "repoUrl": "https://github.com/aerorobotics/drone-swarm",
+      "demoUrl": "https://aerodrone-expo.org",
+      "slidesUrl": "https://docs.google.com/presentation/d/aerorobotics-deck",
+      "videoUrl": "https://youtu.be/sample-aerodrone",
+      "techStack": [
+        "ROS2",
+        "OpenCV",
+        "PX4 Autopilot",
+        "Python"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&auto=format&fit=crop&q=80",
+      "bountyTags": [
+        "GitHub Open Source",
+        "Intel Edge AI"
+      ],
+      "votes": [
+        "usr-student-1",
+        "usr-student-2",
+        "usr-organizer-1",
+        "usr-judge-1"
+      ],
+      "comments": [
+        {
+          "id": "cmt-4",
+          "userId": "usr-organizer-1",
+          "userName": "Dr. Sarah Jenkins",
+          "userAvatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+          "text": "Thrilled to see the optical flow localization working without GPS indoors. Safety netting in Arena C is ready for your team demo.",
+          "createdAt": "2026-10-04T12:00:00Z"
+        }
+      ],
+      "submittedAt": "2026-10-03T16:00:00Z",
+      "status": "EVALUATED"
+    },
+    {
+      "id": "sub-cc-1791196592370",
+      "competitionId": "cmp-2",
+      "teamId": "tm-1791196592370",
+      "teamName": "Alex's DevSquad",
+      "submittedBy": "usr-student-1",
+      "submittedByName": "Alex Chen",
+      "projectTitle": "CodeCraft: Two Sum Target Pair",
+      "summary": "Solved CC-101 in JAVA with 5/5 tests passed.",
+      "repoUrl": "https://github.com/competex/codecraft-arena",
+      "demoUrl": "https://competex.campus/codecraft/sandbox",
+      "techStack": [
+        "JAVA",
+        "Algorithms",
+        "Arrays & Hash Tables"
+      ],
+      "status": "EVALUATED",
+      "submittedAt": "2026-10-07T19:48:49.542Z"
+    },
+    {
+      "id": "sub-bb-1791196689419",
+      "competitionId": "cmp-4",
+      "teamId": "tm-1791196689419",
+      "teamName": "Alex's Quiz Squad",
+      "submittedBy": "usr-student-1",
+      "submittedByName": "Alex Chen",
+      "projectTitle": "BrainByte: Live Quiz Finale",
+      "summary": "Quiz completed: 2/10 correct. Gross Score: 188 pts (Accuracy: 20%).",
+      "repoUrl": "https://github.com/competex/brainbyte-arena",
+      "demoUrl": "https://competex.campus/brainbyte/live",
+      "techStack": [
+        "Live Buzzer",
+        "Tech Trivia",
+        "Computer Science"
+      ],
+      "status": "EVALUATED",
+      "submittedAt": "2026-10-08T02:36:26.305Z"
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "eval-1",
+      "competitionId": "cmp-1",
+      "submissionId": "sub-1",
+      "teamId": "tm-1",
+      "judgeId": "usr-judge-1",
+      "judgeName": "Michael Vance",
+      "scores": {
+        "rub-1": 24,
+        "rub-2": 23,
+        "rub-3": 19,
+        "rub-4": 14,
+        "rub-5": 14
+      },
+      "totalScore": 94,
+      "privateFeedback": "Very strong architecture. The Edge AI inference on the low-cost Raspberry Pi node was particularly convincing.",
+      "publicFeedback": "Superb end-to-end prototype with clean React interface and impressive real-world energy saving metric projections.",
+      "evaluatedAt": "2026-10-15T09:30:00Z"
+    },
+    {
+      "id": "eval-2",
+      "competitionId": "cmp-1",
+      "submissionId": "sub-2",
+      "teamId": "tm-2",
+      "judgeId": "usr-judge-1",
+      "judgeName": "Michael Vance",
+      "scores": {
+        "rub-1": 21,
+        "rub-2": 22,
+        "rub-3": 18,
+        "rub-4": 13,
+        "rub-5": 13
+      },
+      "totalScore": 87,
+      "privateFeedback": "Good time-series model. Might struggle under sudden unpredicted micro-climate cloud coverage.",
+      "publicFeedback": "Great concept and practical use of micro-grid solar prediction. UI could use more intuitive charts.",
+      "evaluatedAt": "2026-10-15T10:15:00Z"
+    },
+    {
+      "id": "eval-3",
+      "competitionId": "cmp-3",
+      "submissionId": "sub-4",
+      "teamId": "tm-4",
+      "judgeId": "usr-judge-1",
+      "judgeName": "Michael Vance",
+      "scores": {
+        "rub-it-1": 29,
+        "rub-it-2": 24,
+        "rub-it-3": 23,
+        "rub-it-4": 19
+      },
+      "totalScore": 95,
+      "privateFeedback": "Exceptional mechanical and sensor integration. The SLAM algorithm recovered remarkably well when light levels dropped.",
+      "publicFeedback": "World-class hardware demo. The real-time 3D point cloud generation was seamless.",
+      "evaluatedAt": "2026-10-05T11:00:00Z"
+    },
+    {
+      "id": "ev-cc-1791196592370",
+      "submissionId": "sub-cc-1791196592370",
+      "competitionId": "cmp-2",
+      "judgeId": "usr-judge-1",
+      "judgeName": "CodeCraft Automated Arena Judge",
+      "rubricScores": [
+        {
+          "rubricId": "rub-cc-1",
+          "score": 70,
+          "remarks": "Passed 5 of 5 hidden test cases."
+        },
+        {
+          "rubricId": "rub-cc-2",
+          "score": 30,
+          "remarks": "Runtime: 2ms | Memory: 11964KB."
+        }
+      ],
+      "totalScore": 100,
+      "feedback": "Automated Arena Judge: ACCEPTED. Execution completed in 2ms.",
+      "evaluatedAt": "2026-10-07T19:48:49.542Z"
+    },
+    {
+      "id": "ev-bb-1791196689419",
+      "submissionId": "sub-bb-1791196689419",
+      "competitionId": "cmp-4",
+      "judgeId": "usr-judge-1",
+      "judgeName": "BrainByte Live Buzzer Evaluator",
+      "rubricScores": [
+        {
+          "rubricId": "rub-bb-1",
+          "score": 12,
+          "remarks": "Answered 2 of 10 trivia questions correctly."
+        },
+        {
+          "rubricId": "rub-bb-2",
+          "score": 12,
+          "remarks": "Speed bonus accumulated: +88 pts."
+        }
+      ],
+      "totalScore": 24,
+      "feedback": "Live Buzzer Arena Result: Accuracy 20%, Streak 2x, Score 24/100.",
+      "evaluatedAt": "2026-10-08T02:36:26.305Z"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "ann-1",
+      "competitionId": "cmp-1",
+      "title": "Round 2 Submission Window Extended by 4 Hours",
+      "content": "Due to scheduled network maintenance across campus server racks, the Round 2 MVP submission deadline is now pushed to 8:00 PM IST on Oct 20. Ensure your GitHub repo is public!",
+      "priority": "HIGH",
+      "author": "Dr. Sarah Jenkins (Organizer)",
+      "createdAt": "2026-10-14T08:00:00Z"
+    },
+    {
+      "id": "ann-2",
+      "competitionId": "cmp-1",
+      "title": "Mentorship Office Hours with Industry Judges",
+      "content": "Michael Vance (CloudScale) will be hosting a Discord AMA tomorrow at 4:00 PM for teams needing guidance on scalable database schemas and edge deployment.",
+      "priority": "NORMAL",
+      "author": "Dr. Sarah Jenkins (Organizer)",
+      "createdAt": "2026-10-12T11:30:00Z"
+    },
+    {
+      "id": "ann-3",
+      "competitionId": "cmp-3",
+      "title": "InnoTech Expo 2026 Grand Finale Rankings Published!",
+      "content": "The jury panel has finalized scoring for all 24 hardware booths. Head over to the Live Leaderboard tab to view the winners and category mentions.",
+      "priority": "HIGH",
+      "author": "Prof. H. Sharma (Admin)",
+      "createdAt": "2026-10-05T12:00:00Z"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "crt-1",
+      "certificateNumber": "CX-2026-HCKS-001",
+      "userId": "usr-student-1",
+      "userName": "Alex Chen",
+      "teamId": "tm-1",
+      "teamName": "NeuralKnights",
+      "competitionId": "cmp-1",
+      "competitionTitle": "HackSprint 2026: Campus AI & Sustainability",
+      "competitionCategory": "HACKATHON",
+      "type": "WINNER_1ST",
+      "badge": "🥇 First Place Champion",
+      "title": "Certificate of Excellence - First Place",
+      "issuedBy": "Apex Institute of Technology & CompeteX Advisory Council",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Faculty Convener"
+        },
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Student Affairs"
+        }
+      ],
+      "issuedAt": "2026-10-25T17:00:00Z",
+      "verificationCode": "VFY-8921-9402",
+      "skills": [
+        "Edge IoT",
+        "Generative AI",
+        "React Architecture"
+      ],
+      "rank": 1,
+      "score": 94
+    },
+    {
+      "id": "crt-2",
+      "certificateNumber": "CX-2026-HCKS-002",
+      "userId": "usr-student-2",
+      "userName": "Priya Sharma",
+      "teamId": "tm-1",
+      "teamName": "NeuralKnights",
+      "competitionId": "cmp-1",
+      "competitionTitle": "HackSprint 2026: Campus AI & Sustainability",
+      "competitionCategory": "HACKATHON",
+      "type": "WINNER_1ST",
+      "badge": "🥇 First Place Champion",
+      "title": "Certificate of Excellence - First Place",
+      "issuedBy": "Apex Institute of Technology & CompeteX Advisory Council",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Faculty Convener"
+        },
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Student Affairs"
+        }
+      ],
+      "issuedAt": "2026-10-25T17:00:00Z",
+      "verificationCode": "VFY-8921-9403",
+      "skills": [
+        "PyTorch",
+        "FastAPI",
+        "Energy Optimization"
+      ],
+      "rank": 1,
+      "score": 94
+    },
+    {
+      "id": "crt-3",
+      "certificateNumber": "CX-2026-HCKS-003",
+      "userId": "usr-student-2",
+      "userName": "Elena Rostova",
+      "teamId": "tm-2",
+      "teamName": "GreenGrid AI",
+      "competitionId": "cmp-1",
+      "competitionTitle": "HackSprint 2026: Campus AI & Sustainability",
+      "competitionCategory": "HACKATHON",
+      "type": "WINNER_2ND",
+      "badge": "🥈 Runner-Up Award",
+      "title": "Certificate of Merit - Second Place",
+      "issuedBy": "Apex Institute of Technology & CompeteX Advisory Council",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Faculty Convener"
+        },
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Student Affairs"
+        }
+      ],
+      "issuedAt": "2026-10-25T17:00:00Z",
+      "verificationCode": "VFY-4912-7810",
+      "skills": [
+        "Solar Forecasting",
+        "Time Series Models",
+        "Micro-Grid"
+      ],
+      "rank": 2,
+      "score": 87
+    },
+    {
+      "id": "crt-4",
+      "certificateNumber": "CX-2026-EXPO-001",
+      "userId": "usr-student-1",
+      "userName": "Alex Chen",
+      "teamId": "tm-4",
+      "teamName": "AeroRobotics Lab",
+      "competitionId": "cmp-3",
+      "competitionTitle": "InnoTech Expo 2026: Working Prototype Showcase",
+      "competitionCategory": "EXPO",
+      "type": "WINNER_1ST",
+      "badge": "🏆 Best Hardware Prototype",
+      "title": "Certificate of Technological Excellence",
+      "issuedBy": "Apex Institute of Technology Innovation Cell",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Director of Research"
+        },
+        {
+          "name": "Michael Vance",
+          "title": "Industry Lead Judge"
+        }
+      ],
+      "issuedAt": "2026-10-06T18:00:00Z",
+      "verificationCode": "VFY-9011-3329",
+      "skills": [
+        "Autonomous Drones",
+        "Lidar SLAM",
+        "Embedded Systems"
+      ],
+      "rank": 1,
+      "score": 95
+    },
+    {
+      "id": "crt-5",
+      "certificateNumber": "CX-2026-RSRX-012",
+      "userId": "usr-student-3",
+      "userName": "Rahul Verma",
+      "teamId": "",
+      "teamName": "Individual Participant",
+      "competitionId": "cmp-5",
+      "competitionTitle": "ResearchX: National Paper Presentation Symposium",
+      "competitionCategory": "PAPER",
+      "type": "PARTICIPATION",
+      "badge": "📜 Official Participant",
+      "title": "Certificate of Academic Participation",
+      "issuedBy": "Apex Institute of Technology Academic Council",
+      "signatories": [
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Academic Affairs"
+        }
+      ],
+      "issuedAt": "2026-09-16T18:00:00Z",
+      "verificationCode": "VFY-1102-4491",
+      "skills": [
+        "Paper Defense",
+        "Distributed Systems Research"
+      ],
+      "rank": 0,
+      "score": 0
+    },
+    {
+      "id": "crt-1791195784038-2",
+      "certificateNumber": "CX-2026-HACK-146",
+      "userId": "usr-student-3",
+      "userName": "Rahul Verma",
+      "teamId": "tm-1",
+      "teamName": "NeuralKnights",
+      "competitionId": "cmp-1",
+      "competitionTitle": "HackSprint 2026: Campus AI & Sustainability",
+      "competitionCategory": "HACKATHON",
+      "type": "WINNER_1ST",
+      "badge": "🥇 First Place Champion",
+      "title": "Certificate of Excellence - First Place",
+      "issuedBy": "Apex Institute of Technology & CompeteX Academic Council",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Organizer Lead"
+        },
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Student Affairs"
+        }
+      ],
+      "issuedAt": "2026-10-05T10:23:04.038Z",
+      "verificationCode": "VFY-2170-4432",
+      "skills": [
+        "Competition Finalist",
+        "HACKATHON"
+      ],
+      "rank": 1,
+      "score": 94
+    },
+    {
+      "id": "crt-1791195784038-0",
+      "certificateNumber": "CX-2026-HACK-645",
+      "userId": "usr-1791194951328",
+      "userName": "Marthala Muni Reddy",
+      "teamId": "tm-1791195130372",
+      "teamName": "bjmhk,m",
+      "competitionId": "cmp-1",
+      "competitionTitle": "HackSprint 2026: Campus AI & Sustainability",
+      "competitionCategory": "HACKATHON",
+      "type": "PARTICIPATION",
+      "badge": "📜 Official Participant",
+      "title": "Certificate of Participation",
+      "issuedBy": "Apex Institute of Technology & CompeteX Academic Council",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Organizer Lead"
+        },
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Student Affairs"
+        }
+      ],
+      "issuedAt": "2026-10-05T10:23:04.038Z",
+      "verificationCode": "VFY-4683-5247",
+      "skills": [
+        "Competition Finalist",
+        "HACKATHON"
+      ],
+      "rank": 4,
+      "score": 0
+    },
+    {
+      "id": "crt-1791209259738-0",
+      "certificateNumber": "CX-2026-CODI-729",
+      "userId": "usr-student-1",
+      "userName": "Alex Chen",
+      "teamId": "tm-1791196592370",
+      "teamName": "Alex's DevSquad",
+      "competitionId": "cmp-2",
+      "competitionTitle": "CodeCraft: Inter-Collegiate Algorithmic Arena",
+      "competitionCategory": "CODING",
+      "type": "WINNER_1ST",
+      "badge": "🥇 First Place Champion",
+      "title": "Certificate of Excellence - First Place",
+      "issuedBy": "CodeCraft Jury",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Organizer Lead"
+        },
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Student Affairs"
+        }
+      ],
+      "issuedAt": "2026-10-05T14:07:39.738Z",
+      "verificationCode": "VFY-9426-2887",
+      "skills": [
+        "Competition Finalist",
+        "CODING"
+      ],
+      "rank": 1,
+      "score": 100
+    },
+    {
+      "id": "crt-1791209259738-0",
+      "certificateNumber": "CX-2026-CODI-310",
+      "userId": "usr-1791194951328",
+      "userName": "Marthala Muni Reddy",
+      "teamId": "tm-1791194989690",
+      "teamName": "NULL POINTERS",
+      "competitionId": "cmp-2",
+      "competitionTitle": "CodeCraft: Inter-Collegiate Algorithmic Arena",
+      "competitionCategory": "CODING",
+      "type": "PARTICIPATION",
+      "badge": "📜 Official Participant",
+      "title": "Certificate of Participation",
+      "issuedBy": "CodeCraft Jury",
+      "signatories": [
+        {
+          "name": "Dr. Sarah Jenkins",
+          "title": "Organizer Lead"
+        },
+        {
+          "name": "Prof. H. Sharma",
+          "title": "Dean of Student Affairs"
+        }
+      ],
+      "issuedAt": "2026-10-05T14:07:39.738Z",
+      "verificationCode": "VFY-9161-8880",
+      "skills": [
+        "Competition Finalist",
+        "CODING"
+      ],
+      "rank": 2,
+      "score": 0
+    }
+  ],
+  "tickets": [
+    {
+      "id": "tkt-1",
+      "competitionId": "cmp-1",
+      "teamId": "tm-1",
+      "teamName": "NeuralKnights",
+      "submittedBy": "usr-student-1",
+      "submittedByName": "Alex Chen",
+      "category": "TECHNICAL",
+      "subject": "Edge ML Model Quantization & PyTorch ONNX Runtime on Raspberry Pi",
+      "description": "We are observing high inferencing latency (over 450ms) when running our YOLOv8 nano model on the edge device. Would like advice on INT8 quantization and hardware acceleration.",
+      "status": "ANSWERED",
+      "priority": "HIGH",
+      "responses": [
+        {
+          "id": "resp-1",
+          "authorId": "usr-judge-1",
+          "authorName": "Michael Vance",
+          "authorRole": "JUDGE / INDUSTRY MENTOR",
+          "message": "Export your model using opset=17 and use the onnxruntime-openvino or NCNN backend. You can also apply dynamic post-training quantization to reduce weights from FP32 to INT8, achieving ~65ms inference on Cortex-A72 cores.",
+          "createdAt": "2026-10-04T14:30:00Z"
+        }
+      ],
+      "createdAt": "2026-10-04T11:00:00Z",
+      "updatedAt": "2026-10-04T14:30:00Z"
+    },
+    {
+      "id": "tkt-2",
+      "competitionId": "cmp-1",
+      "teamId": "tm-2",
+      "teamName": "GreenGrid AI",
+      "submittedBy": "usr-student-2",
+      "submittedByName": "Elena Rostova",
+      "category": "HARDWARE",
+      "subject": "Request for ACS712 Current Sensor and ESP32 Dev Board",
+      "description": "Our team needs two ACS712 30A current sensor modules and one spare ESP32 NodeMCU board for monitoring solar panel micro-inverter power fluctuations.",
+      "status": "RESOLVED",
+      "priority": "NORMAL",
+      "responses": [
+        {
+          "id": "resp-2",
+          "authorId": "usr-organizer-1",
+          "authorName": "Dr. Sarah Jenkins",
+          "authorRole": "ORGANIZER",
+          "message": "Components have been allocated and kept at the Hardware Distribution Booth in Lab 204. Please collect them with your Team Lead ID card.",
+          "createdAt": "2026-10-03T16:00:00Z"
+        }
+      ],
+      "createdAt": "2026-10-03T10:15:00Z",
+      "updatedAt": "2026-10-03T16:00:00Z"
+    },
+    {
+      "id": "tkt-3",
+      "competitionId": "cmp-3",
+      "teamId": "tm-4",
+      "teamName": "AeroRobotics Lab",
+      "submittedBy": "usr-student-1",
+      "submittedByName": "Alex Chen",
+      "category": "RULES",
+      "subject": "Clarification on Live Autonomous Flight Test Area",
+      "description": "For Round 2 Jury Deliberation, can our drone fly autonomously indoors with optical flow sensors, or is safety netting mandatory around the flight arena?",
+      "status": "ANSWERED",
+      "priority": "URGENT",
+      "responses": [
+        {
+          "id": "resp-3",
+          "authorId": "usr-organizer-1",
+          "authorName": "Dr. Sarah Jenkins",
+          "authorRole": "ORGANIZER",
+          "message": "Safety netting is mandatory for any indoor flight above 1 meter altitude. Arena C in the sports complex is fully netted and will be assigned for your demo slot.",
+          "createdAt": "2026-10-04T09:45:00Z"
+        }
+      ],
+      "createdAt": "2026-10-04T08:30:00Z",
+      "updatedAt": "2026-10-04T09:45:00Z"
+    },
+    {
+      "id": "tkt-1791219461704",
+      "competitionId": "cmp-1",
+      "competitionTitle": "HackSprint 2026: Campus AI & Sustainability",
+      "teamId": "tm-1",
+      "teamName": "NeuralKnights",
+      "submittedBy": "usr-student-1",
+      "submittedByName": "Alex Chen",
+      "category": "HARDWARE",
+      "subject": "Request for LoRaWAN gateway frequency configuration",
+      "description": "Our squad NeuralKnights requires the EU868 vs IN865 band settings for the campus greenhouse gateway.",
+      "status": "RESOLVED",
+      "priority": "HIGH",
+      "responses": [
+        {
+          "id": "resp-1791219461718",
+          "authorId": "usr-organizer-1",
+          "authorName": "Dr. Sarah Jenkins",
+          "authorRole": "ORGANIZER",
+          "message": "Greenhouse gateway operates on 865-867 MHz band. Lab kit documentation has been placed in Innovation Lab 204.",
+          "createdAt": "2026-10-05T16:57:41.718Z"
+        }
+      ],
+      "createdAt": "2026-10-05T16:57:41.704Z",
+      "updatedAt": "2026-10-05T16:57:41.723Z"
+    }
+  ],
+  "sponsors": [
+    {
+      "id": "sp-1",
+      "name": "Google Cloud",
+      "tier": "PLATINUM",
+      "logoUrl": "https://www.gstatic.com/images/branding/product/2x/google_cloud_64dp.png",
+      "tagline": "Build the Future with Multimodal Vertex AI & Gemini",
+      "description": "Google Cloud is proud to power CompeteX 2026 with student cloud credits, Gemini API tokens, and AI engineering mentorship.",
+      "websiteUrl": "https://cloud.google.com/edu",
+      "perks": "100K Free Gemini Flash Tokens • $1,000 Vertex AI Cluster Credits • Google Cloud Career Certificates",
+      "bounties": [
+        {
+          "id": "bty-1",
+          "title": "Best Multimodal Gemini AI Hack",
+          "prize": "$500 Cash + $1,000 Cloud Credits",
+          "tag": "Google Cloud GenAI",
+          "criteria": "Build an intelligent solution utilizing Gemini API (multimodal audio, video, or vision) to automate green campus challenges."
+        }
+      ]
+    },
+    {
+      "id": "sp-2",
+      "name": "Intel Software",
+      "tier": "GOLD",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Intel_logo_%282020%29.svg",
+      "tagline": "Accelerate Edge AI with Intel OneAPI & OpenVINO",
+      "description": "Unleash hardware acceleration across CPU, GPU, and VPU devices with optimized edge runtime kits.",
+      "websiteUrl": "https://software.intel.com",
+      "perks": "Intel DevCloud VIP Access • OpenVINO Model Zoo Toolkit • Neural Compute Stick 2 Hardware",
+      "bounties": [
+        {
+          "id": "bty-2",
+          "title": "Best Edge AI & Hardware Acceleration",
+          "prize": "$300 Cash + Intel NCS2 Kit",
+          "tag": "Intel Edge AI",
+          "criteria": "Best implementation of quantized neural network models running locally on edge hardware or micro-controllers."
+        }
+      ]
+    },
+    {
+      "id": "sp-3",
+      "name": "GitHub Education",
+      "tier": "GOLD",
+      "logoUrl": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+      "tagline": "Empowering Student Developers Everywhere",
+      "description": "Equipping student squads with developer tools, automated GitHub Actions CI/CD workflows, and Copilot AI assistance.",
+      "websiteUrl": "https://education.github.com",
+      "perks": "GitHub Student Developer Pack • Copilot Pro Licenses • Exclusive Octocat Swag Packs",
+      "bounties": [
+        {
+          "id": "bty-3",
+          "title": "Best Open Source Community Tooling",
+          "prize": "$250 Cash + Octocat Swag Box",
+          "tag": "GitHub Open Source",
+          "criteria": "Cleanest open source repository with exemplary documentation, automated tests, and MIT/Apache-2.0 licensing."
+        }
+      ]
+    },
+    {
+      "id": "sp-4",
+      "name": "Red Hat / IBM",
+      "tier": "SILVER",
+      "logoUrl": "https://www.redhat.com/cms/managed-files/RedHat-Logo-A-Standard-RGB.svg",
+      "tagline": "Open Hybrid Cloud & Enterprise Kubernetes",
+      "description": "Delivering cloud-native containerized architecture solutions for large-scale university infrastructures.",
+      "websiteUrl": "https://redhat.com",
+      "perks": "OpenShift Sandbox Access • Podman Desktop Licenses • Enterprise Linux Certification Vouchers",
+      "bounties": [
+        {
+          "id": "bty-4",
+          "title": "Best Cloud-Native Containerization Hack",
+          "prize": "$200 Cash + Red Hat Tech Bag",
+          "tag": "Red Hat Cloud-Native",
+          "criteria": "Deploy robust micro-services packaged with Docker/Podman containers and production-grade Kubernetes manifests."
+        }
+      ]
+    }
+  ],
+  "schedules": [
+    {
+      "id": "sch-1",
+      "time": "09:00 AM - 10:30 AM",
+      "day": "Day 1 (Friday)",
+      "title": "Flagship Opening Ceremony & Keynote Address",
+      "location": "Auditorium Hall B (Apex Tech Park)",
+      "roomCode": "AUD-B",
+      "category": "CEREMONY",
+      "host": "Dr. Sarah Jenkins (Convener) & Prof. H. Sharma (Dean)",
+      "status": "COMPLETED",
+      "description": "Welcome address, hackathon rules briefing, and introduction of industry jury chairs."
+    },
+    {
+      "id": "sch-2",
+      "time": "11:00 AM - 01:00 PM",
+      "day": "Day 1 (Friday)",
+      "title": "Edge AI & Gemini Multimodal Hands-on Masterclass",
+      "location": "Innovation Lab 204",
+      "roomCode": "LAB-204",
+      "category": "WORKSHOP",
+      "host": "Google Cloud Developer Relations Engineers",
+      "status": "COMPLETED",
+      "description": "Live coding walkthrough configuring Gemini API keys, structured JSON schema extraction, and edge inference."
+    },
+    {
+      "id": "sch-3",
+      "time": "02:00 PM - 06:00 PM",
+      "day": "Day 1 (Friday)",
+      "title": "Mentorship Checkpoint & Hardware Kit Allocation",
+      "location": "Hardware Lab 3 & IoT Maker Space",
+      "roomCode": "HW-LAB-3",
+      "category": "MENTORSHIP",
+      "host": "Faculty Mentors & Lab Technicians",
+      "status": "ACTIVE",
+      "description": "Squad architecture reviews, distribution of LoRaWAN gateways, sensors, and micro-controller kits."
+    },
+    {
+      "id": "sch-4",
+      "time": "08:00 PM - 09:30 PM",
+      "day": "Day 1 (Friday)",
+      "title": "Midnight Pizza, Energy Bar & Lightning Tech Trivia",
+      "location": "Central Campus Cafeteria Quad",
+      "roomCode": "QUAD-CAFE",
+      "category": "SOCIAL",
+      "host": "Student Council & BrainByte Quizmasters",
+      "status": "UPCOMING",
+      "description": "Refreshment break and rapid-fire buzzer mini-quiz with spot prizes and sponsor giveaways."
+    },
+    {
+      "id": "sch-5",
+      "time": "10:00 AM - 01:00 PM",
+      "day": "Day 2 (Saturday)",
+      "title": "Final Project Expo Demonstrations & Jury Reviews",
+      "location": "Main Exhibition Concourse & Arena C",
+      "roomCode": "EXPO-HALL",
+      "category": "EXPO",
+      "host": "Industry Evaluation Jury Panel",
+      "status": "UPCOMING",
+      "description": "Live floor demonstrations, drone flight trials, code walkthroughs, and rubric scoring."
+    },
+    {
+      "id": "sch-6",
+      "time": "04:00 PM - 05:30 PM",
+      "day": "Day 2 (Saturday)",
+      "title": "Grand Podium Awards & Certificate Distribution",
+      "location": "Auditorium Hall B",
+      "roomCode": "AUD-B",
+      "category": "AWARDS",
+      "host": "Dean of Student Affairs & Sponsor Dignitaries",
+      "status": "UPCOMING",
+      "description": "Announcement of winners, People's Choice awards, sponsor bounties, and credential issuance."
+    }
+  ]
+}

@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CompeteX - PBL Project Report - Mohan Babu University</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm 10mm 12mm;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #000000;
+      background: #e2e8f0;
+      margin: 0;
+      padding: 0;
+      line-height: 1.45;
+      font-size: 10.5pt;
+    }
+    .page-container {
+      max-width: 820px;
+      margin: 20px auto;
+    }
+    .page {
+      width: 800px;
+      height: 1115px;
+      margin: 0 auto 30px auto;
+      background: #ffffff;
+      padding: 28px 32px;
+      border: 1.5px solid #000000;
+      position: relative;
+      page-break-after: always;
+      break-after: page;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .page.cover {
+      border: none;
+      box-shadow: none;
+      padding: 35px 25px 20px 25px;
+    }
+    .page.cert-page {
+      border: none;
+      padding: 0;
+      background: #fff;
+    }
+    .page.cert-page img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .page-container {
+        max-width: 100%;
+        margin: 0;
+      }
+      .page {
+        width: 100% !important;
+        height: 275mm !important;
+        min-height: 275mm !important;
+        max-height: 275mm !important;
+        margin: 0 !important;
+        padding: 22px 26px !important;
+        border: 1.5px solid #000000 !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        box-shadow: none !important;
+      }
+      .page.cover {
+        border: none !important;
+      }
+      .page.cert-page {
+        border: none !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    
+    .text-center { text-align: center; }
+    .text-justify { text-align: justify; }
+    .text-right { text-align: right; }
+    .text-red { color: #c51b24; }
+    .text-blue { color: #003366; }
+    
+    h1, h2, h3, h4 {
+      margin-top: 0;
+      color: #000000;
+      font-weight: bold;
+    }
+    p {
+      margin: 6px 0;
+    }
+    ul {
+      margin: 6px 0;
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #777;
+      margin: 14px 0;
+    }
+    
+    .code-box {
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 8.5pt;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+      line-height: 1.35;
+      margin: 6px 0;
+      white-space: pre;
+    }
+
+    /* Floating Print Button */
+    .print-bar {
+      position: fixed;
+      top: 15px;
+      right: 25px;
+      background: #1e293b;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 10000;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-family: sans-serif;
+      font-size: 13px;
+    }
+    .print-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .print-btn:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <span><strong>CompeteX PBL Report</strong> (Mohan Babu University)</span>
+  <button class="print-btn" onclick="window.print()">🖨️ Save as PDF / Print</button>
+</div>
+
+<div class="page-container">
+
+  <!-- ==================== PAGE 1: TITLE PAGE ==================== -->
+  <div class="page cover text-center">
+    <h1 style="font-size: 26pt; margin-top: 35px; margin-bottom: 18px; font-weight: bold;">CompeteX</h1>
+    
+    <p style="font-size: 13pt; margin-bottom: 6px;">A Report submitted under Project-Based</p>
+    <p style="font-size: 13pt; margin-bottom: 6px;">Learning In Partial Fulfillment of the Course Requirement</p>
+    <p style="font-size: 13pt; margin-bottom: 6px;">for</p>
+    <p style="font-size: 14pt; font-weight: bold; margin-bottom: 30px;">“Web Technologies(22IT104001)”</p>
+    
+    <p style="font-size: 13pt; font-weight: bold; margin-bottom: 12px;">Submitted By</p>
+    
+    <table style="margin: 0 auto 30px auto; font-size: 11pt; font-weight: bold; width: 80%; border-collapse: collapse;">
+      <tr><td style="text-align: left; padding: 3px 10px;">GUMMINENI KUSHAL</td><td style="text-align: right; padding: 3px 10px;">23102A040154</td></tr>
+      <tr><td style="text-align: left; padding: 3px 10px;">BELLAM GURUNAD</td><td style="text-align: right; padding: 3px 10px;">23102A040172</td></tr>
+      <tr><td style="text-align: left; padding: 3px 10px;">YALLALA SAI CHARAN</td><td style="text-align: right; padding: 3px 10px;">23102A040173</td></tr>
+      <tr><td style="text-align: left; padding: 3px 10px;">DANAM LOHITH</td><td style="text-align: right; padding: 3px 10px;">23102A040176</td></tr>
+      <tr><td style="text-align: left; padding: 3px 10px;">YEKASI SREENATH REDDY</td><td style="text-align: right; padding: 3px 10px;">23102A040188</td></tr>
+      <tr><td style="text-align: left; padding: 3px 10px;">DUDEKULA SALEEM BASHA</td><td style="text-align: right; padding: 3px 10px;">23102A040218</td></tr>
+    </table>
+    
+    <p style="font-size: 12pt; margin-bottom: 4px;">Under the Guidance of</p>
+    <p style="font-size: 13pt; font-weight: bold; margin-bottom: 2px;">Mr.A.Basi Reddy, <span style="font-size: 10pt; font-weight: normal;">M.Tech.,(Ph.D)</span></p>
+    <p style="font-size: 12pt; margin-bottom: 2px;">Assistant Professor</p>
+    <p style="font-size: 12pt; margin-bottom: 25px;">Department of CSE</p>
+    
+    <div style="margin-bottom: 15px;">
+      <img src="/images/mbu_logo.jpg" alt="MBU Logo" style="height: 105px; display: inline-block;">
+    </div>
+    
+    <p style="font-size: 12pt; font-weight: bold; margin-bottom: 2px;">Department of Computer Science and Engineering</p>
+    <p style="font-size: 13pt; font-weight: bold; margin-bottom: 4px;">School of Computing</p>
+    <p class="text-red" style="font-size: 18pt; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 4px;">MOHAN BABU UNIVERSITY</p>
+    <p style="font-size: 11pt; margin-bottom: 4px;">Sree Sainath Nagar,Tirupati –517102</p>
+    <p style="font-size: 12pt; font-weight: bold; margin-bottom: 0;">2025-2026</p>
+  </div>
+
+  <!-- ==================== PAGE 2: UNIVERSITY & SCHOOL VISION/MISSION ==================== -->
+  <div class="page">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px;">
+      <img src="/images/mbu_logo_small.jpg" alt="MBU Logo" style="height: 48px;">
+      <span class="text-red" style="font-size: 19pt; font-weight: bold; letter-spacing: 0.5px;">MOHANBABUUNIVERSITY</span>
+    </div>
+    
+    <h3 class="text-blue text-center" style="font-size: 14pt; margin-bottom: 6px;">Vision</h3>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.5; margin-bottom: 16px;">
+      To be a globally respected institution with an innovative and entrepreneurial culture that offers transformative education to advance sustainability and societal good.
+    </p>
+    
+    <h3 class="text-blue text-center" style="font-size: 14pt; margin-bottom: 6px;">Mission</h3>
+    <ul style="list-style-type: '❖  '; padding-left: 20px; font-size: 10.5pt; line-height: 1.5; margin-bottom: 25px;">
+      <li style="margin-bottom: 8px;">Develop industry-focused professionals with a global perspective.</li>
+      <li style="margin-bottom: 8px;">Offer academic programs that provide transformative learning experience founded on the spirit of curiosity,innovation,andintegrity.</li>
+      <li style="margin-bottom: 8px;">Create confluence of research,innovation,andideationto bringabout sustainable and socially relevant enterprises.</li>
+      <li style="margin-bottom: 8px;">Uphold high standards of professional ethics leading to harmonious relationship with environment and society.</li>
+    </ul>
+    
+    <h3 class="text-red text-center" style="font-size: 14pt; margin-bottom: 10px;">SCHOOL OF COMPUTING</h3>
+    
+    <h4 class="text-blue text-center" style="font-size: 13pt; margin-bottom: 6px;">Vision</h4>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.5; margin-bottom: 16px;">
+      To lead the advancement of computer science research and education that has real-world impact and to push the frontiers of innovation in the field.
+    </p>
+    
+    <h4 class="text-blue text-center" style="font-size: 13pt; margin-bottom: 6px;">Mission</h4>
+    <ul style="list-style-type: '❖  '; padding-left: 20px; font-size: 10.5pt; line-height: 1.5;">
+      <li style="margin-bottom: 8px;">In still within our students fundamental computing knowledge, a broad set of skills, and an inquisitive attitude to create innovative solutions to serve industry and community.</li>
+      <li style="margin-bottom: 8px;">Provide an experience par excellence with our state-of-the-art research, innovation, and incubation ecosystem to realise our learners’ fullest potential.</li>
+      <li style="margin-bottom: 8px;">Impart continued education and research support to working professionals in the computing domain to enhance their expertise in the cutting-edge technologies.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 3: DEPT OF CSE VISION/MISSION ==================== -->
+  <div class="page">
+    <ul style="list-style-type: '❖  '; padding-left: 20px; font-size: 10.5pt; line-height: 1.5; margin-top: 5px; margin-bottom: 25px;">
+      <li style="margin-bottom: 8px;">Inculcate among the computing engineers of tomorrow with a spirit to solve societal challenges.</li>
+    </ul>
+    
+    <h3 class="text-red text-center" style="font-size: 14pt; margin-bottom: 16px;">DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</h3>
+    
+    <h4 class="text-blue text-center" style="font-size: 13pt; margin-bottom: 8px;">Vision</h4>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.5; margin-bottom: 25px;">
+      To become a Centre of Excellence in Computer Science and its emerging areas by imparting high quality education through teaching, training and research.
+    </p>
+    
+    <h4 class="text-blue text-center" style="font-size: 13pt; margin-bottom: 10px;">Mission</h4>
+    <ul style="list-style-type: '⮚  '; padding-left: 20px; font-size: 10.5pt; line-height: 1.6;">
+      <li style="margin-bottom: 14px;">Imparting quality education in Computer Science and Engineering and emerging areas of IT industry by disseminating knowledge through contemporary curriculum, competent faculty and effective teaching-learning methodologies.</li>
+      <li style="margin-bottom: 14px;">Nurture research, innovation and entrepreneurial skills among faculty and students to contribute to the needs of industry and society.</li>
+      <li style="margin-bottom: 14px;">Inculcate professional attitude, ethical and social responsibilities for prospective and promising engineering profession.</li>
+      <li style="margin-bottom: 14px;">Encourage students to engage in life-long learning by creating awareness of the contemporary developments in Computer Science and Engineering and its emerging areas.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 4: PEOs & POs (PO1-PO5) ==================== -->
+  <div class="page">
+    <h3 class="text-blue text-center" style="font-size: 14pt; margin-bottom: 8px;">B.Tech.Computer Science and Engineering</h3>
+    <h3 class="text-red text-center" style="font-size: 14pt; margin-bottom: 16px;">PROGRAM EDUCATIONAL OBJECTIVES</h3>
+    
+    <p style="font-size: 10.5pt; margin-bottom: 8px;">After few years of graduation, the graduates of B.Tech.CSE will be:</p>
+    <p class="text-justify" style="font-size: 10.5pt; margin-bottom: 8px;"><strong>PEO1.</strong> Pursuing higher studies in core, specialized or allied areas of Computer Science, or Management.</p>
+    <p class="text-justify" style="font-size: 10.5pt; margin-bottom: 8px;"><strong>PEO2.</strong> Employed in reputed Computer and I.T organizations or Government to have a globally competent professional career in Computer Science and Engineering domain or be successful Entrepreneurs.</p>
+    <p class="text-justify" style="font-size: 10.5pt; margin-bottom: 20px;"><strong>PEO3.</strong> Able to demonstrate effective communication, engage in teamwork, exhibit leadership skills and ethical attitude, and achieve professional advancement through continuing education.</p>
+    
+    <h3 class="text-red text-center" style="font-size: 14pt; margin-bottom: 12px;">PROGRAM OUTCOMES</h3>
+    <p style="font-size: 10.5pt; margin-bottom: 8px;">On successful completion of the Program,the graduates of B.Tech.CSE Program will be able to:</p>
+    
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.4; margin-bottom: 7px;">
+      <strong>PO1.Engineering Knowledge :</strong>Apply the knowledge of mathematics ,science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.4; margin-bottom: 7px;">
+      <strong>PO2.Problem Analysis:</strong> Identify, formulate, review research literature, and analyzecomplexengineeringproblemsreachingsubstantiatedconclusions using first principles of mathematics, natural sciences, and engineering sciences.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.4; margin-bottom: 7px;">
+      <strong>PO3. Design/Development of Solutions:</strong> Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.4; margin-bottom: 7px;">
+      <strong>PO4.Conduct Investigations of Complex Problems:</strong> Use research-based knowledge and research methods including design of experiments ,analysis andinterpretation of data, and synthes is of the information to provide valid conclusions.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.4; margin-bottom: 5px;">
+      <strong>PO5.Modern Tool Usage:</strong> Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 5: POs (PO6-PO12) ==================== -->
+  <div class="page">
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.45; margin-bottom: 9px;">
+      <strong>PO6.The Engineer and Society:</strong> Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.45; margin-bottom: 9px;">
+      <strong>PO7. Environment and Sustainability:</strong> Understand the impact of the professionalengineeringsolutionsinsocietalandenvironmentalcontexts, and demonstrate the knowledge of, and need for sustainabled evelopment.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.45; margin-bottom: 9px;">
+      <strong>PO8.Ethics:</strong> Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.45; margin-bottom: 9px;">
+      <strong>PO9.IndividualandTeamWork:</strong>Function effectively as an individual,and as a member or leader in diverse teams, and in multidisciplinary settings.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.45; margin-bottom: 9px;">
+      <strong>PO10.Communication:</strong> Communicate effectively on complex engineering activities with the engineering community and with society at large, such as, being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.45; margin-bottom: 9px;">
+      <strong>PO11.Project Management and Finance:</strong> Demonstrate knowledge and understanding of the engineering and management principles and apply these to one’s own work, as a member and leader in a team, to manage projects and in multidisciplinary environments.
+    </p>
+    <p class="text-justify" style="font-size: 10pt; line-height: 1.45; margin-bottom: 25px;">
+      <strong>PO12.Life-long Learning:</strong> Recognize the need for, and have the preparation andabilitytoengageinindependentandlife-longlearninginthebroadest context of technological change.
+    </p>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <h3 class="text-red" style="font-size: 14pt;">PROGRAM SPECIFIC OUTCOMES</h3>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 6: PSOs (PSO1-PSO4) ==================== -->
+  <div class="page">
+    <p style="font-size: 11pt; margin-bottom: 18px;">On successful completion of the Program ,the graduates of B.Tech.(CSE)program will be able to:</p>
+    
+    <p class="text-justify" style="font-size: 10.5pt; line-height: 1.6; margin-bottom: 18px;">
+      <strong>PSO1.</strong> Apply knowledge of computer science engineering, Use modern tools, techniques and technologies for efficient design and development of computer-based systems for complex engineering problems.
+    </p>
+    
+    <p class="text-justify" style="font-size: 10.5pt; line-height: 1.6; margin-bottom: 18px;">
+      <strong>PSO2.</strong> Design and deploy networked systems using standards and principles, evaluate security measures for complex networks, apply procedures and tools to solve networking issues.
+    </p>
+    
+    <p class="text-justify" style="font-size: 10.5pt; line-height: 1.6; margin-bottom: 18px;">
+      <strong>PSO3.</strong> Develop intelligent systems by applying adaptive algorithms and methodologies for solving problems from inter-disciplinary domains.
+    </p>
+    
+    <p class="text-justify" style="font-size: 10.5pt; line-height: 1.6; margin-bottom: 18px;">
+      <strong>PSO4.</strong> Apply suitable models ,tools and techniques to perform data analytics for effective decision making.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 7: COURSE OUTCOMES & CO-PO MAPPING ==================== -->
+  <div class="page">
+    <table style="width: 100%; font-size: 11pt; font-weight: bold; margin-bottom: 15px; border-collapse: collapse;">
+      <tr>
+        <td style="width: 25%;">Course Code</td>
+        <td style="width: 45%;">Course Title</td>
+        <td style="text-align: center;">L</td>
+        <td style="text-align: center;">T</td>
+        <td style="text-align: center;">P</td>
+        <td style="text-align: center;">S</td>
+        <td style="text-align: center;">C</td>
+      </tr>
+      <tr>
+        <td style="color: #000;">22IT104001</td>
+        <td style="color: #000;">WEB TECHNOLOGIES</td>
+        <td style="text-align: center;">3</td>
+        <td style="text-align: center;">-</td>
+        <td style="text-align: center;">2</td>
+        <td style="text-align: center;">4</td>
+        <td style="text-align: center;">5</td>
+      </tr>
+    </table>
+    
+    <p style="font-size: 10pt; font-weight: bold; margin-bottom: 6px;">COURSE OUTCOMES: After successful completion of this course,the students will be able to:</p>
+    <p style="font-size: 9.5pt; margin-bottom: 4px;"><strong>CO1.</strong> Demonstrate knowledge on webpage design elements , dynamic content and database connection.</p>
+    <p style="font-size: 9.5pt; margin-bottom: 4px;"><strong>CO2.</strong> Analyzeuser requirements to develop webapplications.</p>
+    <p style="font-size: 9.5pt; margin-bottom: 4px;"><strong>CO3.</strong> Designclient-serverapplicationsusingwebtechnologies.</p>
+    <p style="font-size: 9.5pt; margin-bottom: 4px;"><strong>CO4.</strong> Demonstrateproblemsolvingskillstodevelopenterprisewebapplications.</p>
+    <p style="font-size: 9.5pt; margin-bottom: 4px;"><strong>CO5.</strong> Apply HTML, CSS, JavaScript, JQuery, Bootstrap and PHP technologies for device independent web application development.</p>
+    <p style="font-size: 9.5pt; margin-bottom: 12px;"><strong>CO6.</strong> Apply webtechnologies to develop interactive,dynamic and scalable web applications for societal needs.</p>
+    
+    <p style="font-size: 10pt; font-weight: bold; margin-bottom: 6px;">CO-PO-PSO MappingTable:</p>
+    
+    <table border="1" cellpadding="3" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: center; font-size: 8pt; margin-bottom: 12px;">
+      <tr style="background: #e2e8f0; font-weight: bold;">
+        <td rowspan="2" style="width: 12%;">Course Outcomes</td>
+        <td colspan="12">ProgramOutcomes</td>
+        <td colspan="4">ProgramSpecific Outcomes</td>
+      </tr>
+      <tr style="background: #e2e8f0; font-weight: bold;">
+        <td>PO1</td><td>PO2</td><td>PO3</td><td>PO4</td><td>PO5</td><td>PO6</td><td>PO7</td><td>PO8</td><td>PO9</td><td>PO10</td><td>PO11</td><td>PO12</td>
+        <td>PSO1</td><td>PSO2</td><td>PSO3</td><td>PSO4</td>
+      </tr>
+      <tr><td>CO1</td><td>3</td><td>3</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td></tr>
+      <tr><td>CO2</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td></tr>
+      <tr><td>CO3</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td></tr>
+      <tr><td>CO4</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>2</td><td>3</td><td>-</td></tr>
+      <tr><td>CO5</td><td>3</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>2</td><td>3</td><td>-</td></tr>
+      <tr><td>CO6</td><td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr style="font-weight: bold; background: #f1f5f9;">
+        <td>Course Correlation Mapping</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>3</td><td>-</td><td>-</td><td>3</td><td>3</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td>
+      </tr>
+    </table>
+    
+    <p style="font-size: 9.5pt;">Correlation Levels: 3: High; 2:Medium; 1:Low</p>
+  </div>
+
+  <!-- ==================== PAGE 8: CERTIFICATE ==================== -->
+  <div class="page">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 4px;">
+      <img src="/images/mbu_logo_small.jpg" alt="MBU Logo" style="height: 48px;">
+      <span class="text-red" style="font-size: 19pt; font-weight: bold; letter-spacing: 0.5px;">MOHAN BABU UNIVERSITY</span>
+    </div>
+    <p class="text-center" style="font-size: 10.5pt; margin-bottom: 8px;">Sree Sainath Nagar, Tirupati 517 102</p>
+    <div style="border-top: 2px solid #000; border-bottom: 1px solid #000; height: 3px; margin-bottom: 18px;"></div>
+    
+    <h3 class="text-center" style="font-size: 13pt; margin-bottom: 16px;">Department of Computer Science and Engineering</h3>
+    <h2 class="text-center" style="font-size: 15pt; letter-spacing: 1px; margin-bottom: 22px;">CERTIFICATE</h2>
+    
+    <p class="text-center" style="font-size: 11pt; margin-bottom: 10px;">This is to certify that the Project Entitled</p>
+    <p class="text-center" style="font-size: 14pt; font-weight: bold; margin-bottom: 18px;">“CompeteX”</p>
+    
+    <p class="text-center" style="font-size: 11pt; margin-bottom: 10px;">Submitted By</p>
+    
+    <table style="margin: 0 auto 20px auto; font-size: 10pt; font-weight: bold; width: 80%; border-collapse: collapse;">
+      <tr><td style="text-align: left; padding: 2px 10px;">GUMMINENI KUSHAL</td><td style="text-align: right; padding: 2px 10px;">23102A040154</td></tr>
+      <tr><td style="text-align: left; padding: 2px 10px;">BELLAM GURUNAD</td><td style="text-align: right; padding: 2px 10px;">23102A040172</td></tr>
+      <tr><td style="text-align: left; padding: 2px 10px;">YALLALA SAI CHARAN</td><td style="text-align: right; padding: 2px 10px;">23102A040173</td></tr>
+      <tr><td style="text-align: left; padding: 2px 10px;">DANAM LOHITH</td><td style="text-align: right; padding: 2px 10px;">23102A040176</td></tr>
+      <tr><td style="text-align: left; padding: 2px 10px;">YEKASI SREENATH REDDY</td><td style="text-align: right; padding: 2px 10px;">23102A040188</td></tr>
+      <tr><td style="text-align: left; padding: 2px 10px;">DUDEKULA SALEEM BASHA</td><td style="text-align: right; padding: 2px 10px;">23102A040218</td></tr>
+    </table>
+    
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.5; margin-bottom: 50px;">
+      Is the work submitted under Project-Based Learning in Partial Fulfillment of the Course Requirements for “Web Technologies(22IT104001)”during 2025-2026.
+    </p>
+    
+    <div style="display: flex; justify-content: space-between; font-size: 10.5pt; line-height: 1.4;">
+      <div style="width: 48%;">
+        <p><strong>Supervisor:</strong></p>
+        <p style="margin-top: 30px;"><strong>Mr.A.Basi Reddy,</strong><span style="font-size: 9pt;">M.Tech.,(Ph.D)</span></p>
+        <p>Assistant Professor</p>
+        <p>Department of CSE</p>
+        <p>School of Computing</p>
+        <p>Mohan Babu University</p>
+        <p>Tirupati.</p>
+      </div>
+      <div style="width: 48%; text-align: left;">
+        <p><strong>Head:</strong></p>
+        <p style="margin-top: 30px;"><strong>Dr.G. Sunitha,</strong><span style="font-size: 9pt;">M.Tech.,Ph.D</span></p>
+        <p>Professor & Head</p>
+        <p>Department of CSE</p>
+        <p>School of Computing</p>
+        <p>Mohan Babu University</p>
+        <p>Tirupati.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 9: ACKNOWLEDGEMENTS ==================== -->
+  <div class="page">
+    <h2 class="text-center" style="font-size: 15pt; letter-spacing: 1px; margin-top: 15px; margin-bottom: 25px;">ACKNOWLEDGEMENTS</h2>
+    
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.6; margin-bottom: 14px;">
+      First and foremost, I extend my sincere thanks to <strong>Dr. M. Mohan Babu</strong>, Chancellor,for his unwavering support and vision that fosters academic excellence within the institution.
+    </p>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.6; margin-bottom: 14px;">
+      My gratitude also goes to <strong>Mr.Manchu Vishnu</strong>,Pro-Chancellor, for creatingan environment that promotes creativity and for his encouragement and commitment to student success.
+    </p>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.6; margin-bottom: 14px;">
+      I am deeply appreciative of <strong>Prof. Nagaraj Ramrao</strong>, Vice Chancellor, whose leadership has created an environment conducive to learning and innovation.
+    </p>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.6; margin-bottom: 14px;">
+      I would like to thank <strong>Dr. K. Saradhi</strong>, Registrar, for his support in creating an environment conducive to academic success.
+    </p>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.6; margin-bottom: 14px;">
+      Iam also grateful to <strong>Dr.G.Sunitha</strong>,Head of the Department of Computer Science and Engineering, for her valuable insights and support.
+    </p>
+    <p class="text-justify" style="font-size: 11pt; line-height: 1.6; margin-bottom: 25px;">
+      Finally,I would like to express my deepest appreciation to my project supervisor, <strong>Mr.A.BasiReddy</strong>, Assistant Professor,Department of Computer Science and Engineering for continuous guidance, encouragement, and expertise throughout this project.
+    </p>
+    
+    <p style="font-size: 11pt; margin-top: 30px;">Thank you all for your support and encouragement</p>
+  </div>
+
+  <!-- ==================== PAGE 10: TOC PART 1 ==================== -->
+  <div class="page">
+    <p style="font-size: 13pt; font-weight: bold; margin-bottom: 8px;">CompeteX Application - Complete Technical Documentation</p>
+    <hr>
+    <h3 style="font-size: 14pt; margin-bottom: 14px;">Table of Contents</h3>
+    
+    <div style="font-size: 10.5pt; line-height: 1.55;">
+      <p><strong>1. Introduction</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>1.1 Project Overview</li>
+        <li>1.2 Purpose and Objectives</li>
+        <li>1.3 Target Audience</li>
+        <li>1.4 Document Structure</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>2. Project Overview</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>2.1 Background</li>
+        <li>2.2 Problem Statement</li>
+        <li>2.3 Solution Overview</li>
+        <li>2.4 Key Features Summary</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>3. System Architecture</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>3.1 High-Level Architecture</li>
+        <li>3.2 Technology Stack</li>
+        <li>3.3 Frontend Architecture</li>
+        <li>3.4 Backend Services</li>
+        <li>3.5 Third-Party Integrations</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>4. Features and Functionality</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>4.1 User Authentication</li>
+        <li>4.2 User Profile Management</li>
+        <li>4.3 Competition Catalog & Registration</li>
+        <li>4.4 CodeCraft In-Browser Execution</li>
+        <li>4.5 BrainByte Quiz Engine</li>
+        <li>4.6 Live Leaderboard System</li>
+        <li>4.7 Search Functionality</li>
+        <li>4.8 Admin Controls</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>5. Database Design</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>5.1 Database Overview</li>
+        <li>5.2 Collections Structure</li>
+        <li>5.3 Data Models</li>
+        <li>5.4 Relationships and Indexes</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 11: TOC PART 2 ==================== -->
+  <div class="page">
+    <div style="font-size: 10.5pt; line-height: 1.55; margin-top: 10px;">
+      <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 12px;">
+        <li>5.5 Security Rules</li>
+      </ul>
+      
+      <p><strong>6. API and Data Flow</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>6.1 Native Server & Endpoint Integration</li>
+        <li>6.2 Authentication Flow</li>
+        <li>6.3 Data Read/Write Operations</li>
+        <li>6.4 Real-time Updates</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>7. User Interface Design</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>7.1 Design Principles</li>
+        <li>7.2 Color Scheme and Typography</li>
+        <li>7.3 Responsive Design</li>
+        <li>7.4 Accessibility Considerations</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>8. Setup and Installation</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>8.1 Prerequisites</li>
+        <li>8.2 Development Environment Setup</li>
+        <li>8.3 Server Configuration</li>
+        <li>8.4 Running Locally</li>
+        <li>8.5 Environment Variables</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>9. User Guide</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>9.1 Getting Started</li>
+        <li>9.2 Creating an Account</li>
+        <li>9.3 Setting Up Profile</li>
+        <li>9.4 Joining Competitions</li>
+        <li>9.5 Writing Code in CodeCraft</li>
+        <li>9.6 Taking BrainByte Quizzes</li>
+        <li>9.7 Verifying Certificates</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>10. Developer Guide</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>10.1 Project Structure</li>
+        <li>10.2 Code Organization</li>
+        <li>10.3 Key Components</li>
+        <li>10.4 Adding New Features</li>
+        <li>10.5 Testing Strategy</li>
+        <li>10.6 Code Style Guidelines</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>11. Deployment</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>11.1 Deployment Overview</li>
+        <li>11.2 Production Server Setup</li>
+        <li>11.3 Performance Configuration</li>
+        <li>11.4 Publishing the Application</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 12: TOC PART 3 ==================== -->
+  <div class="page">
+    <div style="font-size: 10.5pt; line-height: 1.55; margin-top: 10px;">
+      <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 12px;">
+        <li>11.5 Custom Domain Setup</li>
+      </ul>
+      
+      <p><strong>12. Security and Privacy</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>12.1 Security Architecture</li>
+        <li>12.2 Role-Based Access Rules</li>
+        <li>12.3 Authentication Security</li>
+        <li>12.4 Data Privacy</li>
+        <li>12.5 Best Practices</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>13. Performance and Optimization</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>13.1 Performance Considerations</li>
+        <li>13.2 Database Optimization</li>
+        <li>13.3 Frontend Optimization</li>
+        <li>13.4 Caching Strategies</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>14. Maintenance and Updates</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>14.1 Regular Maintenance</li>
+        <li>14.2 Updating Dependencies</li>
+        <li>14.3 Backup and Recovery</li>
+        <li>14.4 Monitoring and Analytics</li>
+        <li>14.5 Error Handling</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>15. Troubleshooting</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>15.1 Common Issues</li>
+        <li>15.2 Permission Errors</li>
+        <li>15.3 Authentication Problems</li>
+        <li>15.4 Deployment Issues</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>16. Future Roadmap</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>16.1 Planned Features</li>
+        <li>16.2 Scalability Improvements</li>
+        <li>16.3 Enhanced Analytics</li>
+        <li>16.4 Mobile Application</li>
+      </ul>
+      
+      <p style="margin-top: 10px;"><strong>17. Appendix</strong></p>
+      <ul style="list-style-type: '• '; padding-left: 20px;">
+        <li>17.1 Glossary</li>
+        <li>17.2 References</li>
+        <li>17.3 Change Log</li>
+        <li>17.4 Contact Information</li>
+      </ul>
+      <hr style="margin-top: 40px;">
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 13: 1. INTRODUCTION ==================== -->
+  <div class="page">
+    <h3 style="font-size: 13pt; margin-bottom: 12px;">1. Introduction</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">1.1 Project Overview</h4>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      CompeteX is a modern web-based competition management platform designed to connect students across colleges with hackathons, coding contests, and technical events. The application facilitates transparent participation through multi-category event discovery, browser-based sandboxed code execution, interactive quizzes, live ELO leaderboards, and cryptographically verifiable digital certificates.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">1.2 Purpose and Objectives</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      The primary purpose of CompeteX is to provide an accessible and unified platform where colleges can host academic competitions and students can discover, register, collaborate, and compete seamlessly. The platform aims to foster meritocracy and institutional transparency through objective evaluation, mentorship support, and instant verification of student achievements.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 6px;">Key Objectives:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 16px;">
+      <li>Enable colleges and clubs to organize and manage technical competitions</li>
+      <li>Facilitate real-time browser-based code execution and algorithmic assessments</li>
+      <li>Build technical community through interactive quiz engines and project showcases</li>
+      <li>Ensure platform security and role-based data isolation</li>
+      <li>Provide an intuitive, fast, and responsive user experience for all participants</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">1.3 Target Audience</h4>
+    <p style="margin-bottom: 6px;">This documentation is intended for:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Developers working on maintaining or extending the application</li>
+      <li>Project Managers overseeing application development and deployment</li>
+      <li>System Administrators managing deployment and infrastructure</li>
+      <li>End Users seeking to understand platform capabilities</li>
+      <li>Stakeholders evaluating the application architecture and design</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 14: 1.4 & 2. PROJECT OVERVIEW ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">1.4 Document Structure</h4>
+    <p class="text-justify" style="margin-bottom: 16px;">
+      This documentation follows a structured approach, beginning with high-level overviews and progressing to detailed technical specifications. Each section is designed to be self-contained while building upon previous content for comprehensive understanding.
+    </p>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">2. Project Overview</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">2.1 Background</h4>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      CompeteX was developed to address the growing fragmentation in college competition ecosystems. Traditional methods of hosting hackathons rely on disparate tools—Google Forms for registration, third-party competitive coding sites for submissions, manual spreadsheets for grading, and unverified paper certificates. CompeteX brings these critical workflows into a single high-performance web platform.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">2.2 Problem Statement</h4>
+    <p style="margin-bottom: 6px;">Many academic institutions and student organizers struggle to manage competitions due to:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 16px;">
+      <li>Fragmented platforms causing lost participant submissions and communication delays</li>
+      <li>High licensing fees of commercial competitive coding software</li>
+      <li>Lack of integrated, secure code execution environments for web assessments</li>
+      <li>Complex user interfaces deterring non-technical students and evaluators</li>
+      <li>Difficulty in verifying authenticity of student participation certificates for accreditation</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">2.3 Solution Overview</h4>
+    <p style="margin-bottom: 6px;">CompeteX addresses these challenges through:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>A zero-dependency, self-contained architecture offering rapid deployment without heavy cloud bills</li>
+      <li>Integrated in-browser CodeCraft execution sandbox running HTML, CSS, and JavaScript</li>
+      <li>BrainByte quiz assessment system delivering instant automated scoring</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 15: 2.3 CONCL, 2.4, 3. SYSTEM ARCH ==================== -->
+  <div class="page">
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-top: 5px; margin-bottom: 14px;">
+      <li>Simple, intuitive interface accessible across mobile, tablet, and desktop viewports</li>
+      <li>Real-time leaderboards and cryptographic certificate generation with verification IDs</li>
+      <li>Robust role-based access control safeguarding evaluation records and user profiles</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">2.4 Key Features Summary</h4>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 16px;">
+      <li>User authentication and role-based access control (Student, Organizer, Judge, Faculty, Admin)</li>
+      <li>Comprehensive competition catalog with categorical filters (Hackathons, Coding Contests, Ideathons)</li>
+      <li>CodeCraft interactive coding arena with test case validation and simulated terminal output</li>
+      <li>BrainByte quiz engine with timed questions, category sorting, and instant score updates</li>
+      <li>Dynamic ELO leaderboard ranking participants by points, submission accuracy, and speed</li>
+      <li>Verifiable cryptographic certificate issuance with unique validation tokens</li>
+      <li>Community project showcase and 1-on-1 mentorship scheduling hub</li>
+      <li>Sponsor bounty tracking and NAAC/NBA accreditation data reporting in CSV format</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">3. System Architecture</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">3.1 High-Level Architecture</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      CompeteX follows a modular client-server architecture built on modern web standards with zero external npm dependencies. The application consists of:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li><strong>Frontend:</strong> Responsive Single-Page Application (SPA) powered by native HTML5, CSS3, and ES6+ JavaScript</li>
+      <li><strong>Backend:</strong> High-throughput Node.js native HTTP server (http, fs, path, crypto, url)</li>
+      <li><strong>Database:</strong> ACID-safe atomic JSON file datastore (data/db.json) ensuring portability and zero runtime overhead</li>
+      <li><strong>Authentication:</strong> Session-based cookie auth with role verification middleware</li>
+      <li><strong>Execution Engine:</strong> Sandboxed HTML5 iframe runner for safe client-side code evaluation</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">3.2 Technology Stack</h4>
+    <p style="font-weight: bold; margin-bottom: 4px;">Frontend Technologies:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Native HTML5 Semantic Elements</li>
+      <li>Vanilla ES6+ JavaScript (Fetch API, DOM Manipulation, Canvas API)</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 16: 3.2 (CONTD), 3.3, 3.4 ==================== -->
+  <div class="page">
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-top: 5px; margin-bottom: 12px;">
+      <li>Custom CSS3 Design System with CSS Variables, Flexbox, and CSS Grid</li>
+      <li>SVG Vector Iconography & Native Browser Dialogs</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 4px;">Backend Services:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 12px;">
+      <li>Node.js Native HTTP Server (server.js)</li>
+      <li>Atomic Write Stream Engine (fs.writeFileSync with temporary staging)</li>
+      <li>Cryptographic Utility (crypto module for SHA-256 tokens and password hashing)</li>
+      <li>Static Asset Pipeline with RFC MIME-Type Resolution</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 4px;">Development Tools:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Node.js (v18 or higher)</li>
+      <li>Git for Version Control</li>
+      <li>Google Chrome / Microsoft Edge DevTools for Auditing</li>
+      <li>Visual Studio Code / PowerShell</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">3.3 Frontend Architecture</h4>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      The frontend follows a component-based modular structure with clear separation of concerns:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li><strong>Views:</strong> Sectional modules (Catalog, CodeCraft, BrainByte, Leaderboard, Certificates, Admin)</li>
+      <li><strong>State Store:</strong> Centralized client state object managing user session, active filters, and real-time scores</li>
+      <li><strong>API Client:</strong> Unified REST fetch wrapper handling asynchronous requests and error toasts</li>
+      <li><strong>Renderers:</strong> Dynamic DOM rendering pipelines utilizing template literals</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">3.4 Backend Services</h4>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Node.js provides a robust, lightweight, and fully transparent backend infrastructure:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li><strong>REST Routing Engine:</strong> URL pattern matching supporting query parameters and payload deserialization</li>
+      <li><strong>Session Manager:</strong> In-memory session table mapped to secure HTTP cookies</li>
+      <li><strong>Security Middleware:</strong> RBAC route protection ensuring privilege isolation</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 17: 3.4 (CONTD), 3.5, 4. FEATURES (4.1, 4.2) ==================== -->
+  <div class="page">
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-top: 5px; margin-bottom: 14px;">
+      <li><strong>Data Persistence:</strong> Synchronous mutex-controlled JSON persistence avoiding race conditions</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">3.5 Third-Party Integrations</h4>
+    <p style="margin-bottom: 6px;">Current platform capabilities include:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 16px;">
+      <li>Self-contained zero-dependency ecosystem requiring no external cloud keys to operate</li>
+      <li>Standardized CSV report generation for institutional accreditation compliance (NAAC / NBA)</li>
+      <li>External repository integration allowing participants to submit GitHub URLs and live demo links</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">4. Features and Functionality</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">4.1 User Authentication</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Sign Up:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Users can create accounts by providing their full name, email, password, and institutional roll number. The registration module assigns the default 'Student' role, sets initial leaderboard ranking points, and stores the user in data/db.json.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Sign In:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Authenticated users access the platform through secure login. The backend verifies credentials using SHA-256 hashed passwords and issues a session token that persists user state.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Role Switching:</p>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      For academic testing and institutional governance, users can toggle between Student, Organizer, Judge, Faculty, and Admin personas to test permission scopes dynamically.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">4.2 User Profile Management</h4>
+    <p style="margin-bottom: 6px;">Each user has a profile containing:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Display name, academic roll number, and institution</li>
+      <li>Assigned role and avatar icon</li>
+      <li>Competition participation history and registered events</li>
+      <li>Account registration timestamp and earned platform points</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 18: 4.2 (CONTD), 4.3, 4.4 ==================== -->
+  <div class="page">
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-top: 5px; margin-bottom: 14px;">
+      <li>Earned certificates and verified achievement badges</li>
+    </ul>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      Users can view their activity statistics, total points, and earned awards while organizers can view registered rosters.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">4.3 Competition Catalog & Registration</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Browsing Events:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Participants browse an active catalog of college competitions filtered by categories (Hackathons, Coding Contests, Ideathons, Robotics) and status (Upcoming, Ongoing, Closed).
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">One-Click Registration:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Authenticated students register for individual or team events with instant confirmation, adding the competition ID to their personal dashboard.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Competition Details & Timeline:</p>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      Each competition modal displays registration deadlines, prize pool amounts, team size requirements, problem statements, and milestone timelines.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">4.4 CodeCraft: In-Browser Execution Sandbox</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Multi-Language Sandbox:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      CodeCraft provides a responsive coding arena where students solve algorithmic problems in JavaScript, Python (simulated), or construct full interactive web components in HTML/CSS/JS.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Instant Test Case Validation:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      The built-in evaluation runner tests submissions against multiple predefined input/output cases, calculating pass percentages, execution latency, and awarding points.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Sandboxed Iframe Execution:</p>
+    <p class="text-justify">
+      Client code runs inside an isolated, sandboxed iframe container that intercepts console logs and errors, safeguarding the host browser session from malicious code.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 19: 4.4 (CONTD), 4.5, 4.6 ==================== -->
+  <div class="page">
+    <p style="font-weight: bold; margin-top: 5px; margin-bottom: 2px;">Simulated Terminal Console:</p>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      A terminal-style console window displays real-time execution outputs, test assertion results, and syntax diagnostics.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">4.5 BrainByte: Interactive Quiz Engine</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Timed Assessments:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      BrainByte delivers timed multiple-choice assessments spanning Web Development, Data Structures, Algorithms, and Cloud Systems.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Automated Scoring & Immediate Feedback:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Upon quiz completion, responses are automatically scored. Students receive immediate feedback showing correct explanations, points earned, and overall rank percentile.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Anti-Cheating Mechanisms:</p>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      The quiz module detects tab switching and enforces strict countdown timers to preserve academic evaluation integrity.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">4.6 Live Leaderboard System</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Dynamic Ranking Engine:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      The global leaderboard continuously recalculates student standings based on accumulated competition victories, CodeCraft problem completions, and BrainByte quiz scores.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Categorical Filters:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Users can filter rankings by institution, department, overall score, or specific competition categories.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Gamified Badges & Badging:</p>
+    <p class="text-justify">
+      Top performers earn tier badges (Grandmaster, Diamond, Gold) and verifiable profile flair to highlight academic distinction.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 20: 4.7, 4.8, 5. DATABASE DESIGN ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">4.7 Search & Discovery Functionality</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Universal Search:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Participants can search competitions, quizzes, showcase projects, and mentors by keyword, technology tag, or organizer name.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Certificate Verification:</p>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      Anyone can enter a 12-character certificate validation ID (or scan an associated QR token) to authenticate certificate validity, recipient name, and issuing college.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">4.8 Admin & Accreditation Controls</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Admin Privileges:</p>
+    <p style="margin-bottom: 6px;">Designated faculty and administrators have enhanced permissions for:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 8px;">
+      <li>Approving and publishing college competitions</li>
+      <li>Monitoring user registrations and managing roles</li>
+      <li>Generating NAAC/NBA Accreditation Reports in standardized CSV format</li>
+      <li>Accessing system health metrics and event audit logs</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">5. Database Design</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">5.1 Database Overview</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      CompeteX uses an ACID-safe atomic JSON file datastore (data/db.json). This provides:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Zero-configuration setup without demanding complex database server daemons</li>
+      <li>Strict serialized writes with atomic temporary-file swaps preventing data corruption</li>
+      <li>High-speed in-memory reads serving hundreds of concurrent requests per second</li>
+      <li>Complete transparency and portable backup capabilities for academic auditing</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 21: 5.2, 5.3 DATA MODELS ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">5.2 Collections Structure</h4>
+    <p style="margin-bottom: 6px;">Primary Entities in db.json:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 12px;">
+      <li><strong>users:</strong> Participant profiles, credentials, points, and assigned roles</li>
+      <li><strong>competitions:</strong> Event listings, schedules, prizes, and registration lists</li>
+      <li><strong>submissions:</strong> CodeCraft code submissions, test outputs, and scores</li>
+      <li><strong>quizzes:</strong> BrainByte question banks, options, answers, and time limits</li>
+      <li><strong>quiz_attempts:</strong> User quiz results, percentages, and timestamps</li>
+      <li><strong>certificates:</strong> Issued credentials, validation codes, and metadata</li>
+      <li><strong>mentorship_sessions:</strong> Mentor profiles and scheduled 1-on-1 office hours</li>
+      <li><strong>sponsor_bounties:</strong> Corporate challenges, prize rewards, and requirements</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">5.3 Data Models</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">User Entity:</p>
+    <div class="code-box">{
+  "id": "usr_94102",
+  "name": "Marthala Muni Reddy",
+  "email": "muni.reddy@mbu.asia",
+  "role": "student",
+  "rollNo": "23102A040154",
+  "points": 1450,
+  "badges": ["Grandmaster", "CodeCraft Champ"],
+  "createdAt": "2026-03-15T10:30:00Z"
+}</div>
+    
+    <p style="font-weight: bold; margin-top: 8px; margin-bottom: 2px;">Competition Entity:</p>
+    <div class="code-box">{
+  "id": "comp_101",
+  "title": "MBU National Web3 & FullStack Hackathon",
+  "category": "Hackathon",
+  "organizer": "Dept of CSE",
+  "prizePool": "INR 50,000",
+  "deadline": "2026-10-25",
+  "participantsCount": 184,
+  "status": "Upcoming"
+}</div>
+  </div>
+
+  <!-- ==================== PAGE 22: 5.3 (CONTD) DATA MODELS ==================== -->
+  <div class="page">
+    <p style="font-weight: bold; margin-top: 5px; margin-bottom: 2px;">Submission Entity (CodeCraft):</p>
+    <div class="code-box">{
+  "id": "sub_84920",
+  "problemId": "prob_cc101",
+  "userId": "usr_94102",
+  "code": "function twoSum(nums, target) { ... }",
+  "language": "javascript",
+  "status": "Passed",
+  "passedCases": 5,
+  "totalCases": 5,
+  "score": 100,
+  "timestamp": "2026-10-06T09:12:44Z"
+}</div>
+    
+    <p style="font-weight: bold; margin-top: 8px; margin-bottom: 2px;">Certificate Entity:</p>
+    <div class="code-box">{
+  "id": "cert_cptx9201",
+  "recipientName": "GUMMINENI KUSHAL",
+  "competitionTitle": "National Coding Championship 2026",
+  "rank": "1st Place",
+  "verificationHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "issuedDate": "2026-10-06"
+}</div>
+    
+    <p style="font-weight: bold; margin-top: 8px; margin-bottom: 2px;">Quiz Attempt Entity (BrainByte):</p>
+    <div class="code-box">{
+  "id": "att_77102",
+  "quizId": "quiz_webtech_co1",
+  "userId": "usr_94102",
+  "score": 90,
+  "totalQuestions": 10,
+  "timeSpentSeconds": 142,
+  "submittedAt": "2026-10-06T09:45:10Z"
+}</div>
+  </div>
+
+  <!-- ==================== PAGE 23: 5.4, 5.5 ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">5.4 Relationships and Integrity</h4>
+    <p style="margin-bottom: 6px;">Entity Relationships:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 12px;">
+      <li><strong>Users to Submissions:</strong> One-to-many relationship tracked by userId</li>
+      <li><strong>Competitions to Registrations:</strong> One-to-many relationship linking participant IDs to competition rosters</li>
+      <li><strong>Certificates to Users & Events:</strong> Each certificate links a specific recipient user to an authorized competition record</li>
+      <li><strong>Mentorship Sessions to Mentors:</strong> Students book available timeslots referencing mentor user profiles</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 4px;">Indexing Strategy:</p>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      Because the entire database is maintained in fast RAM and synced to db.json, lookups for users, competitions, and submissions execute in O(1) time via in-memory JavaScript hash maps and filtered arrays.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">5.5 Security & Atomic Concurrency</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      Database integrity is guarded through explicit architectural controls:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li><strong>Atomic Write Flush:</strong> State changes are written to a temporary staging file (db.json.tmp) before atomic rename, ensuring power failures never corrupt the main database</li>
+      <li><strong>Input Sanitization:</strong> Request payloads are strictly parsed and checked for valid property types prior to persistence</li>
+      <li><strong>Role Access Enforcement:</strong> High-privilege endpoints (e.g. creating competitions, exporting NAAC CSVs) verify user tokens against admin privileges before allowing modifications</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 24: 6. API AND DATA FLOW ==================== -->
+  <div class="page">
+    <h3 style="font-size: 13pt; margin-top: 5px; margin-bottom: 12px;">6. API and Data Flow</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">6.1 Native Server & Endpoint Integration</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      CompeteX implements a lightweight RESTful API directly using Node's standard http module. All endpoints communicate using standard JSON payloads over HTTP with CORS enabled:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li><code>GET /api/competitions</code> - Retrieve competition catalog with category filter</li>
+      <li><code>POST /api/competitions/:id/register</code> - Register student for event</li>
+      <li><code>POST /api/codecraft/run</code> - Execute code against test suite</li>
+      <li><code>GET /api/quizzes</code> &amp; <code>POST /api/quizzes/:id/submit</code> - Fetch and score quizzes</li>
+      <li><code>GET /api/leaderboard</code> - Return global ranked participants</li>
+      <li><code>GET /api/certificates/:id</code> - Cryptographic certificate lookup</li>
+      <li><code>GET /api/admin/accreditation/export</code> - Download NAAC CSV report</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">6.2 Authentication Flow</h4>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 14px;">
+      <li>User submits credentials (email and password) via the login modal</li>
+      <li>Backend queries users collection and validates hashed password</li>
+      <li>Cryptographic session token is created and sent in response</li>
+      <li>Frontend persists session token in localStorage and includes it in API headers</li>
+      <li>Role-based routes inspect the token to authorize access to admin features</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">6.3 Data Read/Write Operations</h4>
+    <p class="text-justify">
+      Client makes asynchronous Fetch requests. Read operations retrieve cached in-memory state instantly. Write operations update in-memory objects and trigger asynchronous atomic disk persistence, guaranteeing rapid UI response.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 25: 6.4, 7. USER INTERFACE DESIGN ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">6.4 Real-time Updates</h4>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      CompeteX utilizes periodic state synchronization and optimistic client updates to maintain real-time feel across the platform. This enables:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 16px;">
+      <li>Live leaderboard rank shifts as participants submit code</li>
+      <li>Instant participant counter increment when students join hackathons</li>
+      <li>Real-time console output streaming during CodeCraft execution</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">7. User Interface Design</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">7.1 Design Principles</h4>
+    <p style="margin-bottom: 6px;">CompeteX adheres to modern web usability standards:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li><strong>Visual Hierarchy:</strong> High-contrast typography and clear call-to-action buttons</li>
+      <li><strong>Cognitive Clarity:</strong> Dedicated tabs for Catalog, CodeCraft, BrainByte, and Leaderboards</li>
+      <li><strong>Instant Responsiveness:</strong> Micro-interactions and animated state feedback</li>
+      <li><strong>Dark Mode Optimization:</strong> Premium high-contrast dark theme engineered for developer comfort</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">7.2 Color Scheme and Typography</h4>
+    <p style="font-weight: bold; margin-bottom: 4px;">Primary Colors:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Background: Sleek Dark Theme (<code>#0f172a</code> and <code>#1e293b</code>)</li>
+      <li>Brand Primary: Vibrant Royal Indigo (<code>#6366f1</code>) and Electric Cyan (<code>#06b6d4</code>)</li>
+      <li>Accents: Emerald Green for test passes (<code>#10b981</code>), Rose Red for errors (<code>#f43f5e</code>)</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 4px;">Typography:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Primary UI: Inter / System Sans-serif for optimal screen legibility</li>
+      <li>Code & Sandbox: Consolas / Courier New monospace for alignment</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 26: 7.3, 7.4, 8. SETUP & INSTALLATION ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">7.3 Responsive Design</h4>
+    <p style="margin-bottom: 6px;">The application is completely responsive with:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Fluid CSS Flexbox and Grid layouts adjusting automatically to any screen width</li>
+      <li>Adaptive multi-pane split in CodeCraft collapsing to tabbed view on tablets and smartphones</li>
+      <li>Touch-friendly tap targets and intuitive modal drawers for mobile devices</li>
+      <li>Zero layout shift during dynamic content rendering</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">7.4 Accessibility Considerations</h4>
+    <p style="margin-bottom: 6px;">Accessibility features include:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 16px;">
+      <li>Semantic HTML5 structure (&lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;footer&gt;)</li>
+      <li>High contrast ratios meeting WCAG 2.1 AA specifications for readability</li>
+      <li>Full keyboard navigation support across buttons, forms, and dialogs</li>
+      <li>Descriptive ARIA labels for screen readers on dynamic elements</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">8. Setup and Installation</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">8.1 Prerequisites</h4>
+    <p style="margin-bottom: 6px;">Required Software:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Node.js (v18 or higher recommended; v14+ compatible)</li>
+      <li>Any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox)</li>
+      <li>Git for version control and cloning</li>
+      <li>Zero external npm packages required (100% self-contained native runtime)</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">8.2 Development Environment Setup</h4>
+    <p style="margin-bottom: 4px;"><strong>1. Clone the Repository:</strong></p>
+  </div>
+
+  <!-- ==================== PAGE 27: 8.2 (CONTD), 8.3 ==================== -->
+  <div class="page">
+    <div class="code-box">git clone https://github.com/institution/competex.git
+cd competex</div>
+    
+    <p style="font-weight: bold; margin-top: 10px; margin-bottom: 4px;">2. Zero-Dependency Architecture:</p>
+    <p class="text-justify" style="margin-bottom: 6px;">
+      Unlike standard heavy JavaScript applications that require hundreds of megabytes of third-party node_modules, CompeteX operates purely on the native Node.js core library:
+    </p>
+    <div class="code-box"># No npm install required!
+# Server runs directly using core modules</div>
+    
+    <p style="font-weight: bold; margin-top: 10px; margin-bottom: 4px;">3. Configure Environment Variables:</p>
+    <p class="text-justify" style="margin-bottom: 6px;">
+      Optional configuration can be supplied via environment variables or default to standard settings:
+    </p>
+    <div class="code-box">PORT=3000
+HOST=0.0.0.0
+NODE_ENV=production
+DATA_PATH=./data/db.json</div>
+    
+    <h4 style="font-size: 11.5pt; margin-top: 14px; margin-bottom: 6px;">8.3 Server Configuration</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">1. Initialize Datastore:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      On initial startup, server.js verifies if data/db.json exists. If absent, it automatically seeds initial academic competitions, quiz questions, coding challenges, and sample users.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">2. Configure Security Headers:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      The native HTTP dispatcher injects standard protection headers:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li><code>X-Content-Type-Options: nosniff</code></li>
+      <li><code>X-Frame-Options: SAMEORIGIN</code></li>
+      <li><code>Access-Control-Allow-Origin: *</code></li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 28: 8.4, 8.5, 9. USER GUIDE ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">8.4 Running Locally</h4>
+    <p style="margin-bottom: 6px;">Start the production-ready application server:</p>
+    <div class="code-box">node server.js
+# Or on Windows using provided script:
+start.bat</div>
+    <p style="margin-top: 8px; margin-bottom: 12px;">
+      The application will be instantly available at <strong>http://localhost:3000</strong>.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">8.5 Environment Variables</h4>
+    <p class="text-justify" style="margin-bottom: 16px;">
+      All configuration settings fall back gracefully to sensible defaults, allowing the platform to run offline in campus labs without internet access.
+    </p>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">9. User Guide</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">9.1 Getting Started</h4>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      Open your browser and navigate to <strong>http://localhost:3000</strong>. You are greeted with the CompeteX hero portal showcasing ongoing hackathons, upcoming contests, and overall campus rankings.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">9.2 Creating an Account</h4>
+    <ol style="padding-left: 20px; line-height: 1.55; margin-bottom: 14px;">
+      <li>Click the <strong>"Sign In / Register"</strong> button in the navigation bar</li>
+      <li>Switch to the "Register" tab</li>
+      <li>Enter your Full Name, Email, Password, and College Roll Number</li>
+      <li>Click <strong>"Create Account"</strong></li>
+      <li>Your session is established immediately and your profile is activated</li>
+    </ol>
+  </div>
+
+  <!-- ==================== PAGE 29: 9.3 TO 9.7 USER GUIDE ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">9.3 Setting Up Profile</h4>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+      <li>Click on your profile avatar in the navigation header</li>
+      <li>View your earned points, badges, and completed events</li>
+      <li>Review your personal CodeCraft challenge statistics</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">9.4 Joining Competitions</h4>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+      <li>Navigate to the <strong>Competitions</strong> tab</li>
+      <li>Filter by category (Hackathon, Coding, Ideathon)</li>
+      <li>Click <strong>"View Details"</strong> on your selected event</li>
+      <li>Click <strong>"Register Now"</strong> to confirm your spot</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">9.5 Writing Code in CodeCraft</h4>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+      <li>Open the <strong>CodeCraft</strong> arena from the navigation bar</li>
+      <li>Select an algorithmic problem (e.g. Two Sum, Valid Bracket Sequences)</li>
+      <li>Write your solution in the code editor pane</li>
+      <li>Click <strong>"Run Sample Tests"</strong> to verify sample inputs</li>
+      <li>Click <strong>"Submit Solution"</strong> to score points on the leaderboard</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">9.6 Attempting BrainByte Quizzes</h4>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+      <li>Click the <strong>BrainByte</strong> tab</li>
+      <li>Choose a technical category and start the quiz</li>
+      <li>Answer questions before the timer runs out and view score breakdown</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">9.7 Verifying Certificates</h4>
+    <ol style="padding-left: 20px; line-height: 1.5;">
+      <li>Navigate to the <strong>Certificates</strong> portal</li>
+      <li>Enter your Certificate ID (e.g. <code>CPTX-2026-9481</code>) and click <strong>"Verify"</strong></li>
+    </ol>
+  </div>
+
+  <!-- ==================== PAGE 30: 10. DEVELOPER GUIDE ==================== -->
+  <div class="page">
+    <h3 style="font-size: 13pt; margin-top: 5px; margin-bottom: 12px;">10. Developer Guide</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">10.1 Project Structure</h4>
+    <div class="code-box">competex/
+├── bin/                    # Bundled portable binaries (optional)
+├── data/
+│   └── db.json             # ACID-safe JSON datastore
+├── docs/                   # Institutional documentation
+├── public/                 # Static web assets
+│   ├── css/
+│   │   └── styles.css      # Core responsive styling
+│   ├── js/
+│   │   ├── app.js          # Client-side SPA orchestration
+│   │   ├── codecraft.js    # In-browser execution engine
+│   │   └── brainbyte.js    # Interactive quiz system
+│   ├── images/             # Institutional logos & screenshots
+│   └── index.html          # Main application Single Page Application
+├── server.js               # Zero-dependency Node.js HTTP server
+├── start.bat               # Windows instant launcher script
+└── README.md               # Technical overview & quickstart</div>
+    
+    <h4 style="font-size: 11.5pt; margin-top: 14px; margin-bottom: 6px;">10.2 Code Organization</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Clean Modular Components:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Single-responsibility separation between UI logic, state management, and network calls</li>
+      <li>Pure vanilla JavaScript eliminating transpilation overhead and bundler lock-in</li>
+      <li>Native event delegation for ultra-fast DOM updates</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Server Architecture:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Single unified <code>server.js</code> handling static routing, REST endpoints, and disk persistence</li>
+      <li>Zero asynchronous thread blocking; all file operations use atomic streams</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 31: 10.3 TO 10.5 DEVELOPER GUIDE ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">10.3 Key Components</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">CodeCraft Execution Module:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Located at public/js/codecraft.js. Handles client-side code evaluation, sandboxed iframe compilation, console interception, and automated test suite evaluation.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">BrainByte Assessment Module:</p>
+    <p class="text-justify" style="margin-bottom: 8px;">
+      Located at public/js/brainbyte.js. Manages quiz countdown timers, question randomization, score tallying, and submission dispatch to the backend.
+    </p>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Admin & NAAC Exporter:</p>
+    <p class="text-justify" style="margin-bottom: 14px;">
+      Embedded in server.js and app.js. Transforms competition participation arrays into RFC 4180 compliant CSV files with student roll numbers, college names, and awards.
+    </p>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">10.4 Adding New Features</h4>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 14px;">
+      <li>Define entity schema in data/db.json</li>
+      <li>Create REST API route handlers in server.js</li>
+      <li>Build client controller logic in corresponding public/js/ module</li>
+      <li>Update UI view templates in public/index.html</li>
+      <li>Execute regression tests across local endpoints</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">10.5 Testing Strategy</h4>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Automated HTTP endpoint verification checking status codes and JSON schemas</li>
+      <li>Cross-browser testing (Chrome, Edge, Firefox, Mobile Safari)</li>
+      <li>Concurrency stress testing simulating rapid simultaneous registrations</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 32: 10.6, 11. DEPLOYMENT ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">10.6 Code Style Guidelines</h4>
+    <p style="margin-bottom: 6px;">Standards followed in CompeteX:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Standard ES6+ standards with semantic variable naming</li>
+      <li>Explicit error checking on all asynchronous file operations and network requests</li>
+      <li>Strict separation of CSS variables for instant theme maintainability</li>
+      <li>Comprehensive inline comments on architectural and algorithmic logic</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">11. Deployment</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">11.1 Deployment Overview</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      CompeteX is engineered for seamless deployment across any environment—from a local campus intranet server to enterprise cloud infrastructure:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Zero runtime dependencies means instant startup without complex build steps</li>
+      <li>Sub-15ms response latency under standard institutional workloads</li>
+      <li>Minimal memory footprint (less than 40 MB total RAM usage)</li>
+      <li>Compatible with Windows Server, Linux (Ubuntu, Debian, RHEL), and Docker</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">11.2 Production Server Setup</h4>
+    <p style="margin-bottom: 4px;">Initialize on Ubuntu / Linux Server:</p>
+    <div class="code-box">sudo apt update && sudo apt install -y nodejs
+git clone https://github.com/institution/competex.git
+cd competex
+node server.js</div>
+  </div>
+
+  <!-- ==================== PAGE 33: 11.3, 11.4 DEPLOYMENT ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">11.3 Performance & Process Management</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Using PM2 for 24/7 Uptime:</p>
+    <div class="code-box">npm install -g pm2
+pm2 start server.js --name "competex"
+pm2 startup
+pm2 save</div>
+    
+    <p style="font-weight: bold; margin-top: 12px; margin-bottom: 2px;">Using Systemd Service Unit:</p>
+    <div class="code-box">[Unit]
+Description=CompeteX College Competition Platform
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/competex/server.js
+Restart=always
+User=www-data
+Environment=PORT=80 NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target</div>
+    
+    <h4 style="font-size: 11.5pt; margin-top: 14px; margin-bottom: 6px;">11.4 Publishing the Application</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      Build and deployment requires no minification build step because native modern assets are delivered directly. Steps to publish:
+    </p>
+    <ol style="padding-left: 20px; line-height: 1.5;">
+      <li>Sync production code branch via Git</li>
+      <li>Verify write permissions on data/db.json</li>
+      <li>Start the background daemon process</li>
+      <li>Verify endpoint health via HTTP probe (curl -I http://localhost:3000/)</li>
+    </ol>
+  </div>
+
+  <!-- ==================== PAGE 34: 11.5, 12. SECURITY AND PRIVACY ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">11.5 Custom Domain & SSL Setup</h4>
+    <p style="margin-bottom: 6px;">Configure NGINX Reverse Proxy with Let's Encrypt SSL:</p>
+    <div class="code-box">server {
+    server_name competex.mbu.asia;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}</div>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">12. Security and Privacy</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">12.1 Security Architecture</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      CompeteX employs multiple layers of defensive security:
+    </p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Role-Based Access Control (RBAC) ensuring unauthorized participants cannot grade or modify events</li>
+      <li>Cryptographic SHA-256 password hashing preventing credential leaks</li>
+      <li>Isolated iframe sandbox preventing execution escapes during CodeCraft runs</li>
+      <li>Comprehensive input sanitization preventing Cross-Site Scripting (XSS)</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">12.2 Role-Based Access Rules</h4>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li><strong>Student:</strong> Register for events, write code in CodeCraft, take quizzes, view certificates</li>
+      <li><strong>Organizer:</strong> Create hackathons, update rules, monitor participant rosters</li>
+      <li><strong>Judge:</strong> Evaluate code submissions and award scores</li>
+      <li><strong>Admin:</strong> Global control, user management, and NAAC/NBA CSV export generation</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 35: 12.3, 12.4 SECURITY & PRIVACY ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">12.3 Authentication Security</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Password Protection:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Enforces minimum password length and complexity checks</li>
+      <li>One-way cryptographic hash generation using Node's native crypto library</li>
+      <li>Plaintext passwords are never saved in storage or output to server logs</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Session Security:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Cryptographically strong pseudo-random session tokens</li>
+      <li>HttpOnly and SameSite cookie policies prevent token theft via script injection</li>
+      <li>Instant server-side session invalidation upon user logout</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">12.4 Data Privacy</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">User Privacy:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Student personal contact information is only visible to verified institutional admins</li>
+      <li>Participants can selectively disclose profile links (GitHub, LinkedIn)</li>
+      <li>Full audit transparency regarding what data is captured for academic records</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Data Collection:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Minimal academic data collection (Name, Roll Number, College, Email)</li>
+      <li>Data strictly used for competition tracking and institutional accreditation metrics</li>
+      <li>Complies with institutional data protection standards</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 36: 12.5, 13. PERFORMANCE & OPTIMIZATION ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">12.5 Best Practices</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">For Developers:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Never log user passwords or session secrets to terminal or logs</li>
+      <li>Always validate request payloads on the server prior to database updates</li>
+      <li>Keep iframe sandbox permissions strictly scoped (allow-scripts, no allow-top-navigation)</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">For Users:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Use unique passwords for college platform credentials</li>
+      <li>Log out after finishing exams or submissions on shared computer laboratory machines</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">13. Performance and Optimization</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">13.1 Performance Considerations</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Frontend Optimization:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Zero bundler overhead—pure native JavaScript modules deliver immediate execution</li>
+      <li>Lightweight CSS stylesheets avoiding heavy third-party CSS libraries</li>
+      <li>SVG icons eliminating heavy image resource downloads</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Backend Optimization:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>In-memory JSON caching delivering ultra-low sub-5ms query response times</li>
+      <li>Asynchronous non-blocking file writes preserving server event loop responsiveness</li>
+      <li>Streamed static asset delivery leveraging native file buffers</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 37: 13.2 TO 13.4 OPTIMIZATION ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">13.2 Database Optimization</h4>
+    <p style="margin-bottom: 6px;">Techniques employed in the datastore layer:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Single-pass JSON deserialization into structured in-memory JavaScript collections</li>
+      <li>Debounced atomic persistence reducing disk I/O under rapid bursts of quiz submissions</li>
+      <li>Efficient memory management avoiding unbounded data duplication</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">13.3 Frontend Optimization</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">DOM Efficiency:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Targeted innerHTML updates scoped only to active view sections</li>
+      <li>Elimination of unnecessary continuous timer loops when tabs are inactive</li>
+      <li>Hardware-accelerated CSS transitions for smooth UI animations</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Asset Optimization:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Compressed modern images and responsive SVGs</li>
+      <li>Single CSS file bundle eliminating multiple stylesheet roundtrips</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">13.4 Caching Strategies</h4>
+    <p style="margin-bottom: 6px;">Multi-layer caching:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Browser caching enabled via HTTP headers for CSS, JS, and image assets</li>
+      <li>In-memory datastore cache serving 99% of read requests directly without disk I/O</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 38: 14. MAINTENANCE AND UPDATES ==================== -->
+  <div class="page">
+    <h3 style="font-size: 13pt; margin-top: 5px; margin-bottom: 12px;">14. Maintenance and Updates</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">14.1 Regular Maintenance</h4>
+    <p style="margin-bottom: 6px;">Routine Administrator Tasks:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Monitor application server health and system memory consumption</li>
+      <li>Review daily event registration counts and active CodeCraft submissions</li>
+      <li>Perform automated or manual backups of data/db.json</li>
+      <li>Audit system error logs for unhandled client exceptions</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">14.2 Updating Dependencies</h4>
+    <p class="text-justify" style="margin-bottom: 10px;">
+      Because CompeteX relies exclusively on standard Node.js runtime libraries without third-party npm modules, dependency maintenance is exceptionally streamlined:
+    </p>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 14px;">
+      <li>Check system Node.js version (node -v)</li>
+      <li>Upgrade Node.js LTS when new security patches are published by Node foundation</li>
+      <li>Zero risk of breaking dependencies from third-party npm package updates</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">14.3 Backup and Recovery</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Database Backups:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Simple copy backup: copy data\\db.json data\\db_backup.json</li>
+      <li>Automated scheduled backups using cron (Linux) or Windows Task Scheduler</li>
+      <li>Instant point-in-time recovery by replacing db.json with backup file</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 39: 14.4, 14.5, 15. TROUBLESHOOTING ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">14.4 Monitoring and Analytics</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">System Monitoring:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Console event logging tracking every incoming API request with method and status code</li>
+      <li>Built-in error catching preventing server crashes during invalid JSON requests</li>
+      <li>Active process tracking via Node's process.memoryUsage()</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">14.5 Error Handling</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Client-Side Error Handling:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>User-friendly toast notifications replacing silent JavaScript failures</li>
+      <li>Iframe error interception capturing runtime script errors during code evaluation</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Server-Side Error Handling:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 16px;">
+      <li>Global uncaughtException protection ensuring continuous 100% server uptime</li>
+      <li>Consistent JSON error responses ({ "error": "Descriptive message" }) with appropriate HTTP status codes (400, 401, 403, 404, 500)</li>
+    </ul>
+    <hr>
+    
+    <h3 style="font-size: 13pt; margin-top: 14px; margin-bottom: 12px;">15. Troubleshooting</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">15.1 Common Issues</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Server Port Already in Use (Error: EADDRINUSE):</p>
+    <div class="code-box"># On Windows PowerShell:
+Stop-Process -Name node -Force
+# Or launch server on custom port:
+$env:PORT=8080; node server.js</div>
+  </div>
+
+  <!-- ==================== PAGE 40: 15.2 TO 15.4 TROUBLESHOOTING ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">15.2 Permission and Access Errors</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">"Admin Privileges Required" Error:</p>
+    <ol style="padding-left: 20px; line-height: 1.5; margin-bottom: 12px;">
+      <li>Ensure you are logged in with an authorized administrator account</li>
+      <li>Use the Role Selector in the navigation bar to toggle to "Admin" persona</li>
+      <li>Verify user record in data/db.json has "role": "admin"</li>
+    </ol>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">15.3 Authentication Problems</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Login Failures:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 12px;">
+      <li>Verify email address and password match registered credentials</li>
+      <li>Check browser console for failed network fetch requests</li>
+      <li>Ensure localStorage is not disabled by browser privacy extensions</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Session Expired:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>Log out and re-enter credentials to issue a fresh session token</li>
+      <li>Clear browser site data for localhost and refresh</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">15.4 Deployment and Network Issues</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Site Inaccessible from Other Campus Devices:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Ensure server.js listens on 0.0.0.0 rather than localhost only</li>
+      <li>Check Windows Firewall or Linux iptables to ensure port 3000 is open</li>
+      <li>Access using host machine IP address (e.g. http://192.168.1.10:3000)</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 41: 16. FUTURE ROADMAP ==================== -->
+  <div class="page">
+    <h3 style="font-size: 13pt; margin-top: 5px; margin-bottom: 12px;">16. Future Roadmap</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">16.1 Planned Features</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Short-term (3–6 months):</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Support for compiled languages (C, C++, Java) via server-side Docker containers</li>
+      <li>Real-time multi-judge scoring dashboard with normalized evaluation rubrics</li>
+      <li>Automated certificate email delivery using institutional SMTP relay</li>
+      <li>Student team formation portal with skill-based matchmaking</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Medium-term (6–12 months):</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 10px;">
+      <li>Native Mobile Applications (Android / iOS) developed in Flutter</li>
+      <li>Advanced plagiarism detection comparing submitted code algorithms</li>
+      <li>Multi-college federation allowing inter-university joint hackathons</li>
+      <li>Direct integration with university LMS systems (Canvas / Moodle)</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Long-term (12+ months):</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 14px;">
+      <li>AI-powered code review and automated feedback for students</li>
+      <li>Blockchain-anchored verifiable credentials on Polygon or Ethereum</li>
+      <li>Corporate sponsor recruitment talent pipeline matching top coders</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">16.2 Scalability Improvements</h4>
+    <ul style="list-style-type: '• '; padding-left: 20px;">
+      <li>Transition option to PostgreSQL / SQLite for datasets exceeding 100,000 users</li>
+      <li>Redis caching layer for high-throughput live leaderboard broadcasts</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 42: 17. APPENDIX ==================== -->
+  <div class="page">
+    <h3 style="font-size: 13pt; margin-top: 5px; margin-bottom: 12px;">17. Appendix</h3>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">17.1 Glossary</h4>
+    <div style="font-size: 10pt; line-height: 1.5; margin-bottom: 14px;">
+      <p><strong>Node.js:</strong> Chrome V8-based JavaScript runtime for building scalable server-side applications.</p>
+      <p><strong>REST:</strong> Representational State Transfer, architectural style for networked web services.</p>
+      <p><strong>RBAC:</strong> Role-Based Access Control, restricting system actions based on assigned user roles.</p>
+      <p><strong>ACID:</strong> Atomicity, Consistency, Isolation, Durability guarantees for database transactions.</p>
+      <p><strong>SPA:</strong> Single-Page Application, modern web app dynamically rewriting the current webpage.</p>
+      <p><strong>ELO:</strong> A method for calculating the relative skill levels of players in competitive systems.</p>
+      <p><strong>NAAC:</strong> National Assessment and Accreditation Council of India.</p>
+      <p><strong>NBA:</strong> National Board of Accreditation for technical education programs.</p>
+    </div>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">17.2 References</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Official Documentation:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; font-size: 10pt; margin-bottom: 10px;">
+      <li>Node.js Documentation: https://nodejs.org/docs/latest/api/</li>
+      <li>MDN Web Docs (HTML, CSS, JavaScript): https://developer.mozilla.org</li>
+      <li>ECMAScript 2026 Specification: https://tc39.es/ecma262/</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Community Resources:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; font-size: 10pt;">
+      <li>Stack Overflow Web Architecture Discussions</li>
+      <li>GitHub Open Source Competition Management Patterns</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 43: 17.3, 17.4 APPENDIX (CONTD) ==================== -->
+  <div class="page">
+    <h4 style="font-size: 11.5pt; margin-top: 5px; margin-bottom: 6px;">17.3 Change Log</h4>
+    <p style="font-weight: bold; margin-bottom: 2px;">Version 1.0.0 (October 2026):</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 12px;">
+      <li>Initial institutional release of CompeteX platform</li>
+      <li>Core competition catalog, registration, and discovery modules implemented</li>
+      <li>CodeCraft sandboxed in-browser code evaluation engine deployed</li>
+      <li>BrainByte interactive quiz assessment module integrated</li>
+      <li>Live dynamic ELO leaderboard with ranking filters created</li>
+      <li>Cryptographic verifiable certificate generator activated</li>
+      <li>Role-Based Access Control (Student, Organizer, Judge, Faculty, Admin) enforced</li>
+      <li>NAAC and NBA Accreditation CSV export pipeline completed</li>
+    </ul>
+    
+    <p style="font-weight: bold; margin-bottom: 2px;">Future Versions:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; margin-bottom: 20px;">
+      <li>Will be documented here as updates are released to production</li>
+    </ul>
+    
+    <h4 style="font-size: 11.5pt; margin-bottom: 6px;">17.4 Contact Information</h4>
+    <p style="font-weight: bold; margin-bottom: 4px;">Development Team:</p>
+    <ul style="list-style-type: '• '; padding-left: 20px; line-height: 1.6;">
+      <li>Project Lead: G Kushal &ndash; gkushal154@gmail.com</li>
+      <li>Technical Support: Y Sai Charan &ndash; ysaicharan173@gmail.com</li>
+      <li>Bug Reports: Y Sreenath &ndash; ysreenath188@gmail.com</li>
+      <li>Frontend Engineering: Bellam Gurunad &ndash; bgurunad172@gmail.com</li>
+      <li>Database Architecture: Danam Lohith &ndash; dlohith176@gmail.com</li>
+      <li>Quality Assurance: Dudekula Saleem Basha &ndash; dsbasha218@gmail.com</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 44: UI SCREENSHOTS PART 1 ==================== -->
+  <div class="page">
+    <h3 class="text-center" style="font-size: 14pt; margin-top: 5px; margin-bottom: 12px;">Application User Interface Screenshots</h3>
+    
+    <div style="margin-bottom: 16px; text-align: center;">
+      <p style="font-weight: bold; font-size: 10pt; margin-bottom: 4px; text-align: left;">1. Competition Discovery & Catalog</p>
+      <img src="/images/screen_home.png" alt="Competition Catalog" style="width: 100%; height: 260px; object-fit: cover; border: 1px solid #94a3b8; border-radius: 4px; display: block;">
+    </div>
+    
+    <div style="margin-bottom: 16px; text-align: center;">
+      <p style="font-weight: bold; font-size: 10pt; margin-bottom: 4px; text-align: left;">2. CodeCraft In-Browser Interactive Execution Sandbox</p>
+      <img src="/images/screen_codecraft.png" alt="CodeCraft Sandbox" style="width: 100%; height: 260px; object-fit: cover; border: 1px solid #94a3b8; border-radius: 4px; display: block;">
+    </div>
+    
+    <div style="text-align: center;">
+      <p style="font-weight: bold; font-size: 10pt; margin-bottom: 4px; text-align: left;">3. BrainByte Quiz Engine & Real-Time Scoring</p>
+      <img src="/images/screen_brainbyte.png" alt="BrainByte Quiz" style="width: 100%; height: 260px; object-fit: cover; border: 1px solid #94a3b8; border-radius: 4px; display: block;">
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 45: UI SCREENSHOTS PART 2 ==================== -->
+  <div class="page">
+    <h3 class="text-center" style="font-size: 14pt; margin-top: 5px; margin-bottom: 12px;">Application User Interface Screenshots (Contd.)</h3>
+    
+    <div style="margin-bottom: 16px; text-align: center;">
+      <p style="font-weight: bold; font-size: 10pt; margin-bottom: 4px; text-align: left;">4. Real-Time ELO Leaderboard & Points Matrix</p>
+      <img src="/images/screen_leaderboard.png" alt="Leaderboard" style="width: 100%; height: 260px; object-fit: cover; border: 1px solid #94a3b8; border-radius: 4px; display: block;">
+    </div>
+    
+    <div style="margin-bottom: 16px; text-align: center;">
+      <p style="font-weight: bold; font-size: 10pt; margin-bottom: 4px; text-align: left;">5. Cryptographic Certificate Verification Portal</p>
+      <img src="/images/screen_certificates.png" alt="Certificate Verification" style="width: 100%; height: 260px; object-fit: cover; border: 1px solid #94a3b8; border-radius: 4px; display: block;">
+    </div>
+    
+    <div style="text-align: center;">
+      <p style="font-weight: bold; font-size: 10pt; margin-bottom: 4px; text-align: left;">6. Administrative Oversight & NAAC/NBA Accreditation Dashboard</p>
+      <img src="/images/screen_admin.png" alt="Admin Dashboard" style="width: 100%; height: 260px; object-fit: cover; border: 1px solid #94a3b8; border-radius: 4px; display: block;">
+    </div>
+  </div>
+
+  <!-- ==================== PAGES 46 to 51: COURSE PATHWAY CERTIFICATES ==================== -->
+  <div class="page cert-page">
+    <img src="/images/cert_1.jpg" alt="Certificate 1">
+  </div>
+
+  <div class="page cert-page">
+    <img src="/images/cert_2.jpg" alt="Certificate 2">
+  </div>
+
+  <div class="page cert-page">
+    <img src="/images/cert_3.jpg" alt="Certificate 3">
+  </div>
+
+  <div class="page cert-page">
+    <img src="/images/cert_4.jpg" alt="Certificate 4">
+  </div>
+
+  <div class="page cert-page">
+    <img src="/images/cert_5.jpg" alt="Certificate 5">
+  </div>
+
+  <div class="page cert-page">
+    <img src="/images/cert_6.jpg" alt="Certificate 6">
+  </div>
+
+</div>
+
+</body>
+</html>

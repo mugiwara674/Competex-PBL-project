@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompeteX - PBL Project Report (MBU)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap');
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      background: #f8fafc;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .report-container {
+      max-width: 850px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 60px 80px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .page {
+      min-height: 1050px;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+      border-bottom: 2px dashed #cbd5e1;
+      margin-bottom: 50px;
+      padding-bottom: 50px;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .report-container {
+        max-width: 100%;
+        margin: 0;
+        padding: 40px;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .page-break {
+        page-break-after: always;
+        break-after: page;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .no-print {
+        display: none;
+      }
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .text-justify { text-align: justify; }
+
+    .university-header {
+      color: #b91c1c;
+      font-family: 'Cinzel', serif;
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .title-banner {
+      font-size: 22pt;
+      font-weight: 800;
+      color: #1e1b4b;
+      margin: 30px 0 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sub-title {
+      font-size: 13pt;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 10.5pt;
+    }
+
+    .table-custom th, .table-custom td {
+      border: 1px solid #cbd5e1;
+      padding: 9px 12px;
+      text-align: left;
+    }
+
+    .table-custom th {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .certificate-box {
+      border: 4px double #94a3b8;
+      padding: 40px;
+      border-radius: 4px;
+      background: #fafafa;
+    }
+
+    .signature-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 70px;
+    }
+
+    .signature-col {
+      width: 45%;
+      text-align: center;
+    }
+
+    .sig-line {
+      width: 200px;
+      height: 1px;
+      background: #334155;
+      margin: 0 auto 8px auto;
+    }
+
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 9.5pt;
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 9pt;
+      font-weight: 600;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .print-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #4f46e5;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 50px;
+      border: none;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      z-index: 9999;
+    }
+
+    .print-button:hover {
+      background: #4338ca;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Print Button -->
+  <button onclick="window.print()" class="print-button no-print">
+    🖨️ Print / Save as PDF
+  </button>
+
+  <div class="report-container">
+
+    <!-- PAGE 1: TITLE PAGE -->
+    <div class="page page-break text-center">
+      <br>
+      <div class="title-banner">CompeteX Application</div>
+      <p style="font-size: 13pt; margin-bottom: 25px; color: #334155;">
+        A Report submitted under Project-Based Learning<br>
+        In Partial Fulfillment of the Course Requirement for<br>
+        <strong>“Web Technologies (22IT104001)”</strong>
+      </p>
+
+      <div style="margin: 35px auto; max-width: 500px;">
+        <h4 style="margin-bottom: 12px; color: #475569; text-transform: uppercase; font-size: 11pt; letter-spacing: 1px;">Submitted By</h4>
+        <table class="table-custom" style="margin: 0 auto;">
+          <thead>
+            <tr>
+              <th style="text-align: center; width: 60px;">S.No</th>
+              <th>Student Name</th>
+              <th>Roll Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center;">1</td>
+              <td><strong>[Student 1 - e.g., MARTHALA MUNI REDDY]</strong></td>
+              <td>[Roll No 1]</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">2</td>
+              <td><strong>[Student 2 Name]</strong></td>
+              <td>[Roll No 2]</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">3</td>
+              <td><strong>[Student 3 Name]</strong></td>
+              <td>[Roll No 3]</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">4</td>
+              <td><strong>[Student 4 Name]</strong></td>
+              <td>[Roll No 4]</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">5</td>
+              <td><strong>[Student 5 Name]</strong></td>
+              <td>[Roll No 5]</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">6</td>
+              <td><strong>[Student 6 Name]</strong></td>
+              <td>[Roll No 6]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin: 35px 0;">
+        <p style="font-size: 11pt; color: #475569; margin-bottom: 4px;">Under the Guidance of</p>
+        <p style="font-size: 13pt; font-weight: 700; margin: 0; color: #0f172a;">Mr. A. Basi Reddy, <span style="font-size: 10pt; font-weight: 400;">M.Tech., (Ph.D)</span></p>
+        <p style="font-size: 11pt; color: #475569; margin: 2px 0;">Assistant Professor</p>
+        <p style="font-size: 11pt; color: #475569; margin: 0;">Department of Computer Science and Engineering</p>
+      </div>
+
+      <div style="margin-top: 45px;">
+        <p style="font-size: 12pt; font-weight: 700; margin: 2px 0;">Department of Computer Science and Engineering</p>
+        <p style="font-size: 11pt; font-weight: 600; color: #475569; margin: 2px 0;">School of Computing</p>
+        <div class="university-header">MOHAN BABU UNIVERSITY</div>
+        <p style="font-size: 11pt; color: #64748b; margin: 0;">Sree Sainath Nagar, Tirupati – 517102, Andhra Pradesh</p>
+        <p style="font-size: 11pt; font-weight: 700; color: #334155; margin-top: 6px;">2025-2026</p>
+      </div>
+    </div>
+
+    <!-- PAGE 2: UNIVERSITY & SCHOOL VISION & MISSION -->
+    <div class="page page-break text-justify">
+      <div class="text-center">
+        <div class="university-header" style="font-size: 20pt;">MOHAN BABU UNIVERSITY</div>
+        <p style="font-weight: bold; color: #64748b; margin-top: -5px;">Vision & Mission</p>
+      </div>
+
+      <h3 style="color: #b91c1c; border-bottom: 2px solid #b91c1c; padding-bottom: 4px;">University Vision</h3>
+      <p>To be a globally respected institution with an innovative and entrepreneurial culture that offers transformative education to advance sustainability and societal good.</p>
+
+      <h3 style="color: #b91c1c; border-bottom: 2px solid #b91c1c; padding-bottom: 4px;">University Mission</h3>
+      <ul style="list-style-type: '❖ '; padding-left: 20px;">
+        <li style="margin-bottom: 8px;">Develop industry-focused professionals with a global perspective.</li>
+        <li style="margin-bottom: 8px;">Offer academic programs that provide transformative learning experience founded on the spirit of curiosity, innovation, and integrity.</li>
+        <li style="margin-bottom: 8px;">Create confluence of research, innovation, and ideation to bring about sustainable and socially relevant enterprises.</li>
+        <li style="margin-bottom: 8px;">Uphold high standards of professional ethics leading to harmonious relationship with environment and society.</li>
+      </ul>
+
+      <br>
+
+      <div class="text-center">
+        <h2 style="color: #1e1b4b; margin-bottom: 4px;">SCHOOL OF COMPUTING</h2>
+      </div>
+
+      <h3 style="color: #1e1b4b; border-bottom: 2px solid #1e1b4b; padding-bottom: 4px;">Vision</h3>
+      <p>To lead the advancement of computer science research and education that has real-world impact and to push the frontiers of innovation in the field.</p>
+
+      <h3 style="color: #1e1b4b; border-bottom: 2px solid #1e1b4b; padding-bottom: 4px;">Mission</h3>
+      <ul style="list-style-type: '❖ '; padding-left: 20px;">
+        <li style="margin-bottom: 8px;">Instill within our students fundamental computing knowledge, a broad set of skills, and an inquisitive attitude to create innovative solutions to serve industry and community.</li>
+        <li style="margin-bottom: 8px;">Provide an experience par excellence with our state-of-the-art research, innovation, and incubation ecosystem to realise our learners’ fullest potential.</li>
+        <li style="margin-bottom: 8px;">Impart continued education and research support to working professionals in the computing domain to enhance their expertise in cutting-edge technologies.</li>
+        <li style="margin-bottom: 8px;">Inculcate among the computing engineers of tomorrow with a spirit to solve societal challenges.</li>
+      </ul>
+    </div>
+
+    <!-- PAGE 3: DEPARTMENT VISION, MISSION, PEOs & POs -->
+    <div class="page page-break text-justify">
+      <div class="text-center">
+        <h2 style="color: #0f172a; margin-bottom: 4px;">DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</h2>
+      </div>
+
+      <h3 style="color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 4px;">Department Vision</h3>
+      <p>To become a Centre of Excellence in Computer Science and its emerging areas by imparting high quality education through teaching, training and research.</p>
+
+      <h3 style="color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 4px;">Department Mission</h3>
+      <ul style="list-style-type: '⮚ '; padding-left: 20px;">
+        <li style="margin-bottom: 8px;">Imparting quality education in Computer Science and Engineering and emerging areas of IT industry by disseminating knowledge through contemporary curriculum, competent faculty and effective teaching-learning methodologies.</li>
+        <li style="margin-bottom: 8px;">Nurture research, innovation and entrepreneurial skills among faculty and students to contribute to the needs of industry and society.</li>
+        <li style="margin-bottom: 8px;">Inculcate professional attitude, ethical and social responsibilities for prospective and promising engineering profession.</li>
+        <li style="margin-bottom: 8px;">Encourage students to engage in life-long learning by creating awareness of the contemporary developments in Computer Science and Engineering and its emerging areas.</li>
+      </ul>
+
+      <h3 style="color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 4px; margin-top: 30px;">Program Educational Objectives (PEOs)</h3>
+      <p>After few years of graduation, the graduates of B.Tech. CSE will be:</p>
+      <ul>
+        <li><strong>PEO1:</strong> Pursuing higher studies in core, specialized or allied areas of Computer Science, or Management.</li>
+        <li><strong>PEO2:</strong> Employed in reputed Computer and I.T organizations or Government to have a globally competent professional career in Computer Science and Engineering domain or be successful Entrepreneurs.</li>
+        <li><strong>PEO3:</strong> Able to demonstrate effective communication, engage in teamwork, exhibit leadership skills and ethical attitude, and achieve professional advancement through continuing education.</li>
+      </ul>
+    </div>
+
+    <!-- PAGE 4: COURSE OUTCOMES & CO-PO-PSO MAPPING -->
+    <div class="page page-break">
+      <div class="text-center">
+        <h2>COURSE OUTCOMES & CO-PO-PSO MAPPING</h2>
+        <p><strong>Course Code:</strong> 22IT104001 &nbsp;|&nbsp; <strong>Course Title:</strong> WEB TECHNOLOGIES &nbsp;|&nbsp; <strong>L-T-P-S-C:</strong> 3-0-2-4-5</p>
+      </div>
+
+      <h4 style="margin-top: 25px;">Course Outcomes (COs)</h4>
+      <p>After successful completion of this course, the students will be able to:</p>
+      <ul style="font-size: 10pt; line-height: 1.6;">
+        <li><strong>CO1:</strong> Demonstrate knowledge on webpage design elements, dynamic content and database connection.</li>
+        <li><strong>CO2:</strong> Analyze user requirements to develop web applications.</li>
+        <li><strong>CO3:</strong> Design client-server applications using web technologies.</li>
+        <li><strong>CO4:</strong> Demonstrate problem solving skills to develop enterprise web applications.</li>
+        <li><strong>CO5:</strong> Apply HTML, CSS, JavaScript, JQuery, Bootstrap and PHP / Node.js technologies for device independent web application development.</li>
+        <li><strong>CO6:</strong> Apply web technologies to develop interactive, dynamic and scalable web applications for societal needs.</li>
+      </ul>
+
+      <h4 style="margin-top: 25px;">CO-PO-PSO Mapping Table</h4>
+      <table class="table-custom" style="font-size: 9pt; text-align: center;">
+        <thead>
+          <tr>
+            <th rowspan="2">Course Outcomes</th>
+            <th colspan="12">Program Outcomes (POs)</th>
+            <th colspan="4">Program Specific Outcomes (PSOs)</th>
+          </tr>
+          <tr>
+            <th>PO1</th><th>PO2</th><th>PO3</th><th>PO4</th><th>PO5</th><th>PO6</th><th>PO7</th><th>PO8</th><th>PO9</th><th>PO10</th><th>PO11</th><th>PO12</th>
+            <th>PSO1</th><th>PSO2</th><th>PSO3</th><th>PSO4</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>CO1</strong></td><td>3</td><td>3</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td></tr>
+          <tr><td><strong>CO2</strong></td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td></tr>
+          <tr><td><strong>CO3</strong></td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td></tr>
+          <tr><td><strong>CO4</strong></td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>2</td><td>3</td><td>-</td></tr>
+          <tr><td><strong>CO5</strong></td><td>3</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>2</td><td>3</td><td>-</td></tr>
+          <tr><td><strong>CO6</strong></td><td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr style="background: #f8fafc; font-weight: bold;">
+            <td>Correlation Mapping</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>3</td><td>-</td><td>-</td><td>3</td><td>3</td><td>-</td><td>-</td><td>3</td><td>2</td><td>3</td><td>-</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 9pt; color: #64748b; text-align: center;"><em>Correlation Levels: 3: High; 2: Medium; 1: Low</em></p>
+    </div>
+
+    <!-- PAGE 5: CERTIFICATE -->
+    <div class="page page-break">
+      <div class="certificate-box">
+        <div class="text-center">
+          <div class="university-header" style="font-size: 20pt;">MOHAN BABU UNIVERSITY</div>
+          <p style="color: #64748b; margin-top: -5px; font-size: 11pt;">Sree Sainath Nagar, Tirupati 517 102</p>
+          <h3 style="margin: 15px 0;">Department of Computer Science and Engineering</h3>
+          <h2 style="letter-spacing: 2px; text-decoration: underline; margin-top: 30px;">CERTIFICATE</h2>
+        </div>
+
+        <p style="font-size: 12pt; line-height: 1.8; text-align: justify; margin: 30px 0;">
+          This is to certify that the Project Entitled <strong>“CompeteX: Centralized College Competition Management Platform”</strong> submitted by:
+        </p>
+
+        <div style="margin: 15px auto; max-width: 450px;">
+          <table class="table-custom">
+            <tbody>
+              <tr><td><strong>[Student 1 - e.g., MARTHALA MUNI REDDY]</strong></td><td>[Roll No 1]</td></tr>
+              <tr><td><strong>[Student 2 Name]</strong></td><td>[Roll No 2]</td></tr>
+              <tr><td><strong>[Student 3 Name]</strong></td><td>[Roll No 3]</td></tr>
+              <tr><td><strong>[Student 4 Name]</strong></td><td>[Roll No 4]</td></tr>
+              <tr><td><strong>[Student 5 Name]</strong></td><td>[Roll No 5]</td></tr>
+              <tr><td><strong>[Student 6 Name]</strong></td><td>[Roll No 6]</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size: 12pt; line-height: 1.8; text-align: justify; margin: 25px 0;">
+          Is a bonafide work submitted under <strong>Project-Based Learning (PBL)</strong> in Partial Fulfillment of the Course Requirements for <strong>“Web Technologies (22IT104001)”</strong> during <strong>2025-2026</strong>.
+        </p>
+
+        <div class="signature-row">
+          <div class="signature-col">
+            <div class="sig-line"></div>
+            <strong>Mr. A. Basi Reddy, <span style="font-weight: normal; font-size: 10pt;">M.Tech., (Ph.D)</span></strong><br>
+            <span style="font-size: 10pt; color: #475569;">Assistant Professor</span><br>
+            <span style="font-size: 10pt; color: #475569;">Department of CSE</span><br>
+            <span style="font-size: 10pt; color: #475569;">School of Computing</span><br>
+            <span style="font-size: 10pt; color: #475569;">Mohan Babu University, Tirupati.</span>
+          </div>
+
+          <div class="signature-col">
+            <div class="sig-line"></div>
+            <strong>Dr. G. Sunitha, <span style="font-weight: normal; font-size: 10pt;">M.Tech., Ph.D</span></strong><br>
+            <span style="font-size: 10pt; color: #475569;">Professor & Head</span><br>
+            <span style="font-size: 10pt; color: #475569;">Department of CSE</span><br>
+            <span style="font-size: 10pt; color: #475569;">School of Computing</span><br>
+            <span style="font-size: 10pt; color: #475569;">Mohan Babu University, Tirupati.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 6: ACKNOWLEDGEMENTS -->
+    <div class="page page-break text-justify">
+      <div class="text-center">
+        <h2 style="letter-spacing: 1px;">ACKNOWLEDGEMENTS</h2>
+      </div>
+
+      <p>First and foremost, I extend my sincere thanks to <strong>Dr. M. Mohan Babu</strong>, Chancellor, for his unwavering support and vision that fosters academic excellence within the institution.</p>
+
+      <p>My gratitude also goes to <strong>Mr. Manchu Vishnu</strong>, Pro-Chancellor, for creating an environment that promotes creativity and for his encouragement and commitment to student success.</p>
+
+      <p>I am deeply appreciative of <strong>Prof. Nagaraj Ramrao</strong>, Vice Chancellor, whose leadership has created an environment conducive to learning and innovation.</p>
+
+      <p>I would like to thank <strong>Dr. K. Saradhi</strong>, Registrar, for his support in creating an environment conducive to academic success.</p>
+
+      <p>I am also grateful to <strong>Dr. G. Sunitha</strong>, Head of the Department of Computer Science and Engineering, for her valuable insights, encouragement, and departmental support.</p>
+
+      <p>Finally, I would like to express my deepest appreciation to my project supervisor, <strong>Mr. A. Basi Reddy</strong>, Assistant Professor, Department of Computer Science and Engineering, for his continuous guidance, technical encouragement, and invaluable expertise throughout this project.</p>
+
+      <p style="margin-top: 40px;">Thank you all for your support and encouragement.</p>
+
+      <div class="text-right" style="margin-top: 50px;">
+        <strong>Project Team Members</strong>
+      </div>
+    </div>
+
+    <!-- TECHNICAL DOCUMENTATION SECTIONS (1 TO 17) -->
+    <div class="page">
+      <h2>1. Introduction</h2>
+      <h3>1.1 Project Overview</h3>
+      <p class="text-justify">
+        <strong>CompeteX</strong> is a full-stack, centralized competition operating platform designed to manage college-level technical and non-technical competitions. Educational institutions host multiple hackathons, coding contests, quizzes, project expos, and paper presentations throughout the academic year. CompeteX provides an all-in-one digital environment connecting <strong>Students, Squads, Event Organizers, Industry Judges, and Campus Administrators</strong>.
+      </p>
+
+      <h3>1.2 Purpose and Objectives</h3>
+      <p class="text-justify">
+        The primary objective of CompeteX is to eliminate operational fragmentation caused by managing competitions through ad-hoc tools like Google Forms, offline spreadsheets, messaging groups, and email threads.
+      </p>
+      <ul>
+        <li><strong>Unified Competition Catalog:</strong> Single portal for exploring technical hackathons, algorithmic coding, live quizzes, hardware expos, and paper colloquiums.</li>
+        <li><strong>Frictionless Squad Formation:</strong> 6-character cryptographic join codes allowing instant team member recruitment within configured caps.</li>
+        <li><strong>Standardized Weighted Evaluations:</strong> Multi-criteria rubric scoring forms preventing evaluation bias.</li>
+        <li><strong>Institutional Accreditation Support:</strong> 1-click UTF-8 BOM CSV exports tailored for university NAAC and NBA compliance audits.</li>
+        <li><strong>Embedded Sandboxes:</strong> Zero-setup algorithmic code execution (JS, Python, C++, Java) and Web Audio synchronized timed quizzes.</li>
+        <li><strong>Verifiable Digital Diplomas:</strong> Official digital certificates with public serial lookup and golden foil seals.</li>
+      </ul>
+
+      <h2>2. Project Overview</h2>
+      <h3>2.1 Background</h3>
+      <p class="text-justify">
+        In universities, technical and co-curricular events are vital for fostering engineering skills and student employability. However, traditional event workflows rely on manual coordination, spreadsheet tallying, and unverified participation certificates. CompeteX delivers an institutional-grade solution designed to eliminate these inefficiencies.
+      </p>
+
+      <h3>2.2 Problem Statement</h3>
+      <ul>
+        <li><strong>Fragmented Tooling:</strong> Intake through forms, judging via spreadsheets, and results communicated over emails.</li>
+        <li><strong>Student Friction:</strong> Difficulty finding teammates with complementary skills and tracking multiple conflicting deadlines.</li>
+        <li><strong>Judging Inconsistencies:</strong> Lack of weighted rubrics leading to manual calculation errors and delayed results.</li>
+        <li><strong>Accreditation Compliance Gaps:</strong> Difficulty retrieving historical student achievement data during university audits (NAAC/NBA).</li>
+      </ul>
+
+      <h3>2.3 Solution Architecture</h3>
+      <p class="text-justify">
+        CompeteX provides 14 integrated modules covering every stage of the competition lifecycle:
+      </p>
+      <table class="table-custom" style="font-size: 9.5pt;">
+        <thead>
+          <tr>
+            <th>Module Name</th>
+            <th>Primary Beneficiary</th>
+            <th>Key Functionality</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Competitions Catalog</strong></td>
+            <td>Students & Organizers</td>
+            <td>Multi-discipline event discovery, search filters, and rule overviews.</td>
+          </tr>
+          <tr>
+            <td><strong>2. Algorithmic Code Sandbox</strong></td>
+            <td>Student Coders</td>
+            <td>In-browser code editor with automated assertions in JS, Python, C++, Java.</td>
+          </tr>
+          <tr>
+            <td><strong>3. Live Timed Quiz Arena</strong></td>
+            <td>Quiz Participants</td>
+            <td>20s buzzer countdown, Web Audio API sound synthesis, streak multipliers.</td>
+          </tr>
+          <tr>
+            <td><strong>4. Teams & Join Codes</strong></td>
+            <td>Students</td>
+            <td>6-character cryptographic join codes (e.g., <code>CPX-3304</code>) and roster controls.</td>
+          </tr>
+          <tr>
+            <td><strong>5. Multi-Round Submissions</strong></td>
+            <td>Students & Judges</td>
+            <td>Multi-asset intake: GitHub repos, live demo links, slides, and demo videos.</td>
+          </tr>
+          <tr>
+            <td><strong>6. Rubric Judging Pad</strong></td>
+            <td>Judges</td>
+            <td>Weighted scoring (Innovation, Execution, Impact, UI Polish, Presentation).</td>
+          </tr>
+          <tr>
+            <td><strong>7. Real-Time Leaderboards</strong></td>
+            <td>Public / Campus</td>
+            <td>Podium rankings with Gold/Silver/Bronze trophy badges and tie-breakers.</td>
+          </tr>
+          <tr>
+            <td><strong>8. Verifiable Certificates</strong></td>
+            <td>Students & Recruiters</td>
+            <td>Printable diplomas with university crest and public verification codes.</td>
+          </tr>
+          <tr>
+            <td><strong>9. Event Timeline Roadmap</strong></td>
+            <td>Participants & Faculty</td>
+            <td>Live countdown ticker (Days:Hours:Mins:Secs) and stage progress cards.</td>
+          </tr>
+          <tr>
+            <td><strong>10. Mentorship Helpdesk</strong></td>
+            <td>Squads & Mentors</td>
+            <td>24/7 support ticketing with priority queues and mentor conversation threads.</td>
+          </tr>
+          <tr>
+            <td><strong>11. Accreditation Data Exports</strong></td>
+            <td>Administrators</td>
+            <td>1-click Excel CSV downloads for NAAC/NBA auditing.</td>
+          </tr>
+          <tr>
+            <td><strong>12. Role-Based Auth (RBAC)</strong></td>
+            <td>All Users</td>
+            <td>1-click role switcher + persistent login/register with password hashing.</td>
+          </tr>
+          <tr>
+            <td><strong>13. Project Showcase Gallery</strong></td>
+            <td>Campus Community</td>
+            <td>Public prototype gallery with People's Choice voting and peer reviews.</td>
+          </tr>
+          <tr>
+            <td><strong>14. Sponsor Bounties & Logistics</strong></td>
+            <td>Sponsors & Students</td>
+            <td>Cash bounties (Google Cloud, Intel, GitHub, Red Hat) & campus room schedule.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. System Architecture & Tech Stack</h2>
+      <p class="text-justify">
+        CompeteX utilizes a self-contained, high-performance architecture built exclusively on native Node.js standard libraries (<code>http</code>, <code>fs</code>, <code>path</code>, <code>crypto</code>, <code>vm</code>) without external npm package dependencies, ensuring instant startup, zero vulnerability footprint, and portable execution.
+      </p>
+
+      <div class="code-block">
+        Backend: Native Node.js HTTP & REST Services<br>
+        Database: Persistent Atomic JSON Store (data/db.json)<br>
+        Frontend: Vanilla ES6+ Single-Page Application (SPA) with Tailwind CSS<br>
+        Port & Host: http://localhost:3000
+      </div>
+
+      <h2>4. Verification & Accreditation Compliance</h2>
+      <p class="text-justify">
+        A standout capability of CompeteX is its direct alignment with National Assessment and Accreditation Council (NAAC) Criterion 5 (Student Support and Progression) and National Board of Accreditation (NBA) criteria. By automating the export of rosters, submissions, rubric audits, and certificate serials into Excel-friendly CSVs with UTF-8 BOM encoding (<code>\uFEFF</code>), administrative overhead during accreditation reviews is reduced to zero.
+      </p>
+
+      <h2>5. Appendix & Team Details</h2>
+      <p>
+        <strong>Course:</strong> Web Technologies (22IT104001)<br>
+        <strong>Academic Year:</strong> 2025-2026<br>
+        <strong>Department:</strong> Department of Computer Science and Engineering, School of Computing<br>
+        <strong>Institution:</strong> Mohan Babu University (MBU), Sree Sainath Nagar, Tirupati – 517102
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

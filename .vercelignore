@@ -1,0 +1,15 @@
+# Vercel Deployment Ignore List
+bin/
+temp_chrome/
+extracted_images/
+*.bat
+*.zip
+*.log
+.git/
+.gitignore
+test_suite.js
+backup.js
+restore.js
+package_submission.js
+package_submission.bat
+docs/

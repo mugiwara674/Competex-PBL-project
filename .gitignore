@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Binaries (Standalone Node executable)
+bin/
+
+# Temporary Chrome profiles & screenshots
+temp_chrome/
+staging_submission/
+extracted_images/
+
+# Large Archives & Temp Test Artifacts
+*.zip
+CompeteX_Test.pdf
+
+# System and logs
+*.log
+.DS_Store
+Thumbs.db
